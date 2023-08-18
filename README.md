@@ -8,14 +8,14 @@ I installed the needed tools.
 </details>	
 	
  <details>
- <summary> Yosys </summary>
-I installed Yosys using the following commands:
+ <summary>icc2_shell </summary>
+I invoked icc2_shell using the following commands: icc2_shell
      
 
      
 Below is the screenshot showing sucessful launch:
 
-<img width="1085" alt="yosys" src="https://github.com/alwinshaju08/Alwin_iiitb_asic_class/assets/69166205/4048f403-62c7-4be1-9bc3-64d9d43e68ea">
+<img width="1085" alt="icc2_shell" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/3e0e2b03e90d202a407834f16c21cc39f0c6500c/Samsung_PD_%23day0/icc2.png">
 </details>
 
 
