@@ -118,7 +118,7 @@ Selection of the Cells: We'll need to guide the Synthesizer to choose the flavou
 <summary>Labs on Yosys </summary>
  We were given the overview of this tool and the basic files required to perform the experiment on 2:1 MUX. 
  
- First we need to read the liberty file using the code
+ **Procedure** : First we need to read the liberty file using the code
  
  **read_liberty -lib <path of the .lib>**
  
@@ -138,5 +138,9 @@ This Netlist can be viewed in the synthesized circuit form using the **show** co
 
 
 
-<img width="1085" alt="ckt" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/3e0e2b03e90d202a407834f16c21cc39f0c6500c/twoistoonemux.png">
+<img width="1085" alt="ckt" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/b16bd3962e6b14addfb035fca7c607c20f29a653/twoistoonemux.png">
 </details>
+
+The Nestlist code 
+
+
