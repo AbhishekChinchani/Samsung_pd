@@ -142,8 +142,8 @@ This Netlist can be viewed in the synthesized circuit form using the **show** co
 
 
 The Nestlist code 
-<img width="1085" alt="netlist" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/b16bd3962e6b14addfb035fca7c607c20f29a653/netlist.png">
+<img width="1085" alt="netlist" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/f6284eee3d3d3865ac7099cbb31b27a44d7e8787/netlist.png">
 
 Simplified Netlist code 
-<img width="1085" alt="netlist" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/b16bd3962e6b14addfb035fca7c607c20f29a653/simp_netlist.png">
+<img width="1085" alt="netlist" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/f6284eee3d3d3865ac7099cbb31b27a44d7e8787/simp_netlist.png">
 </details>
