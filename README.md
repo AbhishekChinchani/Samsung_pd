@@ -157,5 +157,5 @@ Simplified Netlist code
  **Timing File** consists of ASCII representations of Timing , Area and Power assosciated with the Standard cell. The Naming convention in the timing file follows PVT format (Process , Voltage , Temperature). For example the standard library used in our case was  **sky130_fd_sc_hd_tt_025C_1v8** , this name suggests that we are using 130 nm technology and the process is typical , temperature is 25C and 1v8 represents the voltage.
 
 Below is the screenshot of a standard library file
-<img width="1085" alt="std_lib" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/f6284eee3d3d3865ac7099cbb31b27a44d7e8787/simp_netlist.png">
+<img width="1085" alt="std_lib" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/be9e90d36a2a034dffacdb0f4b759c66110c55b3/day%232/library_file_syn_off.png">
 </details>
