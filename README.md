@@ -162,7 +162,15 @@ Below is the screenshot of a standard library file
 The timing File also consists of the technology used for standard cells as in the above example it is **CMOS**, it also specifies the delay model, unit of time, unit of voltage, unit of resistance, and many other units. 
 
 For each gate cell based on the number of inputs, there will be 2^N combinations, and for each combination leakage power, area, delay, and all related parameters are mentioned. For example, consider the below screenshot the gate mentioned in the screenshot consists of 5 inputs so there will be 2^5 i.e 32 combinations, and for all the combinations power, delay, value, and all the features are mentioned in it.
-<img  width="400" height = "400" alt="std_lib" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/9c9c34b937383ca2ed770024dfb977de5ded606e/day%232/std_cell_a2111o_with_features.png">
+<img  width="1085" alt="std_lib" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/522961b79bd941674795678a161f1ee5465e484c/day%232/a21110.png">
 
 
 The timing file consists of many different variations of the same gate cells.
+
+Below image shows the comparison of the power consumption of different flavours of the same gate
+<img  width="1085" alt="std_lib" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/522961b79bd941674795678a161f1ee5465e484c/day%232/a21110.png">
+
+Below image shows the comparison of the delay times of different flavours of the same gate
+<img  width="1085" alt="std_lib" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/522961b79bd941674795678a161f1ee5465e484c/day%232/a21110.png">
+
+
