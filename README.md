@@ -157,7 +157,7 @@ Simplified Netlist code
  **Timing File** consists of ASCII representations of Timing, Area, and Power associated with the Standard cell. The Naming convention in the timing file follows PVT format (Process, Voltage, Temperature). For example, the standard library used in our case was  **sky130_fd_sc_hd_tt_025C_1v8**, this name suggests that we are using 130 nm technology and the process is typical, temperature is 25C, and 1v8 represents the voltage.
 
 Below is the screenshot of a standard library file
-<img width = "900" height = "900" alt="std_lib" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/7c62a6e6d853ed4abf546b7cedb3d5f37519fe4c/day%232/library_sky130.png">
+<img width = "900" height = "900" alt="std_lib" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/7c62a6e6d853ed4abf546b7cedb3d5f37519fe4c/day%232/lib_file.png">
 
 The timing File also consists of the technology used for standard cells as in the above example it is **CMOS**, it also specifies the delay model, unit of time, unit of voltage, unit of resistance, and many other units. 
 
