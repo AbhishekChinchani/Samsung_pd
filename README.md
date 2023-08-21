@@ -157,12 +157,12 @@ Simplified Netlist code
  **Timing File** consists of ASCII representations of Timing, Area, and Power associated with the Standard cell. The Naming convention in the timing file follows PVT format (Process, Voltage, Temperature). For example, the standard library used in our case was  **sky130_fd_sc_hd_tt_025C_1v8**, this name suggests that we are using 130 nm technology and the process is typical, temperature is 25C, and 1v8 represents the voltage.
 
 Below is the screenshot of a standard library file
-<img  width="700" height = "700" alt="std_lib" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/be9e90d36a2a034dffacdb0f4b759c66110c55b3/day%232/library_file_syn_off.png">
+<img  width="650" height = "600" alt="std_lib" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/be9e90d36a2a034dffacdb0f4b759c66110c55b3/day%232/library_file_syn_off.png">
 
 The timing File also consists of the technology used for standard cells as in the above example it is **CMOS**, it also specifies the delay model, unit of time, unit of voltage, unit of resistance, and many other units. 
 
 For each gate cell based on the number of inputs, there will be 2^N combinations, and for each combination leakage power, area, delay, and all related parameters are mentioned. For example, consider the below screenshot the gate mentioned in the screenshot consists of 5 inputs so there will be 2^5 i.e 32 combinations, and for all the combinations power, delay, value, and all the features are mentioned in it.
-<img  width="700" height = "700" alt="std_lib" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/be9e90d36a2a034dffacdb0f4b759c66110c55b3/day%232/.png">
+<img  width="400" height = "400" alt="std_lib" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/9c9c34b937383ca2ed770024dfb977de5ded606e/day%232/std_cell_a2111o_with_features.png">
 
 
 The timing file consists of many different variations of the same gate cells.
