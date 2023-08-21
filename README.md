@@ -147,3 +147,15 @@ The Nestlist code
 Simplified Netlist code 
 <img width="1085" alt="netlist" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/f6284eee3d3d3865ac7099cbb31b27a44d7e8787/simp_netlist.png">
 </details>
+
+
+# Day-2-Introduction to Timing libraries,Hierarchical vs flat synthesis and flip flop coding 
+
+ <details>
+ <summary>Introduction to timing libraries</summary>
+
+ **Timing File** consists of ASCII representations of Timing , Area and Power assosciated with the Standard cell. The Naming convention in the timing file follows PVT format (Process , Voltage , Temperature). For example the standard library used in our case was  **sky130_fd_sc_hd_tt_025C_1v8** , this name suggests that we are using 130 nm technology and the process is typical , temperature is 25C and 1v8 represents the voltage.
+
+Below is the screenshot of a standard library file
+<img width="1085" alt="std_lib" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/f6284eee3d3d3865ac7099cbb31b27a44d7e8787/simp_netlist.png">
+</details>
