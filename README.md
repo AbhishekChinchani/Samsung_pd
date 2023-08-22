@@ -318,6 +318,10 @@ Performing Synthesis at sub_module level is one of the good practises for the ma
 <img  width="1085" alt="sub_module1" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/d014884bf2fa07de0fa6c458307678c51a5b9f25/day%232/sub_module1_net.png">
 </details>
 
+<details>
+ <summary>Flip</summary>
+ 
+
 
 
 
