@@ -404,8 +404,50 @@ Synthesized circuit
 
 <img  width="1085" alt="sub_module1" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/d014884bf2fa07de0fa6c458307678c51a5b9f25/day%232/syncres_sch.png">
 
- 
- 
+ </details>
+
+ <details>
+<summary>Optimisation Techniques</summary>
+
+There many special cases where we don't need any additional hardwares to implement the circuit. For Example consider a case where 3 bit number is multiplied by 2 in this case we dont need any additional hardware and only needs connecting bits to the output and grounding the LSB bit,same is realized by yosys.
+```ruby
+module mul2 (input [2:0] a, output [3:0] y);
+	assign y = a * 2;
+endmodule
+```
+When it comes to multiplying with the powers of 2 it justs need shifting as shown in the below image
+
+<img  width="1085" alt="hand_writ" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/d014884bf2fa07de0fa6c458307678c51a5b9f25/day%232/syncre_sch.png">
+
+Synthesized circuit
+
+<img  width="1085" alt="sub_module1" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/d014884bf2fa07de0fa6c458307678c51a5b9f25/day%232/syncres_sc.png">
+
+Netlist 
+
+<img  width="1085" alt="sub_module1" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/d014884bf2fa07de0fa6c458307678c51a5b9f25/day%232/syncres_sc.png">
+
+The next special was multiplying a 3 bit number by 9 , the result is as shown in the below image
+
+<img  width="1085" alt="hand_writ" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/d014884bf2fa07de0fa6c458307678c51a5b9f25/day%232/syncres_sc.png">
+
+The  RTL  Design code
+
+```ruby
+module mul8 (input [2:0] a, output [5:0] y);
+	assign y = a * 9;
+endmodule
+```
+
+The synthesized circuit
+
+<img  width="1085" alt="sub_module1" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/d014884bf2fa07de0fa6c458307678c51a5b9f25/day%232/syncres_sc.png">
+
+Netlist 
+
+<img  width="1085" alt="sub_module1" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/d014884bf2fa07de0fa6c458307678c51a5b9f25/day%232/syncres_sc.png">
+  
+ </details>
 
 
 
