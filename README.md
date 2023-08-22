@@ -162,7 +162,7 @@ Below is the screenshot of a standard library file
 
 The timing File also consists of the technology used for standard cells as in the above example it is **CMOS**, it also specifies the delay model, unit of time, unit of voltage, unit of resistance, and many other units. 
 
-For each gate cell based on the number of inputs, there will be 2^N combinations, and for each combination leakage power, area, delay, and all related parameters are mentioned. For example, consider the below screenshot the gate mentioned in the screenshot consists of 5 inputs so there will be 2^5 i.e 32 combinations, and for all the combinations power, delay, value, and all the features are mentioned in it.
+For each gate cell based on the number of inputs(N), there will be 2^N combinations, and for each combination leakage power, area, delay, and all related parameters are mentioned. For example, consider the below screenshot the gate mentioned in the screenshot consists of 5 inputs so there will be 2^5 i.e 32 combinations, and for all the combinations power, delay, value, and all the features are mentioned in it.
 
 <img  width="1085" alt="std_lib" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/522961b79bd941674795678a161f1ee5465e484c/day%232/a21110.png">
 
@@ -173,5 +173,154 @@ Below image shows the comparison of the power consumption of different flavours 
 
 Below image shows the comparison of the delay times of different flavours of the same gate
 <img  width="1085" alt="std_lib" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/d014884bf2fa07de0fa6c458307678c51a5b9f25/day%232/delay.png">
+</details>
+<details>
+ <summary>Hierarchical vs Flat synthesis</summary>
+	
+ **Hierarchical synthesis** : The basic flow of hierarchical design is simple… Dividing a design into multiple blocks (sometimes referred to as sub-chips, sub-blocks, modules, hierarchical blocks, etc.). Designers can work on the blocks separately and in parallel from RTL through physical implementation. Hierarchial design has blocks, subblocks in an hierarchy.
+
+ Consider a multimodule combinational circuit which consists of two sub_modules one that of a **and** gate and other of a **or** gate. Below is the RTL Design code of multimodule.
+ 
+
+
+```ruby
+module sub_module2 (input a, input b, output y);
+	assign y = a | b;
+endmodule
+
+module sub_module1 (input a, input b, output y);
+	assign y = a&b;
+endmodule
+
+
+module multiple_modules (input a, input b, input c , output y);
+wire net1;
+sub_module1 u1(.a(a),.b(b),.y(net1));  //net1 = a&b
+sub_module2 u2(.a(net1),.b(c),.y(y));  //y = net1|c ,ie y = a&b + c;
+endmodule
+```
+The Schmetic of the multiple  model is as shown in the below figure.
+<img  width="1085" alt="hand_writ_ckt" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/d014884bf2fa07de0fa6c458307678c51a5b9f25/day%232/dela.png">
+
+When we perform synthesis in yosys it generates the following schematic instead of the  above  schematic
+<img  width="1085" alt="hier" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/d014884bf2fa07de0fa6c458307678c51a5b9f25/day%232/hier_sch.png">
+
+The yosys considers the module hierarchy and does mapping according to the instantiation.The netlist code for hierarchical implementation of the multiple_modules
+
+```ruby
+module multiple_modules(a, b, c, y);
+	  input a;
+	 input b;
+	 input c;
+	  wire net1;
+	 output y;
+  sub_module1 u1 (.a(a),.b(b),.y(net1) );
+  sub_module2 u2 (.a(net1),.b(c),.y(y));
+endmodule
+
+module sub_module1(a, b, y);
+ wire _0_;
+ wire _1_;
+ wire _2_;
+ input a;
+ input b;
+ output y;
+ sky130_fd_sc_hd__and2_0 _3_ (.A(_1_),.B(_0_),.X(_2_));
+ assign _1_ = b;
+ assign _0_ = a;
+ assign y = _2_;
+endmodule
+
+module sub_module2(a, b, y);
+wire _0_;
+ wire _1_;
+ wire _2_;
+input a;
+input b;
+ output y;
+ sky130_fd_sc_hd__lpflow_inputiso1p_1 _3_ (.A(_1_),.SLEEP(_0_),.X(_2_) );
+ assign _1_ = b;
+ assign _0_ = a;
+ assign y = _2_;
+endmodule
+```
+In the netlist we can observe that separate modules namely sub_module1 sub_module2 are getting created i.e submodules are getting instanstiated not the gate cells
+
+
+**Flat synthesis** : In Flat synthesis the hierarchies the flattened  out and there is a single module in the netlist i.e the gates are instantiated directly instead of submodules. We apply flat synthesis on the same  design mentioned above. The command used to perform Flat synthesis from yosys are as follows
+
+**read_liberty -lib <path of the .lib>**
+ 
+ **read_verilog <RTL_Design_file>**
+
+ **synth -top <instance_name>**
+
+ **abc -liberty <.lib path>**
+ 
+ **flatten**
+
+**write_verilog -noattr <File_name>**
+
+The synthesized circuit for a flattened netlist is shown in the below image , Here submodules u1 and u2 are flattened 
+<img  width="1085" alt="hier" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/d014884bf2fa07de0fa6c458307678c51a5b9f25/day%232/flat_sch.png">
+
+The netlist code of the flattened synthesis is as follows
+```ruby
+
+module multiple_modules(a, b, c, y);
+	 wire _0_;
+	 wire _1_;
+	 wire _2_;
+	 wire _3_;
+	 wire _4_;
+	 wire _5_;
+	 input a;
+	 input b;
+	 input c;
+	 wire net1;
+	 wire \u1.a ;
+	 wire \u1.b ;
+	 wire \u1.y ;
+	 wire \u2.a ;
+	 wire \u2.b ;
+	 wire \u2.y ;
+	output y;
+	 sky130_fd_sc_hd__and2_0 _6_ (
+	  .A(_1_),
+	 .B(_0_),
+	 .X(_2_)
+	);
+	 sky130_fd_sc_hd__lpflow_inputiso1p_1 _7_ (
+	  .A(_4_),
+	  .SLEEP(_3_),
+	  .X(_5_)
+	 );
+	 assign _4_ = \u2.b ;
+	 assign _3_ = \u2.a ;
+	 assign \u2.y  = _5_;
+	 assign \u2.a  = net1;
+	 assign \u2.b  = c;
+	 assign y = \u2.y ;
+	 assign _1_ = \u1.b ;
+	 assign _0_ = \u1.a ;
+	 assign \u1.y  = _2_;
+	 assign \u1.a  = a;
+	 assign \u1.b  = b;
+	 assign net1 = \u1.y ;
+	endmodule
+```
+We can see that there is a single module which consist of the gate level instantion of the two submodules .
+
+
+Performing Synthesis at sub_module level is one of the good practises for the massive designs as it simplifies the debugging process . It is also helpful in cases where there many instances of the same module , Instead of synthesizing all the instances we can synthesize one and duplicate it for others and stitch them together. Here is the synthesized circuit of the sub_module1 
+
+<img  width="1085" alt="sub_module1" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/d014884bf2fa07de0fa6c458307678c51a5b9f25/day%232/sub_module1_sch.png">
+
+
+
+
+
+
+
 
 
