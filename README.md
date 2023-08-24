@@ -481,10 +481,18 @@ endmodule
 ```
 Synthesized circuit
 
-<img  width="1085" alt="hand_writ_exam" src="">
+<img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/a6ae4306290a90ac5e5ffb9a8501a53525be304e/day3/opt_check.png">
  
+**Example-2**
+RTL Design Code
+ ```ruby
+module opt_check (input a , input b , output y);
+	assign y = a?1:b;
+endmodule
+```
+Synthesized circuit
 
-     
+<img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/a6ae4306290a90ac5e5ffb9a8501a53525be304e/day3/opt_check2.png">   
   
   
 
