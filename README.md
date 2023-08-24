@@ -692,24 +692,122 @@ synthesized circuit
 **Example 4**
 
 ```ruby
-module dff_const2(input clk, input reset, output reg q);
+	module dff_const4(input clk, input reset, output reg q);
+	reg q1;
+
 	always @(posedge clk, posedge reset)
 	begin
 		if(reset)
+		begin
 			q <= 1'b1;
-		else
-			q <= 1'b1;
+			q1 <= 1'b1;
+		end
+	else
+		begin
+			q1 <= 1'b1;
+			q <= q1;
+		end
 	end
-endmodule
+	endmodule
 
 ```
 Simulation
 
-<img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/a6ae4306290a90ac5e5ffb9a8501a53525be304e/day3/dff_const2_wave.png">
+<img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/a6ae4306290a90ac5e5ffb9a8501a53525be304e/day3/dff_const4_wave.png">
 
 synthesized circuit
 
-<img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/a6ae4306290a90ac5e5ffb9a8501a53525be304e/day3/dff_const2_sch.png">
+<img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/a6ae4306290a90ac5e5ffb9a8501a53525be304e/day3/dff_const4_sch.png">
+
+**Example 5**
+
+```ruby
+	module dff_const5(input clk, input reset, output reg q);
+	reg q1;
+	always @(posedge clk, posedge reset)
+		begin
+			if(reset)
+			begin
+				q <= 1'b0;
+				q1 <= 1'b0;
+			end
+		else
+			begin
+				q1 <= 1'b1;
+				q <= q1;
+			end
+		end
+	endmodule
+```
+Simulation
+
+<img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/a6ae4306290a90ac5e5ffb9a8501a53525be304e/day3/dff_const5_wave.png">
+
+synthesized circuit
+
+<img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/a6ae4306290a90ac5e5ffb9a8501a53525be304e/day3/dff_const5_sch.png">
+
+</details>
+
+<details>
+	
+ <summary>Sequential optimization of unused outputs</summary>
+
+ **Example 1**
+ ```ruby
+	module counter_opt (input clk , input reset , output q);
+	reg [2:0] count;
+	assign q = count[0];
+	always @(posedge clk ,posedge reset)
+	begin
+		if(reset)
+			count <= 3'b000;
+		else
+			count <= count + 1;
+	end
+	endmodule
+```
+synthesis
+
+<img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/a6ae4306290a90ac5e5ffb9a8501a53525be304e/day3/dff_const5_wav.png">
+
+
+<img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/a6ae4306290a90ac5e5ffb9a8501a53525be304e/day3/dff_const5_sc.png">
+
+This is a 3 bit counter with output only LSB so instead of 3 d-flip flop only 1 is used
+
+**Updated Counter**
+```ruby
+module counter_opt (input clk , input reset , output q);
+	reg [2:0] count;
+	assign q = {count[2:0]==3'b100};
+	always @(posedge clk ,posedge reset)
+	begin
+	if(reset)
+		count <= 3'b000;
+	else
+		count <= count + 1;
+	end
+endmodule
+```
+synthesis
+
+All the other blocks are for incrementing the counter but the output is from 3 input NOR gate
+
+```ruby
+module counter_opt (input clk , input reset , output q);
+	reg [2:0] count;
+	assign q = {count[2:0]==3'b100};
+	always @(posedge clk ,posedge reset)
+	begin
+	if(reset)
+		count <= 3'b000;
+	else
+		count <= count + 1;
+	end
+endmodule
+```
+synthesis
 
 
 
