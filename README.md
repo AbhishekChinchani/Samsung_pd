@@ -616,7 +616,7 @@ Consider a case where asynchronous reset D Flip-flop is fed with d = 0(i.e GND) 
 **Retiming** : Retiming is a powerful sequential optimization technique used to move registers across the combinational logic or to optimize the number of registers to improve performance via power-delay trade-off, without changing the input-output behavior of the circuit.
 
 **Example 1**
-Here flop is inferred as output 
+Here flop is inferred in output 
 ```ruby
 module dff_const1(input clk, input reset, output reg q);
 	always @(posedge clk, posedge reset)
@@ -628,6 +628,89 @@ module dff_const1(input clk, input reset, output reg q);
 	end
 endmodule
 ```
+Simulation
+
+<img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/a6ae4306290a90ac5e5ffb9a8501a53525be304e/day3/dff_const1_wave.png">
+
+synthesized circuit
+
+<img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/a6ae4306290a90ac5e5ffb9a8501a53525be304e/day3/dff_const1_sch.png">
+
+**Example 2**
+Here flop is not inferred in output 
+```ruby
+module dff_const2(input clk, input reset, output reg q);
+	always @(posedge clk, posedge reset)
+	begin
+		if(reset)
+			q <= 1'b1;
+		else
+			q <= 1'b1;
+	end
+endmodule
+
+```
+Simulation
+
+<img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/a6ae4306290a90ac5e5ffb9a8501a53525be304e/day3/dff_const2_wave.png">
+
+synthesized circuit
+
+<img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/a6ae4306290a90ac5e5ffb9a8501a53525be304e/day3/dff_const2_sch.png">
+
+**Example 3**
+ 
+```ruby
+module dff_const3(input clk, input reset, output reg q);
+	reg q1;
+
+	always @(posedge clk, posedge reset)
+	begin
+		if(reset)
+		begin
+			q <= 1'b1;
+			q1 <= 1'b0;
+		end
+		else
+		begin
+			q1 <= 1'b1;
+			q <= q1;
+		end
+	end
+	endmodule
+
+
+```
+Simulation
+
+<img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/a6ae4306290a90ac5e5ffb9a8501a53525be304e/day3/dff_const3_wave.png">
+
+synthesized circuit
+
+<img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/a6ae4306290a90ac5e5ffb9a8501a53525be304e/day3/dff_const3_sch.png">
+
+**Example 4**
+
+```ruby
+module dff_const2(input clk, input reset, output reg q);
+	always @(posedge clk, posedge reset)
+	begin
+		if(reset)
+			q <= 1'b1;
+		else
+			q <= 1'b1;
+	end
+endmodule
+
+```
+Simulation
+
+<img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/a6ae4306290a90ac5e5ffb9a8501a53525be304e/day3/dff_const2_wave.png">
+
+synthesized circuit
+
+<img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/a6ae4306290a90ac5e5ffb9a8501a53525be304e/day3/dff_const2_sch.png">
+
 
 
 
