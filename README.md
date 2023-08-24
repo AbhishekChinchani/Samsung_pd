@@ -481,7 +481,7 @@ endmodule
 ```
 Synthesized circuit
 
-<img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/dcb471494ed4f1dc57ccdb1b59f552acd27d8168/day%232/mul8_ne.png">
+<img  width="1085" alt="hand_writ_exam" src="">
  
 
      
