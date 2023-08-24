@@ -449,6 +449,46 @@ Netlist
   
  </details>
 
+ # Day-3-Combinational and sequential logic optimizations 
+
+ <details>
+ <summary>Combinational Logic Optimization with examples</summary>
+
+ **Combinational Logic Optimization** squeeze the logic to get most optimized design in terms of area and power. There are various techniques for optimizing the circuit
+ 
+ - constant propagation(Direct propagation)
+ - Boolean Logic Optimization(K-Means ,QUine Mckluskey)
+   
+**Constant Propogation** is an optimization technique used by  synthesis tools to minimize hardware implementation.Constant propagation prevents situations in which values are copied from one place or variable to another only to assign their value to a different variable.
+
+**Example on Constant Propogation** 
+<img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/dcb471494ed4f1dc57ccdb1b59f552acd27d8168/day%232/mul8_ne.png">
+
+Consider the above  combinational circuit it consists of and and nor gate, so it requires 6 CMOS transistor to implement , if A is made constant value 0 then A&B will give 0 then 0 and C are given to NOR gate which reduces the expression to C compliment(C`) i.e basically a inverter . By making an input constant we can reduce this combinational circuit to an inverter which can impleneted using only 2 CMOS transistor thus reducing the hardware implementation
+
+**Example for Boolean Logic optimization**
+consider a concurrent statement a?(b?c:(c?a:0)):(!c) , this statement is realized using multiple multiplexers. Simplying this equation using boolean reduction techniques we get the output as ~(a^b)
+
+The command to optimize the circuit in yosys is **opt_clean -purge**.
+
+**Example - 1**
+
+RTL Design Code
+ ```ruby
+module opt_check (input a , input b , output y);
+	assign y = a?b:0;
+endmodule
+```
+Synthesized circuit
+
+<img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/dcb471494ed4f1dc57ccdb1b59f552acd27d8168/day%232/mul8_ne.png">
+ 
+
+     
+  
+  
+
+
 
 
 
