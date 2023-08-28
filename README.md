@@ -815,6 +815,84 @@ synthesis
 
 <img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/f1aea11b3381a7ad84d4fb6b5e5f216c3796ddc1/day3/updated_counter_sch.png">
 
+</details>
+
+# Day 4 Gate level simulation(GLS), Blocking Vs Non Blocking and Synthesis Simulation mismatch
+
+ <details>
+ <summary>Gate level synthesis,blocking vs non blocking , Synthesis simulation mismatch</summary>
+
+ **Gate level Synthesis** 
+ Gate-level simulation is a fundamental component of VLSI design verification. This simulation technique involves creating models for the behavior of digital circuits at the gate level, representing individual logic gates and flip-flops. Through gate-level simulations, designers can gain insight into how the circuit will respond to various inputs and clock signals. By simulating signal propagation through gates, it becomes possible to validate the accuracy of logic functionality, pinpoint timing discrepancies, and detect potential issues like glitches or hazards.GLS generates the simulation output by running test bench with the netlist generated from the synthesis of design.
+
+**Why GLS** 
+
+- To verify logic correctness of design after synthesis
+
+- If GLS is run with delay annotion then it can be used for timing analysis 
+
+- To identify errors that might occur due to signal progation delay.
+
+- As Design become more and more complex it becomes difficult to predict their behaviour accurately,GLS offers a comprehensive and a detailed view of circuit operation
+
+**Synthesis Simulation Mismatch** 
+
+Synthesis simulation mismatch denotes the disparities between the anticipated behavior of a circuit as simulated during design and its real-world performance after fabrication. This discrepancy is attributed to factors such as process variations, parasitic effects, and inaccuracies in simulation models. It's a critical concern to guarantee the functional alignment of the manufactured circuit with its intended design.
+
+Synthesis simulation mismatched are mainly caused because of the following reasons 
+
+- Missing sensitivity list
+- Blocking vs Non Blocking assignments
+- Non standard verilog code
+
+**Missing sensitivity list**
+The absence of a complete sensitivity list in VLSI design can give rise to problems. In hardware description languages (HDL) like Verilog, a sensitivity list is utilized to specify the inputs that should activate the execution of a specific process or code block. Inadequate or missing signals in the sensitivity list can lead to inaccurate or unforeseen behavior of the circuit during synthesis or simulation. Ensuring an accurate representation of inputs impacting the logic within a process is vital.
+
+As the synthesizer does not look for sensitivity list and it looks only statements in the procedural block , it infers correct circuit and if we simulate the netlist code , there will be synthesis simulation mismatch. In to order tackle this issue this issue it is important to check the behaviour of the circuit first and then match it with the expected output seen in the simulation. 
+
+**Blocking Vs Non Blocking Assignments**
+
+*Blocking statements* are the type of assignment statements in Hardware Description Language. These assignments are executed sequentially in the order they appear in the code. The next statement will wait for the current one to finish.
+
+Example of blocking assignment 
+```ruby
+always @posedge(clk) begin
+	a = b;
+	d = c;
+end
+```
+Improper use of blocking assignments in the always block can lead to synthesis simulation mismatch 
+
+*Non Blocking statements* are also a type of assgnment statements in HDL. These assignments are executed parallely, and the updates to the values  take effect at the end of the time step.
+
+Example of non blocking assignment
+
+```ruby
+always @posedge(clk) begin
+	a <= b;
+	d <= c;
+end
+```
+Inside always block it is always a good practise to use non blocking assignment statements
+</details>
+
+<details>
+
+ <summary>Labs on GLS (Simulation synthesis mismatch)</summary>
+ 
+ **Example 1** 
+ In this example there is no mismatch between the RTL Design simulated wave and Netlist simulated wave.
+ ```ruby
+module ternary_operator_mux (input i0 , input i1 , input sel , output y);
+	assign y = sel?i1:i0;
+endmodule
+```
+simulation
+
+</details>
+
+
+ 
 
 
 
