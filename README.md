@@ -881,6 +881,7 @@ Inside always block it is always a good practise to use non blocking assignment 
  <summary>Labs on GLS (Simulation synthesis mismatch)</summary>
  
  **Example 1** 
+ 
  In this example there is no mismatch between the RTL Design simulated wave and Netlist simulated wave.
  ```ruby
 module ternary_operator_mux (input i0 , input i1 , input sel , output y);
@@ -889,7 +890,96 @@ endmodule
 ```
 simulation
 
+<img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/487d88bd65ce2da9dd49d224ea4c740c05be586e/day4/ter_rtl_wave.png">
+
+Schematic 
+
+<img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/487d88bd65ce2da9dd49d224ea4c740c05be586e/day4/ter_sch.png">
+
+Netlist Simulation 
+
+<img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/487d88bd65ce2da9dd49d224ea4c740c05be586e/day4/ter_gls_wave.png">
+
+In this we see that when select line is 0 , Output follows i0 and when select line is 1 output follows i1. This is same for both the simulations so there is no mismatch.
+
+**Example 2**
+Consider a example of mux.In this always block is triggered only when the select line is changed.
+```ruby
+module bad_mux (input i0 , input i1 , input sel , output reg y);
+	always @ (sel)
+	begin
+		if(sel)
+			y <= i1;
+		else 
+			y <= i0;
+	end
+endmodule
+```
+Simulation 
+
+<img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/487d88bd65ce2da9dd49d224ea4c740c05be586e/day4/bad_rtl_wave.png">
+
+Schematic 
+
+<img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/487d88bd65ce2da9dd49d224ea4c740c05be586e/day4/bad_sch.png">
+
+Netlist Simulation
+
+<img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/487d88bd65ce2da9dd49d224ea4c740c05be586e/day4/bad_gls.png">
+
+In this we can see that there is simulation synthesis mismatch , in the RTL design simulation we see that output is changing only when select line is changing but thats not the correct functionality of a mux , the output should change when either the input or select line is changed , this is reflected in the netlist simulation.
+
+**Example 3**
+Consider a example of mux.In this the always block is triggered when there is a change in either input or select line. 
+```ruby
+module good_mux (input i0 , input i1 , input sel , output reg y);
+	always @ (*)
+	begin
+		if(sel)
+			y <= i1;
+		else 
+			y <= i0;
+	end
+endmodule
+```
+Simulation 
+
+<img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/487d88bd65ce2da9dd49d224ea4c740c05be586e/day4/good_rtl.png">
+
+Schematic 
+
+<img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/487d88bd65ce2da9dd49d224ea4c740c05be586e/day4/good_sch.png">
+
+Netlist 
+
+<img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/487d88bd65ce2da9dd49d224ea4c740c05be586e/day4/good_gls.png">
+
+Here simulation output are same , i.e output changes when input or select line changes.
+
 </details>
+
+<details>
+
+ <summary>Labs on synthesis simulation mismatch (Blocking statement)</summary>
+ 
+ **Example 4** 
+ Here the output depends on the past value of x which is dependent on a and b  and it appears like a imaginary flop.
+
+ Simulation
+ 
+ <img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/487d88bd65ce2da9dd49d224ea4c740c05be586e/day4/blk_rtl.png">
+
+ Schematic 
+
+<img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/487d88bd65ce2da9dd49d224ea4c740c05be586e/day4/blk_sch.png"> 
+
+Netlist simulation 
+
+<img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/487d88bd65ce2da9dd49d224ea4c740c05be586e/day4/blk_gls.png"> 
+
+This a combinational circuit of or and and gate , in which the output of or gate is given as input to the and as shown in the figure , but in the RTL Design code blocking statements are used to define these operations in reverse direction so the and gate is getting input from the  previous output of or gate which acts as imaginary flop.
+</details>
+
 
 
  
