@@ -964,6 +964,17 @@ Here simulation output are same , i.e output changes when input or select line c
  
  **Example 4** 
  Here the output depends on the past value of x which is dependent on a and b  and it appears like a imaginary flop.
+ 
+ ```ruby
+ module blocking_caveat (input a , input b , input  c, output reg d); 
+reg x;
+always @ (*)
+	begin
+	d = x & c;
+	x = a | b;
+end
+endmodule
+```
 
  Simulation
  
@@ -977,7 +988,9 @@ Netlist simulation
 
 <img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/487d88bd65ce2da9dd49d224ea4c740c05be586e/day4/blk_gls.png"> 
 
-This a combinational circuit of or and and gate , in which the output of or gate is given as input to the and as shown in the figure , but in the RTL Design code blocking statements are used to define these operations in reverse direction so the and gate is getting input from the  previous output of or gate which acts as imaginary flop.
+
+
+This a combinational circuit of or and and gate , in which the output of or gate is given as input to the and gate as shown in the figure , but in the RTL Design code blocking statements are used to define these operations in reverse direction(These statements are executed sequentially) so the and gate is getting input from the  previous output of or gate which acts as imaginary flop. As a result we are getting a different waveform in RTL design simulation , the correct waveform is  obtained  while doing netlist simulation. This causes Synthesis Simulation mismatch. This can be overcome by using non blocking assignment statements in the always block.  
 </details>
 
 
