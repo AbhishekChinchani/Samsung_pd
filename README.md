@@ -1088,12 +1088,7 @@ This a combinational circuit of or and and gate , in which the output of or gate
 
 </details>
 
-<details>
 
- <summary>Excercise</summary>
-
- 1. 
-</details>
 
  		
   
