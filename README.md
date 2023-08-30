@@ -1003,11 +1003,62 @@ This a combinational circuit of or and and gate , in which the output of or gate
  - **DFT(Design for testability)** refers to a set of design techniques used to ensure that Integrated circuits can be effectively tested after being fabricated. It aims at incorporating an additional hardware in the design to improve the reliabilty of semiconductor devices .
 
  - **Why DFT**
-   - to make testing processs easiser
+   - to make testing processs easier
    - to improve manufacturing quality
-   - Reduce time to market as DFT helps in faster debugging and validation of u
+   - Reduce time to market as DFT helps in faster debugging and validationof design
    - It ensures long term reliability of the design
+  
+ - There are 3 main levels of testing after chips are fabricated
+    - **Chip level**
+    - **Board level**
+    - **System level**
 
+ - **Pros and cons**
+    - *Pros*
+       - Improved test coverage
+       - Reduces tester complexity
+       - Easy to debug
+    - *Cons*
+       - Increases complexity of design
+       - increases area ,power ,timing and package pins
+       - Dependency on external tools for performing DFT methods such as scan based testing  
+       
+ - **Terminologies in DFT**
+    - *Controllability* :  It specifies the difficulty of setting a signal line to a required logic level from primary inputs. We intend  to propagate 0 or 1 depending on the input to each and every node within the target pattern.
+    - *Observability* : It specifies the  difficulty of propagating the logic value of the signal line to primary output. It is the ability to measure the state of logic signal.
+    -  *Fault* : It is the reperesentation of  defect /physical damage  at the abstracted function level which may/mayn't cause system failure.
+    -  *Error* : This is caused by fault, which leads to the malfunction of the system.
+    -  *Failure* : This is when the system is not yielding the expected output.
+    -  *Fault Coverage* : It is the percentage of the logical faults that can be detected during the test.
+             Fault coverage  = (Faults detected)/(Number of Potential faults)
+
+ - **DFT Technique**
+    - It refers to the various strategies and methodologies incorporated into design process to make testing and verification more efficient and effective.They are mainly characterized in 2 main techniques:
+       - Ad-Hoc : This is a  DFT technique which is applied on a case by case basis to address specific challenges or issues.It includes
+          - Custom Logic Design
+          - Layout modification
+          - Specialized Clocking schemes
+          - Custom Testing methods
+          - Design Rule Exceptions
+          - Power Optimization Techniques
+          - Mixed signal customization
+        
+        *Ad-hoc technique/steps*
+      
+         - Avoid combinational feedback
+   
+         - All flip flops must be intialized
+   
+   	 - Partioning a large circuit into blocks
+   
+   	 - Provide test control for signals which are not controllable
+   
+   	 - While designing test logic we have to consider the ATE requirements
+      
+           
+
+             
+      
 
  
 
