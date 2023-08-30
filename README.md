@@ -1043,17 +1043,63 @@ This a combinational circuit of or and and gate , in which the output of or gate
           - Power Optimization Techniques
           - Mixed signal customization
         
-        *Ad-hoc technique/steps*
+		- Ad-hoc technique/steps :          
+
+     		1. Avoid Combinational feedback
+   
+     		2. All flops must be intializable
+              
+     		3. Partioning a large circuit into small blocks
+              
+     		4. Provide test control for signals which are not controllable
+       
+     		5. While designing test logic we have to consider the ATE requirements 
+
+
+ 	- **Structured technique**
+
+  		- Structured Design for Testability (DFT)  refers to the systematic application of design techniques that enhance the testability of integrated circuits (ICs). The goal of structured DFT is to make it easier and more efficient to test and diagnose defects in the manufactured ICs. Here are some key aspects of structured DFT in VLSI design scan chains, boundary sacn , MBist.
+  
+
+
+- **Scan chain Technique** : It is one of the One of the fundamental DFT techniques. A serial path for shifting in test patterns and capturing test results is built by including scan flip-flops in the architecture. This allows for comprehensive testing of the logic paths within the design. Structured DFT emphasizes proper insertion of scan chains and their management to maximize fault coverage. It is used to *shift in shift out* test data.Scan chains are formed by connecting flip-flops in a serial manner, often using multiplexers to enable the shift-in and shift-out operations. These chains provide easy access to the internal nodes of the design for testing. There are 3 types of scan flip flops namely multiplexed, clocked,lssd. The *Chain length*  means the number of flops in a single scan chain.Larger the chain length longer the time it take to shift in and shift out.
+
+  No of ports required = 2 X Number of scan chain
+
+  No of cycles to run pattern = 2 X longest scan chain in the design
+  
+-  **Purpose of Scan Chains** :
+
+	-  Scan chains are used to detect manufacturing defects present in the combinational logic of the design.
+
+ 	-  To check whether each path of the manufactured devices is working at functional frequency
+
+- **Basic ATE functionality**
+	
+   - Scan in phase
+     
+   - Parallel Measure
+     
+   - Parallel Capture
+     
+   - First scan out phase
+     
+   - Scan out phase
+
+</details>
+
+<details>
+
+ <summary>Excercise</summary>
+
+ 1. 
+</details>
+
+ 		
+  
+   	       
+   
       
-         - Avoid combinational feedback
-   
-         - All flip flops must be intialized
-   
-   	 - Partioning a large circuit into blocks
-   
-   	 - Provide test control for signals which are not controllable
-   
-   	 - While designing test logic we have to consider the ATE requirements
       
            
 
