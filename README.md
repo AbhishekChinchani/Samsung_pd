@@ -993,6 +993,20 @@ Netlist simulation
 This a combinational circuit of or and and gate , in which the output of or gate is given as input to the and gate as shown in the figure , but in the RTL Design code blocking statements are used to define these operations in reverse direction(These statements are executed sequentially) so the and gate is getting input from the  previous output of or gate which acts as imaginary flop. As a result we are getting a different waveform in RTL design simulation , the correct waveform is  obtained  while doing netlist simulation. This causes Synthesis Simulation mismatch. This can be overcome by using non blocking assignment statements in the always block.  
 </details>
 
+# Day 5 Design For Testabilty(DFT)
+
+ <details>
+ <summary>DFT</summary>
+	 
+ - **Testabilty** is a relative measure of the effort or cost of testing a logic. A design is said testable if it is well *Controllable* and well *observable*.
+     
+ - **DFT(Design for testability)** refers to a set of design techniques used to ensure that Integrated circuits can be effectively tested after being fabricated. It aims at incorporating an additional hardware in the design to improve the reliabilty of semiconductor devices .
+
+ - **Why DFT**
+   - to make testing processs easiser
+   - to improve manufacturing quality
+   - Reduce time to market as DFT helps in faster debugging and validation of u
+   - It ensures long term reliability of the design
 
 
  
