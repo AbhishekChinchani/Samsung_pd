@@ -1164,7 +1164,7 @@ In VLSI design, constraints are essential parameters and limitations that guide 
 
 
 
-<img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/67124783772161a8b5a7f1768299ad0895244d93/snaps/lab1_dc_wisky_seqgen">
+
 
 <img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/67124783772161a8b5a7f1768299ad0895244d93/snaps/lab1_dc_wsky">
 
@@ -1229,20 +1229,106 @@ First we need to enable C shell and then invoke dC shell with the commands shown
 ```
 <img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/de0c4050082b98433594827daa8c1abae0c0e903/snaps/dc_invoke">
 
+
+
 Then we echo target library and link_library which returns an imaginary pointer library namely your library, which needs to be set.
 ```ruby
 >>>echo $target_library
 >>>echo $link_library
 ```
+<img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/67124783772161a8b5a7f1768299ad0895244d93/snaps/lab3_ss2">
+
+
 Consider a example of a Mux connected to D Flip flop as ahown in the figure as follows
 
+<img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/c56b0740001c42085327273a7883edb44dbac067/snaps/20230904_212145.jpg">
+
+The RTL design code is 
+```ruby
+module lab1_flop_with_en ( input res , input clk , input d , input en , output reg q);
+always @ (posedge clk , posedge res)
+begin
+	if(res)
+		q <= 1'b0;
+	else if(en)
+		q <= d;	
+end
+endmodule
+```
+Synthesis of this design code can be done using the following commands
+```ruby
+read_verilog <path of design file>
+read_db <path of .db>
+write -f verilog -out <net_filename>
+```
+Below is the screenshot of the output window after compile
+This generates the netlist file but it consists of some seqgen library as shown in the figure and not the .db file even though we have read the .db file, This is beacuse we didn't set link and target library,
+
+<img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/67124783772161a8b5a7f1768299ad0895244d93/snaps/lab1_dc_wisky_seqgen">
+
+To set the link_library and target_library we use the following commands
+```ruby
+set target_library <path of .db>
+set link_library { * path of the .db }
+link
+compile
+write -f verilog -out <net_filename>
+```
+After compiling the we get the output as shown in the figure
+
+<img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/67124783772161a8b5a7f1768299ad0895244d93/snaps/lab1_link_compile">
+
+The generated netlist
+
+<img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/67124783772161a8b5a7f1768299ad0895244d93/snaps/lab1_net_with_sky">
 
 
+**Labs on Design Vision**
 
+Design Vision is a widely used Electronic Design Automation (EDA) tool in the field of VLSI. It is developed by Synopsys and is primarily used for logic synthesis, formal verification, and other essential tasks in the VLSI design flow.
 
+To launch Design Vision we need to enable c shell and then give design Vision
+```ruby
+csh
+design_vision
+```
+After launching the design_vison first we need to the net to .ddc which is read by Design_vision tool which can be done by using the below command
+```ruby
+ write -f ddc -out <filename_name>
+```
+Then we can start GUI and then read the .ddc file generated above. This ddc file contains all the information of the tool memory of that particular session. ddc is synopys proprietary format i.e it can be read only br synopsys tools.When the .db is read it automatically reads the linked .db file as shown in the below figure. 
 
+<img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/67124783772161a8b5a7f1768299ad0895244d93/snaps/lab2_dv1">
 
+When we click lab1 and then schematic we get the schematic view of the Design
 
+<img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/67124783772161a8b5a7f1768299ad0895244d93/snaps/lab2_dv2">
+
+If we want to see the gate level implementation then we need to double click the module.
+
+<img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/67124783772161a8b5a7f1768299ad0895244d93/snaps/lab2_dv3">
+
+**Lab on .synopsys_dc.setup**
+
+Consider a case where there are multiple .db files used and we cannot skip any of them , then it is nearly impossible to indvidually set all the .db files. In order to resolve this we can create a file namely *.synopsys_dc.setup* file in home diresctory of workspace.
+
+When dc_shell is invoked, the shell looks the .synopsys_dc.setup file in user_home_directory. The order of priority is, if file exists in user_home_directory then that will be picked and the installed (default) is ignored. If not found, then installed one is picked. All repetitive tasks which are needed for tool setup can be pointed in this file. So when the dc_shell is invoked all the .dbs are set automatically
+
+<img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/67124783772161a8b5a7f1768299ad0895244d93/snaps/lab3_ss1">
+
+The .synopys_dc.setup file for the above example of mux and d flip flop is as follows
+
+```ruby
+set target_library /home/a.chinchani/DC_WORKSHOP/lib/sky130_fd_sc_hd_tt_025c_1v80.db
+set link_library {* $target_library }
+```
+
+</details>
+
+<details>
+
+ <summary>Tickle scripting</summary>
+ Tcl, short for "Tool Command Language," is a dynamic and interpreted scripting language that was created to serve as a simple and efficient scripting tool. Tcl is known for its ease of use, flexibility, and extensibility, making it widely adopted in various domains.
 </details>
 
 
