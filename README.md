@@ -1094,6 +1094,7 @@ This a combinational circuit of or and and gate , in which the output of or gate
  <summary>Introduction</summary>
 	 
  **Digital Circuit** 
+ 
  A Digital circuit is a fundamental component of modern electronic devices. It is designed to process and manipulate binary data which consists of ones and zeros , commonly known as "bits".Digital circuits are integral to a wide range of applications from simple logic gates to complex microprocessors.These descriptions have been articulated within the behavioural model of a design implementated in HDL and VHDL.These specification conveyed through a programming language constitutes the RTL representation.
 
  Here are sopme important points on digital circuits:
@@ -1107,10 +1108,23 @@ This a combinational circuit of or and and gate , in which the output of or gate
 
 
 **Synthesis**
+
 Synthesis in VLSI is the process of converting your code (HDL or VHDL program) into a circuit. In terms of logic gates, synthesis is the process of translating an abstract design into a properly implemented chip. It is a process of converting a RTL code into a gate level netlist. The tool used for this purpose is called synthesizer.
 
 **.lib file**
-It is a collection of logical modules of different flavours of basic logic gates.
+
+It is a collection of logical modules of different flavours of basic logic gates.It describes the timing and power characteristics of standard cells and other componenets used in IC Designs. It serves a comprehensive library that provides essential information to electronic design automation.
+
+*Contents of .lib*
+
+A typical Liberty file contains detailed information about the behaviour of standard cells, including
+
+- **Timing Information** : This includes delay, transition and capacitance values associated with the standard cells. Timing information specifies how the cells behave under different input conditions.
+- **Power Information** : Liberty file also provides data on power consumption , including static power and dynamic power characteristics. This information is crucial for optimizing the power consumption in IC.
+- **Functional Behaviour** : Descriptions of the logical functionality of standard cells, such as input and output pins and logical equations and any additional attributesthat define their operation.
+- **Operating Conditions** : Liberty files may include information about different operating condition in terms of process , voltage and temperature under which all cells are characterized.
+- 
+
 
  		
   
