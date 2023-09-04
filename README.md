@@ -1162,7 +1162,90 @@ In VLSI design, constraints are essential parameters and limitations that guide 
 
 
 
+
+
+<img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/67124783772161a8b5a7f1768299ad0895244d93/snaps/lab1_dc_wisky_seqgen">
+
+<img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/67124783772161a8b5a7f1768299ad0895244d93/snaps/lab1_dc_wsky">
+
+<img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/67124783772161a8b5a7f1768299ad0895244d93/snaps/lab1_net_with_sky">
+
+<img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/67124783772161a8b5a7f1768299ad0895244d93/snaps/lab2_dv1">
+
+<img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/67124783772161a8b5a7f1768299ad0895244d93/snaps/lab2_dv2">
+
+<img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/67124783772161a8b5a7f1768299ad0895244d93/snaps/lab2_dv3">
+
+<img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/67124783772161a8b5a7f1768299ad0895244d93/snaps/lab3_ss1">
+
+<img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/67124783772161a8b5a7f1768299ad0895244d93/snaps/lab3_ss2">
+
+<img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/67124783772161a8b5a7f1768299ad0895244d93/snaps/lab3_ss3_ss_without">
+
+<img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/67124783772161a8b5a7f1768299ad0895244d93/snaps/lab3_ss3_gvim_file">
+
+</details>
+
+<details>
+
+ <summary>DC Compiler</summary>
+
+ **Design Compiler** , often abbreviated as DC, is a high-level synthesis tool developed by Synopsys, a leading provider of EDA solutions. It plays a pivotal role in the process of designing complex integrated circuits (ICs) and is an integral part of modern VLSI design flows.
+
+ Important terms used 
+ - **Synopsys Design Constraints(SDC)** : These are the design constraints which are supplied to DC to enable appropriate optimization suitable for achieving the best implementation.
+- **.lib** : Design Library which contains the Standard cells.
+- **.db** : Same as .lib but in a different format. DC understands libraries in .db format
+- **.ddc** : Synopsys propreitary format for storing the design information. DC can write out and read in DDC.
+- **Design** : RTL files which has the behavioral model of the design.
+
+<ins> **DC synthesis flow** </ins>
+
+```ruby
+		Read STD Cell/tech.lib
+			 ↓
+		Read Design (Verilog and Design.lib)
+			 ↓
+		Read SDC
+			 ↓
+		Link the Design
+			 ↓
+		Synthesize
+			 ↓
+		Generate Report and analyse QoR
+			 ↓
+		Write out the Netlist
+  ```
+The DC compiler does not understand .lib , so the .lib is converted to .db format. lib format is for user reference.
+
+<ins>**Labs on DC Compiler**</ins>
+
+**Invoking DC compiler**
+First we need to enable C shell and then invoke dC shell with the commands shown below
+
+```ruby
+>> csh
+>> dc_shell
+```
 <img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/de0c4050082b98433594827daa8c1abae0c0e903/snaps/dc_invoke">
+
+Then we echo target library and link_library which returns an imaginary pointer library namely your library, which needs to be set.
+```ruby
+>>>echo $target_library
+>>>echo $link_library
+```
+Consider a example of a Mux connected to D Flip flop as ahown in the figure as follows
+
+
+
+
+
+
+
+
+</details>
+
+
 
 
  		
