@@ -1128,7 +1128,7 @@ Liberty files are essential for following reasons:
 
 - **Timing Analysis** : EDA tools use Liberty filesto perform
 
-<img  width="1085" alt="hand_writ_exam" src="">
+<img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/de0c4050082b98433594827daa8c1abae0c0e903/snaps/dc_invoke">
 
 
  		
