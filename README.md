@@ -1329,6 +1329,97 @@ set link_library {* $target_library }
 
  <summary>Tickle scripting</summary>
  Tcl, short for "Tool Command Language," is a dynamic and interpreted scripting language that was created to serve as a simple and efficient scripting tool. Tcl is known for its ease of use, flexibility, and extensibility, making it widely adopted in various domains.
+ 
+ This is widely used language in VLSI
+
+ Basic Tcl Commands
+
+ Assigning a variable
+ ```ruby
+set a 10
+ser b 10
+set a [expr $a + $b]
+```
+
+if else condition
+
+```ruby
+if { condition } {
+<statements>
+} else {
+<statements>
+}
+```
+while loop
+
+```ruby
+while {<condition>} {
+/statements
+}
+```
+For loop
+
+```ruby
+for {<looping variable>} {condition} {incr/decr} {
+/statements
+}
+
+```
+For each 
+
+```ruby
+foreach var list{
+statement
+}
+```
+
+For each in the case of collection
+
+```ruby
+foreach_in_collection var collection {
+statement
+}
+```
+
+Labs on TCL
+
+Example 1 on assigning the variable and for loop
+
+<img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/67124783772161a8b5a7f1768299ad0895244d93/snaps/lab4_1">
+
+Example 2 on while loop
+
+<img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/67124783772161a8b5a7f1768299ad0895244d93/snaps/lab4_2">
+
+Example 3 is tool specific it returns the collection of all the standard cells containing and in the .lib file, it is done using
+
+```ruby
+get_lib_cells */*and*
+```
+
+<img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/67124783772161a8b5a7f1768299ad0895244d93/snaps/lab4_3">
+
+when we try to print this collection we get _sel3 which is basically a pointer address. Collection is basically the collection of pointers
+
+<img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/67124783772161a8b5a7f1768299ad0895244d93/snaps/lab4_4">
+
+To get the cell name we need to use the command as used in the below screenshot
+
+<img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/67124783772161a8b5a7f1768299ad0895244d93/snaps/lab4_5">
+
+These codes can be written in tickle file
+
+Consider a example 
+
+<img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/67124783772161a8b5a7f1768299ad0895244d93/snaps/lab4_8">
+
+
+output
+
+<img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/67124783772161a8b5a7f1768299ad0895244d93/snaps/lab4_7">
+
+
+
 </details>
 
 
