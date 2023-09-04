@@ -1123,7 +1123,12 @@ A typical Liberty file contains detailed information about the behaviour of stan
 - **Power Information** : Liberty file also provides data on power consumption , including static power and dynamic power characteristics. This information is crucial for optimizing the power consumption in IC.
 - **Functional Behaviour** : Descriptions of the logical functionality of standard cells, such as input and output pins and logical equations and any additional attributesthat define their operation.
 - **Operating Conditions** : Liberty files may include information about different operating condition in terms of process , voltage and temperature under which all cells are characterized.
-- 
+
+Liberty files are essential for following reasons:
+
+- **Timing Analysis** : EDA tools use Liberty filesto perform
+
+<img  width="1085" alt="hand_writ_exam" src="">
 
 
  		
