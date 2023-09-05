@@ -1515,7 +1515,9 @@ In addition to this Input transition delaya are also constrained as signal trans
 
 <summary> Labs </summary>
 
-.lib file contains 
+Timing File (.lib) consists of ASCII representations of Timing, Area, and Power associated with the Standard cell. The Naming convention in the timing file follows PVT format (Process, Voltage, Temperature). For example, the standard library used in our case was sky130_fd_sc_hd_tt_025C_1v8, this name suggests that we are using 130 nm technology and the process is typical, temperature is 25C, and 1v8 represents the voltage.
+
+
 
 </details>
 
