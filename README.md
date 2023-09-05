@@ -1304,7 +1304,7 @@ set link_library {* $target_library }
 
 <details>
 
- <summary>Tickle scripting</summary>
+ <summary>Tcl scripting</summary>
  Tcl, short for "Tool Command Language," is a dynamic and interpreted scripting language that was created to serve as a simple and efficient scripting tool. Tcl is known for its ease of use, flexibility, and extensibility, making it widely adopted in various domains.
  
  This is widely used language in VLSI
