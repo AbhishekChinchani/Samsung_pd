@@ -1400,9 +1400,129 @@ output
 </details>
 
 
+# Day 7 Basics of STA
+
+ <details>
+	 
+ <summary>Introduction</summary>
+ 
+**Delay** 
+
+Delay refers to the time it takes for a signal to propagate from one point in a digital circuit to another. Delay is a critical parameter in design because it affects the performance, power consumption, and reliability of the integrated circuit.
+
+ A *Max Delay Constraint* refers to a design specification or requirement that imposes an upper limit on the delay a signal can experience while propagating through a specific path or circuit within an integrated circuit. Consider a example of 2 D flip flop connected with a combinational logic in between them.
+ 
+ Tck >= Tcq + Tcomb + Tst
+
+ "Min Delay constraint" refers to a design specification or requirement that sets a minimum allowable delay for a signal to propagate through a specific path or circuit within an integrated circuit. This constraint is used to ensure that certain signals within the circuit do not propagate too quickly, which can lead to timing violations and potential operational issues.
+ 
+Thold < Tcq + Tcomb
+
+ Delay can well understood with the water bucket analogy , consider a case in which 2 buckets of 5 gallon each are being filled using the inflow of water from 2 separate pipes whose inflows are 1 gallon per minute and 5 gallon per minute respectively. The time taken by the bucket 1 to fill from 20 % to 80% is 3 min and for the other one it is 0.6 min. This case can be corelatted in VLSI as follows.
+
+ Inflow water => Inflow of current
+ 
+ Pipe 1 with higher inflow => less trasnsition delay
+ 
+ Pipe 2 with lower inflow  => high transition delay
+
+The size of the bucket also matters , which can be correlated with the load capacitance.
+
+Delay of the cell is a function of **input transition** and **load capacitance**
+
+**Timing Arc**
+
+Timing arcs in VLSI (Very Large Scale Integration) design are critical components of the timing analysis process. They define the relationship between the input and output transitions of a specific logic element, such as a flip-flop or a gate, and the resulting delay through that element. Timing arcs capture the intricate behavior of digital components, taking into account factors like rising and falling edges, setup and hold times, and the propagation delay. 
+
+*Combinational Cells Timing arcs* : It captures the delay information from every input pin to every output pin which it can control
+ 
+ ![image](https://github.com/AbhishekChinchani/Samsung_pd/assets/142480501/0b1ef5a8-cf65-47f4-9f44-6d032ab26447)
+
+ Consider a case of 2:1 Mux this has 3 timing arcs
+ 
+ A -> Z
+
+ B -> Z
+
+ sel -> Z
+
+ this implies that Z ooutput can change from either A,B or sel
+
+ **Sequential Cells Timing arcs* 
+
+ For D flip flop it is Clock to Q delay timing arc and setup , hold time arcs. 
+
+ For Latches it is clock to Q delay timing arc , D to Q timing arcs ,setup hold time arcs
 
 
- 		
+**Constraints** 
+
+In VLSI (Very Large Scale Integration) design, **constraints** are specifications and limitations applied to various aspects of the design process to ensure that the resulting integrated circuit meets its intended requirements and performs as expected. These constraints play a crucial role in guiding the design and verification of VLSI circuits.
+
+Why constraints ?
+
+Consider a circuit as shown in the figure
+
+![image](https://github.com/AbhishekChinchani/Samsung_pd/assets/142480501/1e441935-b3ec-466a-aef1-94eff67280f8)
+
+
+Here if the setup time for all the components is 0.5 ns and and propagation delay of the selected gates are 0.5 ns and 0.7 ns for not and and gate respectively.
+
+Tck for path from 1st flop is 2.2 ns 
+
+Tck for path from 2nd clk is 1.7 ns
+
+The max delay is 2.2 ns which is called the critical path as it detemines the clock frequeny
+
+In practical cases we set the working frequency and then calculate the required propogation delay. In this example if the Tck path from the 1st flop setup time and clock to q delay is almost fixed 0.5 ns if we need to make this work at clock frequency of 200 MHz i.e 2 ns which implies the and gate propogation delay should be 1 ns . so who will tell the tool to pick the and gate with proper propagtion delay of 1 ns instead of 1.2 ns . So for this we need constraints
+
+**Timing paths** in VLSI  design are specific routes or signal paths within a digital circuit where the timing characteristics, including signal propagation delays, setup times, hold times, and clock-to-q delays, are analyzed to ensure the circuit's correct and reliable operation. These paths are crucial for timing analysis and play a central role in achieving the desired performance and functionality of the integrated circuit. Timing paths typically include a starting point (often a flip-flop or input pin), a set of logic gates and interconnections, and an ending point (another flip-flop or output pin). 
+
+Start points of timing path
+
+- Input ports
+- Clock pins of regs
+
+End point of timing path
+
+- Output ports
+- D pin of D flip flop / D Latch
+
+
+Always the timing path start at one of the start point and ends at one of the end point
+
+Clock -> D (Reg 2 Reg)
+
+Clock  -> Output port (I/O timing path)
+
+input port -> D (I/O timing path)
+
+input port -> Output port (These should not be present)
+
+
+Consider the circuit 
+
+![image](https://github.com/AbhishekChinchani/Samsung_pd/assets/142480501/ffb93d3e-ab9b-4e43-8493-6d114406c31b)
+
+In this Reg 2 Reg is constrained by clock , Reg to out is constrained by Output external delay and clock period , In 2 Reg is constrained by input external delay and clock period.
+
+In addition to this Input transition delaya are also constrained as signal transition are not ideal , As delay are function of input transition delay and load capacitance they both need to be constrained.
+
+
+</details>
+
+<details>
+
+<summary> Labs </summary>
+
+.lib file contains 
+
+</details>
+
+
+   
+
+	
   
    	       
    
