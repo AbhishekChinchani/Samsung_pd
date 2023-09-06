@@ -1407,7 +1407,9 @@ output
  <summary>Introduction to STA(Static Timing Analysis)</summary>
 
  **Static Timing Analysis** 
+Static Timing Analysis (STA) is a crucial step in the design and verification of digital integrated circuits, ensuring that they meet timing requirements and operate reliably.
 
+STA is used to assess the timing performance of digital circuits without the need for actual simulation. It ensures that signals propagate through a circuit within specified time constraints, guaranteeing proper functionality and meeting performance targets.
  
 **Delay** 
 
