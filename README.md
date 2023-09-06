@@ -1510,9 +1510,13 @@ Consider the circuit
 ![image](https://github.com/AbhishekChinchani/Samsung_pd/assets/142480501/416bcaf4-bf15-416e-94a1-14216b4d27c4)
 
 
-In this Reg 2 Reg is constrained by clock , Reg to out is constrained by Output external delay and clock period , In 2 Reg is constrained by input external delay and clock period.
+- In this Reg 2 Reg is constrained by clock
+  
+- Reg to out is constrained by Output external delay , load and clock . 
 
-In addition to this Input transition delaya are also constrained as signal transition are not ideal , As delay are function of input transition delay and load capacitance they both need to be constrained.
+- In 2 Reg is constrained by input external delay ,clock, input transition.
+
+In addition to this Input transition delays are also constrained as signal transition are not ideal . As we know that delays are function of input transition and load capacitance they both need to be constrained.
 
 
 </details>
