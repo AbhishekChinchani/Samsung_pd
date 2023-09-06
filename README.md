@@ -1502,7 +1502,8 @@ input port -> Output port (These should not be present)
 
 Consider the circuit 
 
-![image](https://github.com/AbhishekChinchani/Samsung_pd/assets/142480501/ffb93d3e-ab9b-4e43-8493-6d114406c31b)
+![image](https://github.com/AbhishekChinchani/Samsung_pd/assets/142480501/416bcaf4-bf15-416e-94a1-14216b4d27c4)
+
 
 In this Reg 2 Reg is constrained by clock , Reg to out is constrained by Output external delay and clock period , In 2 Reg is constrained by input external delay and clock period.
 
