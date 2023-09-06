@@ -1405,6 +1405,9 @@ output
  <details>
 	 
  <summary>Introduction to STA(Static Timing Analysis)</summary>
+
+ **Static Timing Analysis** 
+
  
 **Delay** 
 
