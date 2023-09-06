@@ -1584,19 +1584,19 @@ example 4: prints the pins associated with the gate cell and functionality of a 
 
 example 5: prints the pins along with the direction of and2_0 gate 
 
-<img  width="1085" alt="lib_dir_and" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/f151c2a9853ff8a3480daba1361086d8a79045f9/day7/dc_lib_attribut_nand4b.png">
+<img  width="1085" alt="lib_dir_and" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/f5aa4ba165a0fb2b7b9287f06584e6bc4cb8e860/day7cont/dc_lib_dir.png">
 
 it also prints the boolean expression i.e function of that cell
 
 example 6: prints the pins along with the direction of nand2_1 gate 
 
-<img  width="1085" alt="nand4b_1" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/f151c2a9853ff8a3480daba1361086d8a79045f9/day7/dc_lib_attribut_nand4b.png">
+<img  width="1085" alt="nand4b_1" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/f5aa4ba165a0fb2b7b9287f06584e6bc4cb8e860/day7cont/dc_lib_nand4b_1.png">
 
 it also prints the boolean expression i.e function of that cell
 
 example 7: prints the pins along with the direction of and4bb_1 gate 
 
-<img  width="1085" alt="and4bb_1" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/f151c2a9853ff8a3480daba1361086d8a79045f9/day7/dc_lib_attribut_nand4b.png">
+<img  width="1085" alt="and4bb_1" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/f5aa4ba165a0fb2b7b9287f06584e6bc4cb8e860/day7cont/dc_lib_and4bb_2.png">
 
 it also prints the boolean expression i.e function of that cell
 
@@ -1628,17 +1628,17 @@ foreach var $mylist {
     }
 } 
 ```
-<img  width="1085" alt="tclpgm1" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/f151c2a9853ff8a3480daba1361086d8a79045f9/day7/dc_lib_attribut_nand4b.png">
+<img  width="1085" alt="tclpgm1" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/f5aa4ba165a0fb2b7b9287f06584e6bc4cb8e860/day7cont/dc_tcl_pgm1.png">
 
 example 9: Prints the attributes of the cell/pin
 
-<img  width="1085" alt="pinattri" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/f151c2a9853ff8a3480daba1361086d8a79045f9/day7/dc_lib_attribut_nand4b.png">
+<img  width="1085" alt="pinattri" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/f5aa4ba165a0fb2b7b9287f06584e6bc4cb8e860/day7cont/dc_attri.png">
 
-<img  width="1085" alt="pinattri1" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/f151c2a9853ff8a3480daba1361086d8a79045f9/day7/dc_lib_attribut_nand4b.png">
+<img  width="1085" alt="pinattri1" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/f5aa4ba165a0fb2b7b9287f06584e6bc4cb8e860/day7cont/dc_attri2.png">
 
 example 10: List of all attributes
 
-<img  width="1085" alt="listattri1" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/f151c2a9853ff8a3480daba1361086d8a79045f9/day7/dc_lib_attribut_nand4b.png">
+<img  width="1085" alt="listattri1" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/f5aa4ba165a0fb2b7b9287f06584e6bc4cb8e860/day7cont/list_attr.png">
 
 </details>
 
