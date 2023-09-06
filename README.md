@@ -1548,7 +1548,7 @@ And gate is an example of positive Unateness
 
 <img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/e731f71ac7b93042821dee66ad994eae01ef8d6f/day7/and2_1_unnate.png">
 
-Comparing 2 differnt flavour of and gates namely and2_0 and and2_1 , we see that area of and2_1 > and2_0
+Comparing 2 differnt flavour of and gates namely and2_1 and and2_2 , we see that area of and2_2 > and2_1
 
 <img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/e731f71ac7b93042821dee66ad994eae01ef8d6f/day7/and2_cmparea.png">
 
@@ -1586,15 +1586,13 @@ example 5: prints the pins along with the direction of and2_0 gate
 
 <img  width="1085" alt="lib_dir_and" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/f5aa4ba165a0fb2b7b9287f06584e6bc4cb8e860/day7cont/dc_lib_dir.png">
 
-it also prints the boolean expression i.e function of that cell
-
-example 6: prints the pins along with the direction of nand2_1 gate 
+example 6: prints the pins along with the direction of nand4b_1 gate 
 
 <img  width="1085" alt="nand4b_1" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/f5aa4ba165a0fb2b7b9287f06584e6bc4cb8e860/day7cont/dc_lib_nand4b_1.png">
 
 it also prints the boolean expression i.e function of that cell
 
-example 7: prints the pins along with the direction of and4bb_1 gate 
+example 7: prints the pins along with the direction of and4bb_2 gate 
 
 <img  width="1085" alt="and4bb_1" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/f5aa4ba165a0fb2b7b9287f06584e6bc4cb8e860/day7cont/dc_lib_and4bb_2.png">
 
