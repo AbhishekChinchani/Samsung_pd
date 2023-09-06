@@ -1404,7 +1404,7 @@ output
 
  <details>
 	 
- <summary>Introduction</summary>
+ <summary>Introduction to STA(Static Timing Analysis)</summary>
  
 **Delay** 
 
