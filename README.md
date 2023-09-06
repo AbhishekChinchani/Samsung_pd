@@ -1578,10 +1578,67 @@ example 3: Prints the list of cells from the collection
 
 <img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/f151c2a9853ff8a3480daba1361086d8a79045f9/day7/dc_and_list.png">
 
-example 4: prints the functionality of a particular cell
+example 4: prints the pins associated with the gate cell and functionality of a particular gate
 
 <img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/f151c2a9853ff8a3480daba1361086d8a79045f9/day7/dc_lib_attribut_nand4bb.png">
 
+example 5: prints the pins along with the direction of and2_0 gate 
+
+<img  width="1085" alt="lib_dir_and" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/f151c2a9853ff8a3480daba1361086d8a79045f9/day7/dc_lib_attribut_nand4b.png">
+
+it also prints the boolean expression i.e function of that cell
+
+example 6: prints the pins along with the direction of nand2_1 gate 
+
+<img  width="1085" alt="nand4b_1" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/f151c2a9853ff8a3480daba1361086d8a79045f9/day7/dc_lib_attribut_nand4b.png">
+
+it also prints the boolean expression i.e function of that cell
+
+example 7: prints the pins along with the direction of and4bb_1 gate 
+
+<img  width="1085" alt="and4bb_1" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/f151c2a9853ff8a3480daba1361086d8a79045f9/day7/dc_lib_attribut_nand4b.png">
+
+it also prints the boolean expression i.e function of that cell
+
+example 8: A tcl program which takes the list of cells as input and prints the output pins along with its functionality
+
+```ruby
+set mylist [list sky130_fd_sc_hd__tt_025C_1v80/sky130_fd_sc_hd__nand2_1 \
+sky130_fd_sc_hd__tt_025C_1v80/sky130_fd_sc_hd__nand2_2 \
+sky130_fd_sc_hd__tt_025C_1v80/sky130_fd_sc_hd__nand2_4 \
+sky130_fd_sc_hd__tt_025C_1v80/sky130_fd_sc_hd__nand2_8 \
+sky130_fd_sc_hd__tt_025C_1v80/sky130_fd_sc_hd__nand2b_1 \
+sky130_fd_sc_hd__tt_025C_1v80/sky130_fd_sc_hd__nand2b_2 \
+sky130_fd_sc_hd__tt_025C_1v80/sky130_fd_sc_hd__nand2b_4 \
+sky130_fd_sc_hd__tt_025C_1v80/sky130_fd_sc_hd__nand3_1 \
+sky130_fd_sc_hd__tt_025C_1v80/sky130_fd_sc_hd__nand3_2 \
+sky130_fd_sc_hd__tt_025C_1v80/sky130_fd_sc_hd__nand3_4 ];
+
+foreach var $mylist {
+  foreach_in_collection var_pins [get_lib_pins ${var}/* ] {
+      set pin_name [get_object_name $var_pins];
+      set pin_dir [get_lib_attribute $pin_name direction];
+      if { $pin_dir == 2 } {
+
+
+          set pin_func [get_lib_attribute $pin_name function];
+
+          echo $pin_name $pin_dir $pin_func ;
+       }
+    }
+} 
+```
+<img  width="1085" alt="tclpgm1" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/f151c2a9853ff8a3480daba1361086d8a79045f9/day7/dc_lib_attribut_nand4b.png">
+
+example 9: Prints the attributes of the cell/pin
+
+<img  width="1085" alt="pinattri" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/f151c2a9853ff8a3480daba1361086d8a79045f9/day7/dc_lib_attribut_nand4b.png">
+
+<img  width="1085" alt="pinattri1" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/f151c2a9853ff8a3480daba1361086d8a79045f9/day7/dc_lib_attribut_nand4b.png">
+
+example 10: List of all attributes
+
+<img  width="1085" alt="listattri1" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/f151c2a9853ff8a3480daba1361086d8a79045f9/day7/dc_lib_attribut_nand4b.png">
 
 </details>
 
