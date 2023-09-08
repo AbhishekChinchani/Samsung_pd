@@ -1758,7 +1758,10 @@ example 10: List of all attributes
    - set_output_load -max <value> [<defination_point/port>] => sets the maximum load at the output port mentioned.
    ```
 
-
+- labs
+  
+   The design used for the labs is as shoen in the below figure
+  
 </details>
     
  
