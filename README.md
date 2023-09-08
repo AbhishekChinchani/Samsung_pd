@@ -1762,19 +1762,118 @@ example 10: List of all attributes
   
    The design used for the labs is as shown in the below figure .
 
-  ![WhatsApp Image 2023-09-08 at 22 02 32](https://github.com/AbhishekChinchani/Samsung_pd/assets/142480501/2fd11433-7af8-42fa-a46c-a08f2dcee797)
+   ![WhatsApp Image 2023-09-08 at 22 02 32](https://github.com/AbhishekChinchani/Samsung_pd/assets/142480501/2fd11433-7af8-42fa-a46c-a08f2dcee797)
 
-   The design is read using the command *read_verilog* , then it is linked with the .db and then compiled
+   The design is read using the command *read_verilog* , then it is linked with the .db and then compiled, Here we can see that design contains 3 Asynchronous Reset flops
   
- <img  width="1085" alt="listattri1" src= " ">
+   <img  width="1085" alt="listattri1" src= "https://github.com/AbhishekChinchani/Samsung_pd/blob/834ba41eaa4610ed2a26bf90e3ae50272bb012d2/day8/lab1_read_verilog_1.png">
 
- Here we can see that design contains 3 Asynchronous Reset flops
+   <img  width="1085" alt="listattri1" src= "https://github.com/AbhishekChinchani/Samsung_pd/blob/834ba41eaa4610ed2a26bf90e3ae50272bb012d2/day8/lab1_read_verilog_compileultra.png">
 
- <img  width="1085" alt="listattri1" src=" https://github.com/AbhishekChinchani/Samsung_pd/blob/e4fa1bb54607b519fa418a63c49f04dce802fb12/day8/lab1_read_verilog_1.png">
-
- <img  width="1085" alt="listattri1" src=" https://github.com/AbhishekChinchani/Samsung_pd/blob/e4fa1bb54607b519fa418a63c49f04dce802fb12/day8/lab1_read_verilog_compileultra.png">
- 
+   **Here are the screenshots of all the get commands**
   
+   This returns all the cells of the design
+
+   <img  width="1085" alt="listattri1" src= "https://github.com/AbhishekChinchani/Samsung_pd/blob/834ba41eaa4610ed2a26bf90e3ae50272bb012d2/day8/lab1_getcells_1.png">
+
+    This returns all the cells which are not hierarchical. 
+
+   <img  width="1085" alt="listattri1" src= "https://github.com/AbhishekChinchani/Samsung_pd/blob/834ba41eaa4610ed2a26bf90e3ae50272bb012d2/day8/lab1_getcells_2.png">
+
+   This part of code prints the ports along with their direction.
+
+   <img  width="1085" alt="listattri1" src= "https://github.com/AbhishekChinchani/Samsung_pd/blob/834ba41eaa4610ed2a26bf90e3ae50272bb012d2/day8/lab1_getports.png">
+
+    This returns the reference name of the cells.
+  
+   <img  width="1085" alt="listattri1" src= "https://github.com/AbhishekChinchani/Samsung_pd/blob/834ba41eaa4610ed2a26bf90e3ae50272bb012d2/day8/lab1_ref_name.png">
+
+   Now we convert the design into .ddc format  and read this in design_vision
+
+   <img  width="1085" alt="listattri1" src= "https://github.com/AbhishekChinchani/Samsung_pd/blob/834ba41eaa4610ed2a26bf90e3ae50272bb012d2/day8/lab1_dv1.png">
+
+   <img  width="1085" alt="listattri1" src= "https://github.com/AbhishekChinchani/Samsung_pd/blob/834ba41eaa4610ed2a26bf90e3ae50272bb012d2/day8/lab1_dv2.png">
+
+   The schematic and circuit of design is as shown in the figure
+
+   <img  width="1085" alt="listattri1" src= "https://github.com/AbhishekChinchani/Samsung_pd/blob/834ba41eaa4610ed2a26bf90e3ae50272bb012d2/day8/lab_1_schematic.png">
+
+   <img  width="1085" alt="listattri1" src= "https://github.com/AbhishekChinchani/Samsung_pd/blob/834ba41eaa4610ed2a26bf90e3ae50272bb012d2/day8/lab_1_gatesch.png">
+
+   This lists all the pins in the design , and also prints the attributes of the particular pin of the design
+
+   <img  width="1085" alt="listattri1" src= "https://github.com/AbhishekChinchani/Samsung_pd/blob/834ba41eaa4610ed2a26bf90e3ae50272bb012d2/day8/lab2_getpins.png">
+
+   The tcl script for selecting only clock pins from the pin collection
+
+   //script//
+
+   <img  width="1085" alt="listattri1" src= "https://github.com/AbhishekChinchani/Samsung_pd/blob/834ba41eaa4610ed2a26bf90e3ae50272bb012d2/day8/lab2_list_clockpin.png">
+
+   This screenshot shows how the clock is created using the create_clock is as shown in the figure
+
+   <img  width="1085" alt="listattri1" src= "https://github.com/AbhishekChinchani/Samsung_pd/blob/834ba41eaa4610ed2a26bf90e3ae50272bb012d2/day8/lab3_create_clk.png">
+
+   This is the screenshot of the output of the program along with the pin and clock name
+
+   //script//
+
+   <img  width="1085" alt="listattri1" src= "https://github.com/AbhishekChinchani/Samsung_pd/blob/834ba41eaa4610ed2a26bf90e3ae50272bb012d2/day8/lab3_create_clk_pgm.png">
+
+   We can create clock at any port but according to this example it is created on on he U12/Y pin , the tool accepts it but thats a bad clock as it corrupts the data
+
+   <img  width="1085" alt="listattri1" src= "https://github.com/AbhishekChinchani/Samsung_pd/blob/834ba41eaa4610ed2a26bf90e3ae50272bb012d2/day8/lab3_badclk.png">
+
+   Creating the waveform with 25% duty cycle
+
+   <img  width="1085" alt="listattri1" src= "https://github.com/AbhishekChinchani/Samsung_pd/blob/834ba41eaa4610ed2a26bf90e3ae50272bb012d2/day8/lab3_twentyfivedc.png">
+
+   creating a cock starting with falling edge
+
+   <img  width="1085" alt="listattri1" src= "https://github.com/AbhishekChinchani/Samsung_pd/blob/834ba41eaa4610ed2a26bf90e3ae50272bb012d2/day8/lab3_startne.png">
+
+   creating a specific clock here rise edge is at 15 ns
+
+   <img  width="1085" alt="listattri1" src= "https://github.com/AbhishekChinchani/Samsung_pd/blob/834ba41eaa4610ed2a26bf90e3ae50272bb012d2/day8/lab3_specificclk.png">
+
+   Before adding constraints to path
+
+   <img  width="1085" alt="listattri1" src= "https://github.com/AbhishekChinchani/Samsung_pd/blob/834ba41eaa4610ed2a26bf90e3ae50272bb012d2/day8/lab4_without_uncertainity.png">
+
+   setting up a clock latency with delay 1 ns
+
+   <img  width="1085" alt="listattri1" src= "https://github.com/AbhishekChinchani/Samsung_pd/blob/834ba41eaa4610ed2a26bf90e3ae50272bb012d2/day8/lab4_latency.png">
+
+   Adding network latency of 0.5 ns
+
+  <img  width="1085" alt="listattri1" src= "https://github.com/AbhishekChinchani/Samsung_pd/blob/834ba41eaa4610ed2a26bf90e3ae50272bb012d2/day8/lab4_nwlatency.png">
+
+  Adding setup and hold delay
+
+  <img  width="1085" alt="listattri1" src= "https://github.com/AbhishekChinchani/Samsung_pd/blob/834ba41eaa4610ed2a26bf90e3ae50272bb012d2/day8/lab4_uncertain.png">
+
+  Now the path is constrained and slack is met , We see that the clock delay is added to the clock period and clock_uncertainity gets subtracted in case of max
+
+  <img  width="1085" alt="listattri1" src= "https://github.com/AbhishekChinchani/Samsung_pd/blob/834ba41eaa4610ed2a26bf90e3ae50272bb012d2/day8/lab4_with_uncertainity.png">
+
+  In case of hold clock_uncertainity gets added to the clock delay
+
+  <img  width="1085" alt="listattri1" src= "https://github.com/AbhishekChinchani/Samsung_pd/blob/834ba41eaa4610ed2a26bf90e3ae50272bb012d2/day8/lab4_hold.png">
+
+  But input and output exeternal delay are not constrained
+
+  <img  width="1085" alt="listattri1" src= "https://github.com/AbhishekChinchani/Samsung_pd/blob/834ba41eaa4610ed2a26bf90e3ae50272bb012d2/day8/lab4_io.png">
+
+  <img  width="1085" alt="listattri1" src= "https://github.com/AbhishekChinchani/Samsung_pd/blob/834ba41eaa4610ed2a26bf90e3ae50272bb012d2/day8/lab4_verbose.png">
+
+  
+
+  
+
+   
+
+   
+
 </details>
     
  
