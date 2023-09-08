@@ -1649,6 +1649,121 @@ example 10: List of all attributes
 
 </details>
 
+# Day-8-Advanced Constraints
+
+
+	
+ <details>
+ <summary>Clock Terminology</summary>
+
+ - We know that when the when the clock is constrained , Actually clock period gets constrained , which in turn limits the combinational delay 
+ i.e 
+
+   *Tclk >= Tcq + Tcomb + Tst*
+
+   *Tcomb <= Tclk - (Tcq + Tst)*
+
+ - **Clock Generator** are a critical component of VLSI (Very Large Scale Integration) circuits, playing a fundamental role in synchronizing various components of an integrated circuit 
+    (IC). They provide clock signals that control the timing of digital operations within the IC. Clock generators are designed to produce clock signals with specific characteristics, 
+    such as frequency, duty cycle, and phase, to meet the requirements of the overall system.
+
+   Types of clock generators
+   
+   - Oscillators: These are widely used as clock generators. They generate continuous periodic signals without an external input. Common types include RC oscillators, LC oscillators, and crystal oscillators.
+
+   - Phase-Locked Loops (PLLs): PLLs are versatile clock generators that can generate clock signals with adjustable frequency and phase. They are often used for clock synchronization and  multiplication.
+   
+   - Delay-Locked Loops (DLLs): DLLs are used to align the phase of a clock signal with respect to another reference clock signal.
+   
+   - Ring Oscillators: These are simple but effective oscillators often used for generating clock signals with relatively low frequencies.
+   
+   - Crystal Oscillators: They are highly stable and accurate oscillators that use piezoelectric crystals to generate clock signals.
+
+- **Clock Distribution**
+
+   Once generated, clock signals need to be distributed to various parts of the IC while maintaining their timing integrity. Clock trees are used for this purpose, which involve a 
+  hierarchical network of buffers and repeaters to ensure the clock signal reaches all parts of the chip with minimal skew.
+
+   **Clock skew** is a phenomenon in digital design and VLSI (Very Large Scale Integration) circuits where clock signals, which are supposed to be synchronized and have the same edge (rising 
+   or falling), arrive at different parts of the circuit at slightly different times.
+
+  ![image](https://github.com/AbhishekChinchani/Samsung_pd/assets/142480501/fcc681ed-e268-4965-b71e-5f0bbaa632cd)
+
+  Consider the above circuit in this the clock arrives at flop B at 100 ps and at flop A at 100 ps. From this it clear that clock doesnot arrive at same time for all flops. This 
+  difference in arrival of clock is called skew.
+
+  	- Deterministic Clock Skew: Deterministic clock skew is predictable and results from known factors such as wire delays, signal routing, and clock distribution. It is typically 	caused by the physical characteristics of the circuit and can be analyzed and compensated for during the design phase. Techniques like clock tree synthesis and buffer insertion 	are used to mitigate deterministic skew.
+
+  	- Random Clock Skew: Random clock skew, also known as process-induced skew, is caused by manufacturing process variations that affect the timing of signals. These variations can 	lead to slightly different propagation delays for clock signals across different parts of a chip. Random skew is not easily predictable and can vary from chip to chip, even 		within the same manufacturing batch. To address random skew, designers often use techniques like over-design and guard-banding to ensure that the circuit operates reliably under 	worst-case conditions.
+
+	- Global Clock Skew: Global clock skew refers to the difference in arrival times of a clock signal at various points across the entire chip. It affects all elements of the chip 	and can lead to synchronization issues between different clock domains. Managing global clock skew is a critical aspect of clock distribution in large and complex integrated 		circuits. Global skew can be reduced by careful clock tree synthesis and by minimizing the length of critical paths in the design.
+
+	- Local Clock Skew: Local clock skew is specific to a particular region or block within the chip. It can result from variations in the lengths of wires or traces that carry the 	clock signal to different parts of a block. Local skew is often easier to manage than global skew because it affects a smaller portion of the chip. Techniques like buffer 		insertion and clock gating can be used to mitigate local clock skew.
+
+	- Positive and Negative Skew: Clock skew can be further categorized into positive skew and negative skew based on whether clock signals arrive later or earlier than the ideal 		clock edge, respectively.
+
+	   - *Positive Skew*: Positive skew occurs when clock signals arrive at different destinations later than the ideal clock edge. It can lead to setup time violations.
+	   - *Negative Skew*: Negative skew occurs when clock signals arrive earlier than the ideal clock edge at different destinations. Negative skew can result in hold time violations.
+
+ 
+	**Clock Jitter** is a timing variation or uncertainty in the period or phase of a clock signal. It represents the deviation of the actual clock signal edges from their ideal, 
+         regularly spaced positions. Clock jitter can occur due to various factors and can have significant implications for the performance and reliability of digital systems.
+ 
+
+	**Clock latency** refers to the time delay or propagation delay that a clock signal experiences as it travels from its source to various points within an integrated circuit (IC) 
+         or digital system. It represents the time it takes for the clock signal to propagate through various components, interconnects, and buffers before reaching its destination.
+
+	- Source latency: The source latency of a clock, also known as clock source latency, refers to the delay or latency introduced by the clock generation circuitry at its source 
+          before the clock signal is distributed to other parts of the integrated circuit (IC) or digital system. 
+ 
+ 	- Network latency : Network latency in the context of a clock typically refers to the delay or time delay introduced when transmitting a clock signal across a network or 
+         communication medium. 
+
+
+- **Clock Modelling**
+ 
+     We should model the clock for
+
+    - period
+    - Source latency
+    - Clock skew
+    - Clock Network
+    - Clock Network latency
+
+
+</details>
+
+<details>
+
+ <summary> Constraining Design using DC_compiler </summary>
+
+ - Commands in DC Compiler
+   ```ruby
+   - get_ports * => returns all the ports present in the design
+   - get_ports *<keyword>* => returns a collection of port whose name contains that keyword
+   - get_ports * -filter "direction == in" => returns all the ports whose direction is input.
+   - get_clocks * => returns all the clocks in the design
+   - get_clocks *<keyword>* => returns a collection of clocks whose name the given keyword
+   - report_clocks <clock_name> => reports all the details of the given clock_name
+   - get_cell * -hier => list all hierarchical and physical cells
+   - create_clock -name <clock_name> - per <period> [clock definition point] => creates a clock with the given period at the given clock definition point. By default it creates 50% duty 
+     cycle clock 
+   - create_clock -name <clock_name> - per <period> [clock definition point] -wave {rising,falling} => creates the clock with the given period and the rising edge , falling edge occurs 
+     at the given time mentioned in curly braces.
+   - set_input_delay -max <value> - clock [<clock_name>] [<definition_port/point>] => This sets the maximum input delay by the given value.
+   - set_input_delay -min <value> - clock [<clock_name>] <definition_port/point> => This sets the minimum input delay by the given value.
+   - set_input_transition -max <value> [ <defination port> ] => This sets the maximum input transition delay by the given value
+   - set_input_transition -max <value> [ <defination port> ] => This sets the minimum input transition delay by the given
+   - set_output_delay -max/min <value> - clock [<clock_name>] [<definition_port/point>] => This sets the maximum/minimum output delay.
+   - set_output_load -max <value> [<defination_point/port>] => sets the maximum load at the output port mentioned.
+   ```
+
+
+</details>
+    
+ 
+ 
+
 
 
    
