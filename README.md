@@ -1760,7 +1760,20 @@ example 10: List of all attributes
 
 - labs
   
-   The design used for the labs is as shoen in the below figure
+   The design used for the labs is as shown in the below figure .
+
+  ![WhatsApp Image 2023-09-08 at 22 02 32](https://github.com/AbhishekChinchani/Samsung_pd/assets/142480501/2fd11433-7af8-42fa-a46c-a08f2dcee797)
+
+   The design is read using the command *read_verilog* , then it is linked with the .db and then compiled
+  
+ <img  width="1085" alt="listattri1" src= " ">
+
+ Here we can see that design contains 3 Asynchronous Reset flops
+
+ <img  width="1085" alt="listattri1" src=" https://github.com/AbhishekChinchani/Samsung_pd/blob/e4fa1bb54607b519fa418a63c49f04dce802fb12/day8/lab1_read_verilog_1.png">
+
+ <img  width="1085" alt="listattri1" src=" https://github.com/AbhishekChinchani/Samsung_pd/blob/e4fa1bb54607b519fa418a63c49f04dce802fb12/day8/lab1_read_verilog_compileultra.png">
+ 
   
 </details>
     
