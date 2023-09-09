@@ -1866,7 +1866,13 @@ example 10: List of all attributes
 
   <img  width="1085" alt="listattri1" src= "https://github.com/AbhishekChinchani/Samsung_pd/blob/834ba41eaa4610ed2a26bf90e3ae50272bb012d2/day8/lab4_verbose.png">
 
-  
+  We model the input delay by commands
+
+  set_input_delay -max 5 - clock \[get_clocks MYCLK] \[get_ports IN_A]
+
+  set_input_delay -max 5 - clock \[get_clocks MYCLK] \[get_ports IN_B]
+
+  This sets the input external as 5 ns.
 
   
 
