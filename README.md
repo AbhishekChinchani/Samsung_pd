@@ -2012,7 +2012,7 @@ When we give report_port -verbose
 
   The command for max_latency is
 
-  set_max_latency <value> -from \[<source port_name>] -to \[<destination port_name>]
+  set_max_latency <value> -from \[<source_port_name>] -to \[<destination_port_name>]
 
   The command for creating virtual clock
 
