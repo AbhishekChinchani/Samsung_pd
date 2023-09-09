@@ -1928,7 +1928,7 @@ example 10: List of all attributes
 
   **Generated Clock**
 
- A generated clock, in the context of digital design and VLSI (Very Large Scale Integration), refers to a clock signal that is derived or generated from a primary clock source rather than being the primary clock signal itself. Generated clocks are used for various purposes in digital circuits and can have different frequencies, phases, or characteristics compared to the original clock source. Here are some common use cases for generated clocks:
+ 	A generated clock, in the context of digital design and VLSI (Very Large Scale Integration), refers to a clock signal that is derived or generated from a primary clock source 		rather than being the primary clock signal itself. Generated clocks are used for various purposes in digital circuits and can have different frequencies, phases, or 			characteristics compared to the original clock source. Here are some common use cases for generated clocks:
 
 - *Frequency Division*: Generated clocks are often used to create lower-frequency clocks from a higher-frequency master clock. This is achieved by dividing the frequency of the primary clock using digital counters or dividers. It allows different parts of the circuit to operate at slower clock speeds for power savings or to meet timing requirements.
 
@@ -1981,7 +1981,7 @@ Instead of writting constraints everytime we can create a .tcl program and then 
 
 The report_timing after sourcing the tcl script
 
-<img  width="1085" alt="listattri1" src= "https://github.com/AbhishekChinchani/Samsung_pd/blob/5e577b9b9aeed5ee06eed790f5bc84ca7b05f561/day8/lab6_repmoddesign.png">
+<img  width="1085" alt="listattri1" src= "https://github.com/AbhishekChinchani/Samsung_pd/blob/5e577b9b9aeed5ee06eed790f5bc84ca7b05f561/day8/lab6_rep_moddesign.png">
 
 When we give report_port -verbose
 
@@ -2050,7 +2050,63 @@ When we give report_port -verbose
 
   <img  width="1085" alt="listattri1" src= "https://github.com/AbhishekChinchani/Samsung_pd/blob/5e577b9b9aeed5ee06eed790f5bc84ca7b05f561/day8/lab7_lab14_read.png">
 
-   <img  width="1085" alt="listattri1" src= "https://github.com/AbhishekChinchani/Samsung_pd/blob/5e577b9b9aeed5ee06eed790f5bc84ca7b05f561/day8/lab7_lab14_compile.png">
+  <img  width="1085" alt="listattri1" src= "https://github.com/AbhishekChinchani/Samsung_pd/blob/5e577b9b9aeed5ee06eed790f5bc84ca7b05f561/day8/lab7_lab14_compile.png">
+
+  When we do report_timing -to OUT_Z , we get unconstrained path.
+
+  <img  width="1085" alt="listattri1" src= "https://github.com/AbhishekChinchani/Samsung_pd/blob/5e577b9b9aeed5ee06eed790f5bc84ca7b05f561/day8/lab7_unconstrained.png">
+
+  Here are the some of the "all" commands along with their output
+
+  <img  width="1085" alt="listattri1" src= "https://github.com/AbhishekChinchani/Samsung_pd/blob/5e577b9b9aeed5ee06eed790f5bc84ca7b05f561/day8/lab7_all_attributes.png">
+
+  <img  width="1085" alt="listattri1" src= "https://github.com/AbhishekChinchani/Samsung_pd/blob/5e577b9b9aeed5ee06eed790f5bc84ca7b05f561/day8/lab7_all_attri2.png">
+
+  Here is a tickle program which gives reference names of all connection(-fanout) from IN_A.
+
+  <img  width="1085" alt="listattri1" src= "https://github.com/AbhishekChinchani/Samsung_pd/blob/5e577b9b9aeed5ee06eed790f5bc84ca7b05f561/day8/lab7_pgm_refname.png">
+
+  Now coming back to constraining the above design we give
+
+  set_max_delay 0.1 -from \[all_inputs] -to \[get_ports OUT_Z]
+
+  Then when we give report_timing -to OUT_Z we see that timing path is violated
+
+   <img  width="1085" alt="listattri1" src= "https://github.com/AbhishekChinchani/Samsung_pd/blob/5e577b9b9aeed5ee06eed790f5bc84ca7b05f561/day8/lab7_violated.png">
+
+   Again when we compile the design is optimized and timing is met
+
+   <img  width="1085" alt="listattri1" src= "https://github.com/AbhishekChinchani/Samsung_pd/blob/5e577b9b9aeed5ee06eed790f5bc84ca7b05f561/day8/lab7_met_withsigpng.png">
+
+   Viewing the design in Design_vision
+
+   <img  width="1085" alt="listattri1" src= "https://github.com/AbhishekChinchani/Samsung_pd/blob/5e577b9b9aeed5ee06eed790f5bc84ca7b05f561/day8/lab7_sch.png">
+
+   **Lab on virtual clock**
+
+   **Virtual CLock** is a clock created without a definition point.
+  
+   Creating virtual clock and constraining it.
+
+   <img  width="1085" alt="listattri1" src= "https://github.com/AbhishekChinchani/Samsung_pd/blob/5e577b9b9aeed5ee06eed790f5bc84ca7b05f561/day8/lab8_commandvirt.png">
+   
+   when we give report_timing -to OUT_Z -sig 4 , we get the path is violated
+        
+   <img  width="1085" alt="listattri1" src= "https://github.com/AbhishekChinchani/Samsung_pd/blob/5e577b9b9aeed5ee06eed790f5bc84ca7b05f561/day8/lab8_violated.png">
+   
+   Again when we compile the design is optimized and slack is met
+
+   <img  width="1085" alt="listattri1" src= "https://github.com/AbhishekChinchani/Samsung_pd/blob/5e577b9b9aeed5ee06eed790f5bc84ca7b05f561/day8/lab8_met.png">
+
+   
+  
+
+   
+
+    
+  
+
+   
 
    
 
