@@ -1872,7 +1872,195 @@ example 10: List of all attributes
 
   set_input_delay -max 5 - clock \[get_clocks MYCLK] \[get_ports IN_B]
 
-  This sets the input external as 5 ns.
+  This sets the input external delay as 5 ns.
+
+  <img  width="1085" alt="listattri1" src= "https://github.com/AbhishekChinchani/Samsung_pd/blob/5e577b9b9aeed5ee06eed790f5bc84ca7b05f561/day8/lab5_inputAmax.png">
+
+  But the dealy_min path was not constrained
+
+  <img  width="1085" alt="listattri1" src= "https://github.com/AbhishekChinchani/Samsung_pd/blob/5e577b9b9aeed5ee06eed790f5bc84ca7b05f561/day8/lab5_mindelayuncon.png">
+
+  The minimum delay path was constrained using command
+
+  set_input_delay -min 1 - clock \[get_clocks MYCLK] \[get_ports IN_A]
+
+  set_input_delay -min 1 - clock \[get_clocks MYCLK] \[get_ports IN_B]
+
+  <img  width="1085" alt="listattri1" src= "https://github.com/AbhishekChinchani/Samsung_pd/blob/5e577b9b9aeed5ee06eed790f5bc84ca7b05f561/day8/lab5_mindelaycon.png">
+
+  **Adding input transition delay and output load to the design**
+
+  set_input_transition -max 0.3 \[get_ports IN_A]
+
+  set_input_transition -max 0.3 \[get_ports IN_B]
+
+  set_input_transition -min 0.1 \[get_ports IN_A]
+
+  set_input_transition -min 0.1 \[get_ports IN_B]
+  
+  Screenshot of input transition delay from port IN_A
+ 
+  <img  width="1085" alt="listattri1" src= "https://github.com/AbhishekChinchani/Samsung_pd/blob/5e577b9b9aeed5ee06eed790f5bc84ca7b05f561/day8/lab5_trans_max.png">
+
+  Adding constraints to output 
+
+  set_output_delay -max 5 \[get_clocks MYCLK] \[get_ports OUT_Y]
+
+  set_output_delay -min 1 \[get_clocks MYCLK]\[get_ports OUT_Y]
+
+  Screenshot of output_delay 
+  
+  <img  width="1085" alt="listattri1" src= "https://github.com/AbhishekChinchani/Samsung_pd/blob/5e577b9b9aeed5ee06eed790f5bc84ca7b05f561/day8/lab5_outtrans_max.png">
+
+  set_load -max 0.3 \[get_ports OUT_Y]
+
+  We can set the load min using the below command but if we don't explicitly mention then it by defaults sets the value of max i.e 0.3 in this case.
+  
+  *set_load -min 0.1 \[get_ports OUT_Y]*
+
+  Screenshot after constraining the output load
+
+  <img  width="1085" alt="listattri1" src= "https://github.com/AbhishekChinchani/Samsung_pd/blob/5e577b9b9aeed5ee06eed790f5bc84ca7b05f561/day8/lab5_outload_max.png">
+
+  In this the value of min load is 0.3 i.e the same value set in max load cap
+  
+  <img  width="1085" alt="listattri1" src= "https://github.com/AbhishekChinchani/Samsung_pd/blob/5e577b9b9aeed5ee06eed790f5bc84ca7b05f561/day8/lab5_outload_min.png">
+
+  **Generated Clock**
+
+ A generated clock, in the context of digital design and VLSI (Very Large Scale Integration), refers to a clock signal that is derived or generated from a primary clock source rather than being the primary clock signal itself. Generated clocks are used for various purposes in digital circuits and can have different frequencies, phases, or characteristics compared to the original clock source. Here are some common use cases for generated clocks:
+
+- *Frequency Division*: Generated clocks are often used to create lower-frequency clocks from a higher-frequency master clock. This is achieved by dividing the frequency of the primary clock using digital counters or dividers. It allows different parts of the circuit to operate at slower clock speeds for power savings or to meet timing requirements.
+
+- *Frequency Multiplication*: Conversely, generated clocks can be used to create higher-frequency clocks from a lower-frequency source. This is often done using PLLs (Phase-Locked Loops) or DLLs (Delay-Locked Loops). Frequency multiplication is useful for driving specific high-speed components or meeting timing constraints.
+
+- *Clock Skew Control*: Generated clocks can be employed to control clock skew, which is the variation in arrival times of clock signals across the chip. By generating clocks with adjusted phases, designers can minimize clock skew and ensure that data is captured reliably in flip-flops and latches.
+  
+- *Clock Gating* : Clock gating is a power-saving technique where clocks to certain parts of the circuit are enabled or disabled dynamically based on activity. Generated clocks can be used to control clock gating circuits, allowing for efficient power management by turning off clocks when they are not needed.
+
+- *Clock Domain Isolation* : In complex designs, different sections of a chip may operate in separate clock domains. Generated clocks can be used to create domain-specific clocks, enabling isolated operation with respect to clock signals. This is essential for managing timing constraints and avoiding issues associated with crossing clock domains.
+
+- *Synchronization* : When signals need to cross from one clock domain to another, synchronization is required to prevent data corruption. Generated clocks can be used to create synchronization signals and ensure proper data transfer between domains.
+
+
+The command to create a generated clock is 
+
+create_generated_clock -name \[<name_of_generated_clock>] - master \[<master_clock_name>] -source \[<master_clock_definition_point>] -div <value> \[<generated_clock_definition_point>]
+
+Here a generated clock namely MYGEN_CLK is created , we can see that its attribute is G
+
+<img  width="1085" alt="listattri1" src= "https://github.com/AbhishekChinchani/Samsung_pd/blob/5e577b9b9aeed5ee06eed790f5bc84ca7b05f561/day8/lab6_gen_clk.png">
+
+
+when we report timing we get respect to MYCLK
+
+<img  width="1085" alt="listattri1" src= "https://github.com/AbhishekChinchani/Samsung_pd/blob/5e577b9b9aeed5ee06eed790f5bc84ca7b05f561/day8/lab6_repmyclkgen_clk.png">
+
+when we add constraints to the MYGEN_CLK we get timing with repect to MYGEN_CLK
+
+set_clock_latency -max 1 \[get_clocks MYGEN_CLK}
+
+set_output_delay -max 5 \[get_ports OUT_Y] -clock \[get_clocks MYGEN_CLK]
+
+set_output_delay -min 1 \[get_ports OUT_Y] -clock \[get_clocks MYGEN_CLK]
+
+<img  width="1085" alt="listattri1" src= "https://github.com/AbhishekChinchani/Samsung_pd/blob/5e577b9b9aeed5ee06eed790f5bc84ca7b05f561/day8/lab6_repmygen_clk.png">
+
+
+The design used for this experiment is as follows
+
+<//script>
+
+Loading the new design 
+
+<img  width="1085" alt="listattri1" src= "https://github.com/AbhishekChinchani/Samsung_pd/blob/5e577b9b9aeed5ee06eed790f5bc84ca7b05f561/day8/lab6_load_design_mod.png">
+
+Instead of writting constraints everytime we can create a .tcl program and then source it
+
+<//script tcl>
+
+The report_timing after sourcing the tcl script
+
+<img  width="1085" alt="listattri1" src= "https://github.com/AbhishekChinchani/Samsung_pd/blob/5e577b9b9aeed5ee06eed790f5bc84ca7b05f561/day8/lab6_repmoddesign.png">
+
+When we give report_port -verbose
+
+<img  width="1085" alt="listattri1" src= "https://github.com/AbhishekChinchani/Samsung_pd/blob/5e577b9b9aeed5ee06eed790f5bc84ca7b05f561/day8/lab6_verb_1.png">
+
+<img  width="1085" alt="listattri1" src= "https://github.com/AbhishekChinchani/Samsung_pd/blob/5e577b9b9aeed5ee06eed790f5bc84ca7b05f561/day8/lab6_verb_2.png">
+
+
+- When we give set_input_delay -max 3 -clock <clock_name>  \[<definition_point>]
+
+  Here -max 3 implies that the data arrives 3 ns late compared to clock
+
+  set_input_delay -max -3 -clock <clock_name>  \[<definition_point>]
+
+  Here the data is arriving 3 ns before the rising edge which helps in setup time
+
+  so negative max relaxes the path in case of setup
+
+  Positive max tightens the path in case of setup
+
+  In case of hold it is the opposite case negative min tightens the path and positive min relaxes the path.
+
+- Now consider the case where two inputs In_C and In_D are given to combinational logic and it should be constraint , This design is independent of the original design
+
+  ![image](https://github.com/AbhishekChinchani/Samsung_pd/assets/142480501/a595756f-21f0-4518-85bb-351eb3959551)
+
+  This can be done by using max_latency or using the virtual lab
+
+  The command for max_latency is
+
+  set_max_latency <value> -from \[<source port_name>] -to \[<destination port_name>]
+
+  The command for creating virtual clock
+
+  create_clock -name <virtual_clock_name> -period <value>
+
+  For virtual clock there is no latency and no clock defination point
+
+  Consider a case as shown in the figure
+
+  ![image](https://github.com/AbhishekChinchani/Samsung_pd/assets/142480501/389239b9-8175-43ca-a885-faff95ccc5c5)
+
+  In this path from Flipflop 1 to design can be constrained using the set_input_delay command similar to one defined above. But the path from flip flop 2 to design is from fall edge to 
+  rise edge This can be modelled using
+
+   set_input_delay -max <value> -clock <clock_name> -clock_fall -add \[<destination_point>]
+
+  Here the -add is signify that we are appending this to already constrained path.
+
+  In cases where there are multiple load attached to a net , Transition delay can get further delayed depending on loading strain.
+
+  In such cases set_driving_cell is more recommanded.
+
+  **NOTE**
+     - set_input_transition => It is used mainly for top level primary Input/output .
+     - set_driving_cell => It is used for intrernal path.
+ 
+
+  Command for set_driving_cell is
+
+  set_driving_cell -lib_cell <lib_cell_ref_name> \[all_inputs]
+
+  **Labs on set_max_latency virtual_clocks**
+
+  
+  
+
+
+
+  
+
+
+
+
+
+  
+  
+   
+  
 
   
 
