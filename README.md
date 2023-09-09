@@ -2046,6 +2046,14 @@ When we give report_port -verbose
 
   **Labs on set_max_latency virtual_clocks**
 
+  The design is read and compiled
+
+  <img  width="1085" alt="listattri1" src= "https://github.com/AbhishekChinchani/Samsung_pd/blob/5e577b9b9aeed5ee06eed790f5bc84ca7b05f561/day8/lab7_lab14_read.png">
+
+   <img  width="1085" alt="listattri1" src= "https://github.com/AbhishekChinchani/Samsung_pd/blob/5e577b9b9aeed5ee06eed790f5bc84ca7b05f561/day8/lab7_lab14_compile.png">
+
+   
+
   
   
 
