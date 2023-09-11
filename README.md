@@ -1806,7 +1806,17 @@ example 10: List of all attributes
 
    The tcl script for selecting only clock pins from the pin collection
 
-   //script//
+    ```ruby
+   foreach in collection my_pin [get pins *] {
+	set pin_name  [get object name $my_pin]:
+	set dir [get attribute [get pins $pin_name] direction];
+	if { [regexp $dir in] } {
+		if { [get_attribute [get pins $pin_ name] clock ] } {
+			echo $pin_name ;
+   			}
+   		}
+   	}
+   ```
 
    <img  width="1085" alt="listattri1" src= "https://github.com/AbhishekChinchani/Samsung_pd/blob/834ba41eaa4610ed2a26bf90e3ae50272bb012d2/day8/lab2_list_clockpin.png">
 
@@ -1815,9 +1825,20 @@ example 10: List of all attributes
    <img  width="1085" alt="listattri1" src= "https://github.com/AbhishekChinchani/Samsung_pd/blob/834ba41eaa4610ed2a26bf90e3ae50272bb012d2/day8/lab3_create_clk.png">
 
    This is the screenshot of the output of the program along with the pin and clock name
-
-   //script//
-
+   ```ruby
+    foreach in collection my_pin [get pins *] {
+	set pin_name  [get object name $my_pin]:
+	set dir [get attribute [get pins $pin_name] direction];
+	if { [regexp $dir in] } {
+		if { [get_attribute [get pins $pin_ name] clock ] } {
+   			set clk [get_attribute [get_pins $pin_name] clocks];
+   			set clk_name [get_objects_name $clk ];
+                       
+			echo $pin_name $clk_name;
+   			}
+   		}
+   	}
+  ```
    <img  width="1085" alt="listattri1" src= "https://github.com/AbhishekChinchani/Samsung_pd/blob/834ba41eaa4610ed2a26bf90e3ae50272bb012d2/day8/lab3_create_clk_pgm.png">
 
    We can create clock at any port but according to this example it is created on on he U12/Y pin , the tool accepts it but thats a bad clock as it corrupts the data
@@ -1945,7 +1966,7 @@ example 10: List of all attributes
 
 The command to create a generated clock is 
 
-create_generated_clock -name \[<name_of_generated_clock>] - master \[<master_clock_name>] -source \[<master_clock_definition_point>] -div <value> \[<generated_clock_definition_point>]
+create_generated_clock -name <name_of_generated_clock> - master <master_clock_name> -source \[<master_clock_definition_point>] -div <value> \[<generated_clock_definition_point>]
 
 Here a generated clock namely MYGEN_CLK is created , we can see that its attribute is G
 
@@ -1969,15 +1990,63 @@ set_output_delay -min 1 \[get_ports OUT_Y] -clock \[get_clocks MYGEN_CLK]
 
 The design used for this experiment is as follows
 
-<//script>
+```ruby
 
+module lab8 circuit (input rst, input clk , input IN_A , input IN_B , output OUT_Y , output out_clk output reg out_div_clk)
+reg REGA, REGB , REGC ;
+always @ (posedge clk , posedge rst )
+begin
+	if(rst)
+	begin
+		REGA <= 1'b0 ;
+		REGB <= 1'b0 ;
+		REGC <= 1'b0 ;
+		out_div_clk <= 1'b0 ;
+	end
+	else
+	begin
+		REGA= IN_A | IN_B;
+		REGB<- IN_A ^ IN_B;
+		REGC <= !(REGA & REGB) ;
+		out_div_clk <= ~out_div_clk
+	end
+end
+
+assign OUT_Y = ~REGC ;
+
+assign out_clk = clk;
+
+endmodule
+```
 Loading the new design 
 
 <img  width="1085" alt="listattri1" src= "https://github.com/AbhishekChinchani/Samsung_pd/blob/5e577b9b9aeed5ee06eed790f5bc84ca7b05f561/day8/lab6_load_design_mod.png">
 
 Instead of writting constraints everytime we can create a .tcl program and then source it
 
-<//script tcl>
+```ruby
+create clock -name MYCLK -per 10 [get _ports_clk];
+set _clock_latency -source 2 [get clocks MYCLK];
+set_clock_latency 1 [get_clocks MYCLK]:
+set_clock_uncertainty -setup 0.5 [get clocks MYCLK];
+set_clock_uncertainty -hold 0.1 [get clocks MYCLK];
+set_input_delay -max 5 -clock [get clocks MYCLK] [get_ports IN_ Al;
+set _input_delay -max 5 -clock [get clocks MYCLK] [get_ports IN_B];
+set_input-delay -min 1 -clock [get clocks MYCLK] [get_ports IN A];
+set _input_delay -min 1 -clock [get clocks MYCLK] [get ports IN_B];
+set_input_transition -max 0.4 [get_ports IN_A];
+set_input_transition -max 0.4 [get_ports IN_B];
+set_input_transition -min 0.1 [get_ports IN_A];
+set_input_transition -min 0.1 [get_ports IN_B];
+create_generated_clock -name MYGEN_CLK - master MYCLK -source [get_ports clk] -div 1 [<get_ports out_clk]
+create_generated_clock -name MYGEN_DIV_CLK - master MYCLK -source [get_ports clk] -div 2 [<get_ports out_div_clk];
+set_output_delay -max 5 -clock [get_clocks MYGEN_CLK] [get_ports OUT_Y];
+set_output_delay -min 1 -clock [get_clocks MYGEN_CLK] [get_ports OUT_Y];
+set_load -max 0.4 [get_ports OUT_Y];
+set_load -min 0.1 [get_ports OUT_Y];
+```
+
+
 
 The report_timing after sourcing the tcl script
 
@@ -2062,7 +2131,7 @@ When we give report_port -verbose
 
   <img  width="1085" alt="listattri1" src= "https://github.com/AbhishekChinchani/Samsung_pd/blob/5e577b9b9aeed5ee06eed790f5bc84ca7b05f561/day8/lab7_all_attri2.png">
 
-  Here is a tickle program which gives reference names of all connection(-fanout) from IN_A.
+  Here is a tcl program which gives reference names of all connection(-fanout) from IN_A.
 
   <img  width="1085" alt="listattri1" src= "https://github.com/AbhishekChinchani/Samsung_pd/blob/5e577b9b9aeed5ee06eed790f5bc84ca7b05f561/day8/lab7_pgm_refname.png">
 
