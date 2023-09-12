@@ -1807,11 +1807,11 @@ example 10: List of all attributes
    The tcl script for selecting only clock pins from the pin collection
 
     ```ruby
-   foreach in collection my_pin [get pins *] {
-	set pin_name  [get object name $my_pin]:
-	set dir [get attribute [get pins $pin_name] direction];
+   foreach_in_collection my_pin [get_pins *] {
+	set pin_name  [get_object_name $my_pin]:
+	set dir [get_attribute [get_pins $pin_name] direction];
 	if { [regexp $dir in] } {
-		if { [get_attribute [get pins $pin_ name] clock ] } {
+		if { [get_attribute [get_pins $pin_ name] clock ] } {
 			echo $pin_name ;
    			}
    		}
@@ -1826,9 +1826,9 @@ example 10: List of all attributes
 
    This is the screenshot of the output of the program along with the pin and clock name
    ```ruby
-    foreach in collection my_pin [get pins *] {
-	set pin_name  [get object name $my_pin]:
-	set dir [get attribute [get pins $pin_name] direction];
+    foreach_in_collection my_pin [get_pins *] {
+	set pin_name  [get_object_name $my_pin]:
+	set dir [get_attribute [get_pins $pin_name] direction];
 	if { [regexp $dir in] } {
 		if { [get_attribute [get pins $pin_ name] clock ] } {
    			set clk [get_attribute [get_pins $pin_name] clocks];
