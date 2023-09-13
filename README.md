@@ -2203,7 +2203,119 @@ When we give report_port -verbose
    
 
 </details>
-    
+
+
+
+
+# Day-8-Optimizations
+
+
+	
+ <details>
+ <summary>Introduction</summary>
+
+ Optimization in VLSI design is a crucial aspect of creating efficient and high-performance integrated circuits (ICs). VLSI optimization involves improving various aspects of IC design, such as power consumption, area utilization, timing, and manufacturability.
+
+ The goals of optimization :
+
+   - Cost based Optimization
+     
+     	- Optimization till cost is met
+     	- Over optimization of one goal can harm other goals.
+
+   - Performance Optimization:
+
+       - Speed: Improve the operational speed of the IC by minimizing delays, optimizing critical paths, and ensuring that the design meets specified timing requirements.
+       - Throughput: Enhance the overall system throughput by optimizing data flow and minimizing bottlenecks in the circuit.
+
+   - Power Optimization:
+
+        - Dynamic Power: Minimize dynamic power consumption to extend battery life in portable devices and reduce power dissipation in data centers.
+        - Static Power: Reduce static power (leakage power) to lower overall power consumption when the IC is in standby or idle mode.
+
+
+
+   - Goals for Synthesis
+          
+     	- Meet Timing
+     	
+     	- Meet Area
+     	
+     	- Meet power
+
+**Combination logic Optimisation**
+
+**Combinational Logic Optimization** squeeze the logic to get most optimized design in terms of area and power. There are various techniques for optimizing the circuit
+ 
+ - constant propagation(Direct propagation)
+ - Boolean Logic Optimization(K-Means ,QUine Mckluskey)
+   
+**Constant Propogation** is an optimization technique used by  synthesis tools to minimize hardware implementation.Constant propagation prevents situations in which values are copied from one place or variable to another only to assign their value to a different variable.
+
+**Example on Constant Propogation** 
+<img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/9ee556e759953cfdd337c4c07302f7f415aab031/hand0.jpg">
+
+Consider the above  combinational circuit it consists of and and nor gate, so it requires 6 CMOS transistor to implement , if A is made constant value 0 then A&B will give 0 then 0 and C are given to NOR gate which reduces the expression to C compliment(C`) i.e basically a inverter . By making an input constant we can reduce this combinational circuit to an inverter which can impleneted using only 2 CMOS transistor thus reducing the hardware implementation
+
+**Example on Boolean Logic optimization**
+
+consider a concurrent statement a?(b?c:(c?a:0)):(!c) , this statement is realized using multiple multiplexers. Simplying this equation using boolean reduction techniques we get the output as ~(a^b).
+
+**Resource Sharing**
+
+Resource sharing in VLSI design refers to the practice of efficiently utilizing hardware resources, such as logic gates, memory elements, or functional units, to reduce the overall area, power consumption, and complexity of an integrated circuit (IC). Resource sharing is a fundamental technique in VLSI design and is often employed to optimize the use of limited resources while maintaining or improving the desired functionality.
+
+Consider a example , y = sel ? (a*b) : (c*d) 
+
+The schematic of the above expression is as shown in the figure
+
+![WhatsApp Image 2023-09-13 at 21 54 49](https://github.com/AbhishekChinchani/Samsung_pd/assets/142480501/f379ba09-918a-44b8-b716-e83c3b51b9d6)
+
+We see that in order to implement this we need two multipliers which consume a lot of area, So instead of using 2 multipliersnwe can reduce to one multiplier and use 2 MUX as shown in the figure
+
+![WhatsApp Image 2023-09-13 at 21 55 36](https://github.com/AbhishekChinchani/Samsung_pd/assets/142480501/42d487a9-c3c4-42a1-8ea9-b2e1d58e4b81)
+
+**Logic Sharing**
+
+Logic sharing in VLSI design refers to the practice of reusing or sharing logical elements, such as gates or functional blocks, to reduce the overall complexity, area, and power consumption of an integrated circuit (IC). This technique is commonly used to optimize chip designs while ensuring that the desired functionality is maintained.
+
+Consider 2 equations
+
+y = a & b & c
+
+z = (a & b) | c
+
+Here a & b is a common logic between y and z , so we can use the same logic for both the cases
+
+![WhatsApp Image 2023-09-13 at 22 55 36](https://github.com/AbhishekChinchani/Samsung_pd/assets/142480501/f6ccbbba-d77f-43f2-932c-124a2a999e8c)
+
+**Preferential vs Balanced implementation**
+
+consider the below equation
+
+y = a & b & c & d & e
+
+this can be implemented in 2 ways as shown in the figure ,
+
+![WhatsApp Image 2023-09-13 at 23 03 01](https://github.com/AbhishekChinchani/Samsung_pd/assets/142480501/c863a48d-646e-40c0-9ab9-4518ba6dfbdf)
+
+In the first case input to y delay is same for all 5 variables so this is a case of Balanced implementation.
+
+In the second case input to y delay is different for the variable , this is case of sequential implementation
+
+Out of this which one is selected is decided by the *constraints*
+
+**Sequential Optimization**
+
+
+
+
+
+
+
+
+
+
  
  
 
