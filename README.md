@@ -2360,6 +2360,54 @@ Optimizing unloaded outputs typically involves reduction of power consumption , 
     	
     <img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/926d326bc0f90e3c773c8f4cbd73c9e905299f94/day9/lab1_opt1_dv.png">
 
+2. **Opt_check2**
+
+   The RTL code of the opt_check is as follows
+    ```ruby
+   module opt_check2 (input a , input b , output y);
+	assign y = a?1:b;
+   endmodule
+    ```
+    The report after linking the compiling the above design is as follows
+    
+    <img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/926d326bc0f90e3c773c8f4cbd73c9e905299f94/day9/lab1_opt2_report.png">
+    
+    The schematic in design vision is as follows
+    	
+    <img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/926d326bc0f90e3c773c8f4cbd73c9e905299f94/day9/lab1_opt2_dv.png">
+
+3. **Opt_check3**
+   
+    The RTL code of the opt_check is as follows
+    ```ruby
+   module opt_check3 (input a , input b, input c , output y);
+	assign y = a?(c?b:0):0;
+   endmodule
+    ```
+    The report after linking the compiling the above design is as follows
+    
+    <img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/926d326bc0f90e3c773c8f4cbd73c9e905299f94/day9/lab1_opt3_report.png">
+    
+    The schematic in design vision is as follows
+    	
+    <img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/926d326bc0f90e3c773c8f4cbd73c9e905299f94/day9/lab1_opt3_dv.png">
+
+4. **Opt_check4**
+   
+   The RTL code of the opt_check is as follows
+    ```ruby
+   module opt_check4 (input a , input b , input c , output y);
+ 	assign y = a?(b?(a & c ):c):(!c);
+   endmodule
+    ```
+    The report after linking the compiling the above design is as follows
+    
+    <img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/926d326bc0f90e3c773c8f4cbd73c9e905299f94/day9/lab1_opt4_report.png">
+    
+    The schematic in design vision is as follows
+    	
+    <img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/926d326bc0f90e3c773c8f4cbd73c9e905299f94/day9/lab1_opt4_dv.png">
+
 
 </details>
     
