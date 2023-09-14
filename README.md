@@ -2352,7 +2352,13 @@ Optimizing unloaded outputs typically involves reduction of power consumption , 
 	assign a1 = 1'b0;
     endmodule
     ```
+    The report after linking the compiling the above design is as follows
     
+    <img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/926d326bc0f90e3c773c8f4cbd73c9e905299f94/day9/lab1_opt1_report.png">
+    
+    The schematic in design vision is as follows
+    	
+    <img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/926d326bc0f90e3c773c8f4cbd73c9e905299f94/day9/lab1_opt1_dv.png">
 
 
 </details>
