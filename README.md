@@ -2593,6 +2593,8 @@ In the above example as we can see that there is a huge positive slack of 48 ns 
 
 *Lab*
 
+No boundary , Entire design is optimized
+
  
 </details>
     
