@@ -2461,15 +2461,126 @@ The area and report for the above case are as follows
 
 
 
-   
+**Labs on Sequential Optimizations**
 
+**Tie cells**
+
+Tie cells also known as tie-high and tie-low cells, are components used in vlsi design to ensure that specific signal are held at a predetermined logic value regardless of input condition. These cells are particularlly useful in preventing floating or undefined states in digital circuit.
+
+**dff_const**
+  ```ruby
+   module dff_const1(input clk, input reset, output reg q);
+	always @(posedge clk, posedge reset)
+	begin
+		if(reset)
+			q <= 1'b0;
+		else
+			q <= 1'b1;
+	end
+
+  endmodule
+  ```
+As it is not a sequential constant we see the flop as shown in the figure 
+
+<img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/926d326bc0f90e3c773c8f4cbd73c9e905299f94/day9/lab3_dff_const1.png">
+
+**dff_const2**
+```ruby
+module dff_const2(input clk, input reset, output reg q);
+always @(posedge clk, posedge reset)
+begin
+	if(reset)
+		q <= 1'b1;
+	else
+		q <= 1'b1;
+end
+
+endmodule
+```
+It is a sequential constant propagation so th flops are optimized
+
+<img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/926d326bc0f90e3c773c8f4cbd73c9e905299f94/day9/lab3_dff_const2.png">
+
+In some cases we don't need to simplify the circuit in that case we can use the following command to prevent constant sequential propagation
+
+set compile_seqmap_propagate_constants false
+
+<img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/926d326bc0f90e3c773c8f4cbd73c9e905299f94/day9/lab3_dff_const2_expt.png">
+
+**dff_const3**
+```ruby
+module dff_const3(input clk, input reset, output reg q);
+reg q1;
+
+always @(posedge clk, posedge reset)
+begin
+	if(reset)
+	begin
+		q <= 1'b1;
+		q1 <= 1'b0;
+	end
+	else
+	begin
+		q1 <= 1'b1;
+		q <= q1;
+	end
+end
+
+endmodule
+```
+This is not an example of sequential constant propagation
+
+<img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/926d326bc0f90e3c773c8f4cbd73c9e905299f94/day9/lab3_dff_const3.png">
+
+**dff_const4**
+```ruby
+module dff_const4(input clk, input reset, output reg q);
+reg q1;
+
+always @(posedge clk, posedge reset)
+begin
+	if(reset)
+	begin
+		q <= 1'b1;
+		q1 <= 1'b1;
+	end
+	else
+	begin
+		q1 <= 1'b1;
+		q <= q1;
+	end
+end
+
+endmodule
+```
+<img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/926d326bc0f90e3c773c8f4cbd73c9e905299f94/day9/lab3_dff_const4.png">
+
+**dff_const5**
+```ruby
+module dff_const5(input clk, input reset, output reg q);
+reg q1;
+
+always @(posedge clk, posedge reset)
+begin
+	if(reset)
+	begin
+		q <= 1'b0;
+		q1 <= 1'b0;
+	end
+	else
+	begin
+		q1 <= 1'b1;
+		q <= q1;
+	end
+end
+
+endmodule
+```
+<img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/926d326bc0f90e3c773c8f4cbd73c9e905299f94/day9/lab3_dff_const5.png">
 
     
     
    
-
-
-
 
 
 
