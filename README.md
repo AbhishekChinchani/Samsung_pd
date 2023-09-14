@@ -2577,16 +2577,23 @@ end
 endmodule
 ```
 <img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/926d326bc0f90e3c773c8f4cbd73c9e905299f94/day9/lab3_dff_const5.png">
+</details>
 
-    
-    
-   
+<details>
 
+<summary>Special optimization</summary>
 
+**Register Retiming**
 
+Register retiming is a technique used in Very Large Scale Integration (VLSI) design to optimize the performance of digital circuits by rearranging the registers in the circuit without changing its functionality. The primary goal of register retiming is to minimize the critical path delay, which is the longest path in the circuit from an input to an output.
 
+![image](https://github.com/AbhishekChinchani/Samsung_pd/assets/142480501/849a0de6-08f5-4891-80f4-d4e3da617666)
 
+In the above example as we can see that there is a huge positive slack of 48 ns , so the max frequency which it can work is 20MHz , but by slicing the big logic we can improve the frequency . The tool do not share the logic equally, it optimizes the design to the extent. So, If it is shared as shown, the delay of the design now will be 20ns in the critical path. This, Improving the performance of the design to 50 MHz. 
 
+*Lab*
+
+ 
 </details>
     
 
