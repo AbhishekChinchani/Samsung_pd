@@ -2307,7 +2307,9 @@ Out of this which one is selected is decided by the *constraints*
 
 **Sequential Optimization**
 
+Consider a case where asynchronous reset D Flip-flop is fed with d = 0(i.e GND) always so the output will always be 0 irrespective of the timing or circuit.
 
+<img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/9ee556e759953cfdd337c4c07302f7f415aab031/hand1.jpg">
 
 
 
