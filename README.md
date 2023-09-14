@@ -2207,12 +2207,12 @@ When we give report_port -verbose
 
 
 
-# Day-8-Optimizations
+# Day-9-Optimizations
 
 
 	
  <details>
- <summary>Introduction</summary>
+ <summary>Introduction to Combinational and Sequential Optimization</summary>
 
  Optimization in VLSI design is a crucial aspect of creating efficient and high-performance integrated circuits (ICs). VLSI optimization involves improving various aspects of IC design, such as power consumption, area utilization, timing, and manufacturability.
 
@@ -2307,13 +2307,56 @@ Out of this which one is selected is decided by the *constraints*
 
 **Sequential Optimization**
 
+Basic Sequential Optimization
+
+- Sequential Constant propagation
+- Retiming
+- Unused Flop Removal
+- Clock Gating
+
+  	
+
+Advanced
+
+- State Optimization
+- Sequential logic cloning
+
 Consider a case where asynchronous reset D Flip-flop is fed with d = 0(i.e GND) always so the output will always be 0 irrespective of the timing or circuit.
 
 <img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/9ee556e759953cfdd337c4c07302f7f415aab031/hand1.jpg">
 
+**Optimization of Unloaded Outputs**
+
+Optimizing unloaded outputs typically involves reduction of power consumption , area, delay for unused or idle pins . It refers to flip-flops whose outputs are not connected to any subsequent logic gates or do not affect the functionality of the overall circuit. so these flip flops can be removed thus retaining the function and reducing the area , power of the design.
+
+**Controlling sequential optimization**
+
+- compile_seqmap_propagate_constants If this variable is not set to true, the sequential constant propagating circuits are retained in circuit and not optimized.
+- compile_delete_unloaded_sequential_cells If the variable is not set to true, it doesn't remove the counter cells as discussed, it retains all counters in the circuit.
+- compile_register_replication If the variable is set to true, this replicates the registers in cloning optimization so that timing is met.
+    
+</details>
+
+<details>
+
+ <summary> Labs on Sequential and Combinational Optimization </summary>
+
+ 1. **Opt_check**
+    
+    The RTL code of the opt_check is as follows
+    ```ruby
+    module opt_check (input a , input b , input c , output y1, output y2);
+	wire a1;
+	assign y1 = a?b:0;
+	assign y2 = ~((a1 & b) | c);
+	assign a1 = 1'b0;
+    endmodule
+    ```
+    
 
 
-
+</details>
+    
 
 
 
