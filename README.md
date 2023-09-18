@@ -2882,13 +2882,12 @@ Falling Edge Propagation Delay (tpdf): This is the time it takes for the output 
 
 We know that Rise to fall delay is not same as fall to rise delay as mobility of electrons and holes are not same.
 
-<img  width="1085" alt="hand_writ_exam" src="">
+<img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/bc0dec9e19f2d1c89a080174b3d89a825fc5c5b3/day10/WhatsApp%20Image%202023-09-18%20at%2011.41.24.jpg">
 
-<image> (hand drawn)
 
 In this we can see that in the first case when both A and B are 0 the output Y is 1 , which implies That both a and b help helps in charging the capacitor, but in the next case when either A/B is 1 only the other one charges the capacitor so , it is clear that A to Y delay is not same as B to Y delay
 
-<image> (theory example)
+<img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/bc0dec9e19f2d1c89a080174b3d89a825fc5c5b3/day10/theory_example.png">
 
 Inverter gate :
 
@@ -2927,29 +2926,29 @@ Now the different timing paths along with delays are as follows
 
 The path with the highest delay is 1st path so that path is called the critical path. Critical path is the one which decides the operating frequency of that circuit
 
-report_timing -from DFFA/CLK -to DFFC/D -delay max 
+- report_timing -from DFFA/CLK -to DFFC/D -delay max 
 
-we get the first path
+	we get the **first path**
 
-report_timing -from DFFA/CLK -to DFFC/D -delay min
+- report_timing -from DFFA/CLK -to DFFC/D -delay min
 
-we get the second path 
+	we get the **second path** 
 
-report_timing -delay min -to DFFC/D
+- report_timing -delay min -to DFFC/D
 
-we get fourth path
+	we get **fourth path**
 
-report_timing -delay max -to DFFC/D
+- report_timing -delay max -to DFFC/D
 
-we get the first path
+	we get the **first path*8
 
-report_timing -delay max -rise_to DFFC/D
+- report_timing -delay max -rise_to DFFC/D
 
-we get the second path
+	we get the **second path**
 
-report_timing -delay max -fall_to DFFC/D
+- report_timing -delay max -fall_to DFFC/D
 
-we get the first path
+	we get the **first path**
 
 Now consider the clock period as 5 ns, setup time is 0.5 ns and hold time is 0.4 ns.
 
@@ -2982,15 +2981,61 @@ Hold slack = Arrival - required (1 - 0.1 = 0.9 ns)
 
 Now consider another example
 
-<image> (theory example 2)
+<img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/bc0dec9e19f2d1c89a080174b3d89a825fc5c5b3/day10/theory2.png">
 
-report_timing -max_paths 2
+- report_timing -max_paths 2
 
-
-
-report_timing -max_paths 2 -nworst 2 
+   	This returns the worst slack from each pin end . In this case the path with slacks -1.2 ns and -1.0 ns
 
 
+
+- report_timing -max_paths 2 -nworst 2 
+
+	This returns the worst slack , In this case it is -1.2 ns and 1.1 ns
+
+</details>
+
+<details>
+
+ <summary>Labs</summary>
+
+ The example used in this lab has the following design code
+
+ <code>
+
+ When we report_timing along with capacitance trans nets input, This is for setup check as we can see path type is max , launch edge is 0 ns and capture edge is 10 ns. Also we can see 
+ that slack is *required time - arrival time*
+
+ <img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/bc0dec9e19f2d1c89a080174b3d89a825fc5c5b3/day10/lab1_rep1.png">
+
+ When we give *report_timing -from IN_A -sig 4 -trans -inp -cap -nets* 
+
+ <img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/bc0dec9e19f2d1c89a080174b3d89a825fc5c5b3/day10/lab1_rep2.png">
+
+ When we give *report_timing -rise_from IN_A -sig 4 -trans -inp -cap -nets* 
+
+ <img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/bc0dec9e19f2d1c89a080174b3d89a825fc5c5b3/day10/lab1_rep3.png">
+
+ When we give *report_timing -rise_from IN_A -to REGA_reg/D -sig 4 -trans -inp -cap -nets* , we can see that there is mismatch in rise to fall delay and fall to rise delay as compared with second report.
+
+ <img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/bc0dec9e19f2d1c89a080174b3d89a825fc5c5b3/day10/lab1_rep4_cmp_with_rep2.png">
+
+ When we give *report_timing -delay min -from IN_A* we can see that this is for hold check as we can see path type is min , launch edge is 0 ns and capture edge is 0 ns. Also we can see 
+ that slack is *arrival time - required time*
+
+ <img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/bc0dec9e19f2d1c89a080174b3d89a825fc5c5b3/day10/lab1_rep5_hold.png">
+
+ When we give *report_timing -thr U15/Y* 
+
+ <img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/bc0dec9e19f2d1c89a080174b3d89a825fc5c5b3/day10/lab1_rep6_thr_setup.png">
+
+ When we give *report_timing -thr U15/Y -delay min*
+ 
+ <img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/bc0dec9e19f2d1c89a080174b3d89a825fc5c5b3/day10/lab1_rep7_thr_hold.png">
+
+ *Checking whether the deign is loaded correctly or is there any Human error*
+
+ 
 </details>
 
 
