@@ -3001,7 +3001,7 @@ Now consider another example
 
  The example used in this lab has the following design code
 
- <code>
+ </code>
 
  When we report_timing along with capacitance trans nets input, This is for setup check as we can see path type is max , launch edge is 0 ns and capture edge is 10 ns. Also we can see 
  that slack is *required time - arrival time*
@@ -3026,7 +3026,7 @@ Now consider another example
  <img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/bc0dec9e19f2d1c89a080174b3d89a825fc5c5b3/day10/lab1_rep5_hold.png">
 
  When we give *report_timing -thr U15/Y* 
-
+ 
  <img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/bc0dec9e19f2d1c89a080174b3d89a825fc5c5b3/day10/lab1_rep6_thr_setup.png">
 
  When we give *report_timing -thr U15/Y -delay min*
@@ -3035,8 +3035,137 @@ Now consider another example
 
  *Checking whether the deign is loaded correctly or is there any Human error*
 
+ Reading the design , after linking
+
+*check_design*
+
+<img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/bc0dec9e19f2d1c89a080174b3d89a825fc5c5b3/day10/lab2_check_design1.png">
+
+*check_timing* this showed all the paths were unconstrained
+
+<img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/bc0dec9e19f2d1c89a080174b3d89a825fc5c5b3/day10/lab2_check_timing1.png">
+
+*report_constraints* ,This gives the default value of the constraints
+
+<img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/bc0dec9e19f2d1c89a080174b3d89a825fc5c5b3/day10/lab2_check_constraints1.png">
+
+After adding constraints to the design when we give *check_timing*
+
+<img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/bc0dec9e19f2d1c89a080174b3d89a825fc5c5b3/day10/lab2_check_timing2.png">
+
+when we give *report_timing*
+
+<img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/bc0dec9e19f2d1c89a080174b3d89a825fc5c5b3/day10/lab2_rep1.png">
+
+*report_constraints*
+
+<img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/bc0dec9e19f2d1c89a080174b3d89a825fc5c5b3/day10/lab2_check_constraints2.png">
+
+Consider a case of 128 : 1 Mux
+
+Design Code 
+
+</code>
+
+when we read this file , it infers it as latch because we have used always block
+
+<img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/bc0dec9e19f2d1c89a080174b3d89a825fc5c5b3/day10/mux128_infers_as_latch.png">
+
+Then we link and do compile_ultra, if we want to see what all cells it has inferred,
+
+*write -f verilog -out <filename>*
+
+<img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/bc0dec9e19f2d1c89a080174b3d89a825fc5c5b3/day10/write_verilog_128mux.png">
+
+We constraint the max delay using command
+
+*set_max_delay -from \[all_inputs] -to \[all_outputs] 3.5*
+
+We set the max capacitance 
+
+*set_max_capacitance 0.025 \[current_design]*
+
+*report_timing* we see its violated
+
+<img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/bc0dec9e19f2d1c89a080174b3d89a825fc5c5b3/day10/lab2_rep_violated_after_delaymux128.png">
+
+*report_constraints -all_violators*
+
+<img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/bc0dec9e19f2d1c89a080174b3d89a825fc5c5b3/day10/lab2_rep_constraint_violators_befor_compile_ultra_128.png">
+
+when we do compile_ultra 
+
+*report_constraints*
+
+<img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/bc0dec9e19f2d1c89a080174b3d89a825fc5c5b3/day10/lab2_rep_constraint_after_compile_ultra_128.png">
+
+*report_timing*
+
+<img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/bc0dec9e19f2d1c89a080174b3d89a825fc5c5b3/day10/lab2_slack_met_after_set_max_cap.png.png">
+
+Consider another example of 128 bit enable
+
+</code>
+
+after reading this code and compiling this code
+
+*report_timing -from en -inp -nets -caps* we see that there are 128 fanouts
+
+<img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/bc0dec9e19f2d1c89a080174b3d89a825fc5c5b3/day10/lab2_en128_highcap_fanouts.png">
+
+after setting the max cap as 0.03 
+
+*report_constraints*
+
+<img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/bc0dec9e19f2d1c89a080174b3d89a825fc5c5b3/day10/lab2_constraints_viol_cap.png">
+
+after compile_ultra
+
+<img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/bc0dec9e19f2d1c89a080174b3d89a825fc5c5b3/day10/lab2_report_show_cap_split.png">
+
+Now viewing this in Design_vison by writing out ddc
+
+<img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/bc0dec9e19f2d1c89a080174b3d89a825fc5c5b3/day10/lab2_dv1.png">
+
+<img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/bc0dec9e19f2d1c89a080174b3d89a825fc5c5b3/day10/lab2_dv2.png">
+
+Now set the trans constraints 
+
+Before compile ultra *report_constraints*
+
+<img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/bc0dec9e19f2d1c89a080174b3d89a825fc5c5b3/day10/lab2_constraints_bef_transition.png">
+
+After compile ultra
+
+*report_constraints*
+
+<img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/bc0dec9e19f2d1c89a080174b3d89a825fc5c5b3/day10/lab2_constraints_aft_transition.png">
+
+*report_timing -nosplit -sig 4 -inp -trans -cap*
+
+<img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/bc0dec9e19f2d1c89a080174b3d89a825fc5c5b3/day10/lab2_transition_final_met.png">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
  
-</details>
+   
+
+ 
+
 
 
 
