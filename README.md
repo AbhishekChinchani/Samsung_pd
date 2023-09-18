@@ -3105,7 +3105,7 @@ when we do compile_ultra
 
 Consider another example of 128 bit enable
 
-</code>
+/<code>
 
 after reading this code and compiling this code
 
