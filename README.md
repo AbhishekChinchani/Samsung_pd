@@ -2867,6 +2867,146 @@ In VLSI  design and digital circuit timing analysis, *False paths* refer to path
 
 </details>
     
+<!-- Day 10-->
+<!-- Quality checks in Very Large Scale Integration (VLSI) design and manufacturing are crucial to ensure the reliability and functionality of integrated circuits (ICs). VLSI quality checks involve various stages of the design and manufacturing process to identify and rectify potential issues.Quality checks in VLSI are iterative and continuous throughout the design and manufacturing process to guarantee the reliability, performance, and manufacturability of integrated circuits. Advanced simulation and verification tools are often used to automate and streamline these checks.
+
+Propagation delay, in the context of digital electronics and integrated circuits, refers to the time it takes for an electrical signal to travel from the input of a digital logic gate or circuit to its output. It is a critical parameter in digital design because it affects the speed and performance of the circuit. Propagation delay is typically measured in time units, such as nanoseconds (ns) or picoseconds (ps), and it depends on various factors, including the specific technology used, the length of interconnecting wires, and the complexity of the circuit.
+
+Rising Edge Propagation Delay (tpdr): This is the time it takes for the output signal to transition from a low (0) to a high (1) level after the input signal has made a similar transition. 
+
+Falling Edge Propagation Delay (tpdf): This is the time it takes for the output signal to transition from a high (1) to a low (0) level after the input signal has made a similar transition. 
+
+We know that Rise to fall delay is not same as fall to rise delay as mobility of electrons and holes are not same.
+
+
+<image> (hand drawn)
+
+In this we can see that in the first case when both A and B are 0 the output Y is 1 , which implies That both a and b help helps in charging the capacitor, but in the next case when either A/B is 1 only the other one charges the capacitor so , it is clear that A to Y delay is not same as B to Y delay
+
+<image> (theory example)
+
+Inverter gate :
+
+A rise -> Y fall (0.5 ns)
+
+A fall -> Y rise (0.4 ns)
+
+AND gate :
+
+A rise -> Y rise (0.7 ns)
+
+A fall -> Y fall (0.65 ns)
+
+B rise -> Y rise (0.65 ns)
+
+B fall -> Y fall (0.6 ns)
+
+Now the different timing paths along with delays are as follows
+
+1. DFFA(Clk -> Q r) -> INV(A r) -> INV(Y f) -> AND(A f) -> AND(Y f) -> DFFC(f)
+
+          0.5      +          0.5            +         0.65      =  1.65ns
+
+2.  DFFA(Clk -> Q f) -> INV(A f) -> INV(Y r) -> AND(A r) -> AND(Y r) -> DFFC(f)
+
+          0.4      +          0.4            +         0.7      =  1.5ns
+
+3. DFFA(Clk -> Q r) ->  AND(B r) -> AND(Y r) -> DFFC(r)
+
+          0.5      +          0.65         =   1.15 ns
+
+4. DFFA(Clk -> Q f) ->  AND(B f) -> AND(Y f) -> DFFC(f)
+
+          0.4      +          0.6         =   1.0 ns
+
+
+The path with the highest delay is 1st path so that path is called the critical path. Critical path is the one which decides the operating frequency of that circuit
+
+report_timing -from DFFA/CLK -to DFFC/D -delay max 
+
+we get the first path
+
+report_timing -from DFFA/CLK -to DFFC/D -delay min
+
+we get the second path 
+
+report_timing -delay min -to DFFC/D
+
+we get fourth path
+
+report_timing -delay max -to DFFC/D
+
+we get the first path
+
+report_timing -delay max -rise_to DFFC/D
+
+we get the second path
+
+report_timing -delay max -fall_to DFFC/D
+
+we get the first path
+
+Now consider the clock period as 5 ns, setup time is 0.5 ns and hold time is 0.4 ns.
+
+DFFA(Clk -> Q r) -> INV(A r) -> INV(Y f) -> AND(A f) -> AND(Y f) -> DFFC(f)
+
+          0.5      +          0.5            +         0.65      =  1.65ns
+
+This time is called as arrival time 
+
+The required time is Clock period - setup time 
+
+5 - 0.5 = 4.5ns
+
+setup slack = Required - Arrival 
+
+            = 4.5 - 1.65 
+
+     	    = 2.85 ns
+
+For Hold setup
+
+The hold time is 0.1 ns
+
+Required time  = hold time + uncertainity = 0.1 + 0 = 0.1 ns
+
+DFFA(Clk -> Q f) ->  AND(B f) -> AND(Y f) -> DFFC(f)
+
+          0.4      +          0.6         =   1.0 ns
+
+This is the arrival time 
+
+Hold slack = Arrival - required
+
+           = 1 - 0.1
+
+           = 0.9 ns
+
+
+Now consider another example
+
+<image> (theory example 2)
+
+report_timing -max_paths 2
+
+
+
+report_timing -max_paths 2 -nworst 2 -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
