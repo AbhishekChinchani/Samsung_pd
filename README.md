@@ -2867,8 +2867,12 @@ In VLSI  design and digital circuit timing analysis, *False paths* refer to path
 
 </details>
     
-<!-- Day 10-->
-<!-- Quality checks in Very Large Scale Integration (VLSI) design and manufacturing are crucial to ensure the reliability and functionality of integrated circuits (ICs). VLSI quality checks involve various stages of the design and manufacturing process to identify and rectify potential issues.Quality checks in VLSI are iterative and continuous throughout the design and manufacturing process to guarantee the reliability, performance, and manufacturability of integrated circuits. Advanced simulation and verification tools are often used to automate and streamline these checks.
+# Day 10
+<details>
+
+<summary> Introduction</summary>
+
+Quality checks in Very Large Scale Integration (VLSI) design and manufacturing are crucial to ensure the reliability and functionality of integrated circuits (ICs). VLSI quality checks involve various stages of the design and manufacturing process to identify and rectify potential issues.Quality checks in VLSI are iterative and continuous throughout the design and manufacturing process to guarantee the reliability, performance, and manufacturability of integrated circuits. Advanced simulation and verification tools are often used to automate and streamline these checks.
 
 Propagation delay, in the context of digital electronics and integrated circuits, refers to the time it takes for an electrical signal to travel from the input of a digital logic gate or circuit to its output. It is a critical parameter in digital design because it affects the speed and performance of the circuit. Propagation delay is typically measured in time units, such as nanoseconds (ns) or picoseconds (ps), and it depends on various factors, including the specific technology used, the length of interconnecting wires, and the complexity of the circuit.
 
@@ -2878,6 +2882,7 @@ Falling Edge Propagation Delay (tpdf): This is the time it takes for the output 
 
 We know that Rise to fall delay is not same as fall to rise delay as mobility of electrons and holes are not same.
 
+<img  width="1085" alt="hand_writ_exam" src="">
 
 <image> (hand drawn)
 
@@ -2905,19 +2910,19 @@ Now the different timing paths along with delays are as follows
 
 1. DFFA(Clk -> Q r) -> INV(A r) -> INV(Y f) -> AND(A f) -> AND(Y f) -> DFFC(f)
 
-          0.5      +          0.5            +         0.65      =  1.65ns
+    0.5      +          0.5            +         0.65      =  1.65ns
 
 2.  DFFA(Clk -> Q f) -> INV(A f) -> INV(Y r) -> AND(A r) -> AND(Y r) -> DFFC(f)
 
-          0.4      +          0.4            +         0.7      =  1.5ns
+    0.4      +          0.4            +         0.7      =  1.5ns
 
 3. DFFA(Clk -> Q r) ->  AND(B r) -> AND(Y r) -> DFFC(r)
 
-          0.5      +          0.65         =   1.15 ns
+   0.5      +          0.65         =   1.15 ns
 
 4. DFFA(Clk -> Q f) ->  AND(B f) -> AND(Y f) -> DFFC(f)
 
-          0.4      +          0.6         =   1.0 ns
+   0.4      +          0.6         =   1.0 ns
 
 
 The path with the highest delay is 1st path so that path is called the critical path. Critical path is the one which decides the operating frequency of that circuit
@@ -2950,7 +2955,7 @@ Now consider the clock period as 5 ns, setup time is 0.5 ns and hold time is 0.4
 
 DFFA(Clk -> Q r) -> INV(A r) -> INV(Y f) -> AND(A f) -> AND(Y f) -> DFFC(f)
 
-          0.5      +          0.5            +         0.65      =  1.65ns
+0.5      +          0.5            +         0.65      =  1.65ns
 
 This time is called as arrival time 
 
@@ -2958,11 +2963,7 @@ The required time is Clock period - setup time
 
 5 - 0.5 = 4.5ns
 
-setup slack = Required - Arrival 
-
-            = 4.5 - 1.65 
-
-     	    = 2.85 ns
+setup slack = Required - Arrival (4.5 - 1.65 = 2.85 ns)
 
 For Hold setup
 
@@ -2972,15 +2973,11 @@ Required time  = hold time + uncertainity = 0.1 + 0 = 0.1 ns
 
 DFFA(Clk -> Q f) ->  AND(B f) -> AND(Y f) -> DFFC(f)
 
-          0.4      +          0.6         =   1.0 ns
+0.4      +          0.6         =   1.0 ns
 
 This is the arrival time 
 
-Hold slack = Arrival - required
-
-           = 1 - 0.1
-
-           = 0.9 ns
+Hold slack = Arrival - required (1 - 0.1 = 0.9 ns)
 
 
 Now consider another example
@@ -2991,10 +2988,10 @@ report_timing -max_paths 2
 
 
 
-report_timing -max_paths 2 -nworst 2 -->
+report_timing -max_paths 2 -nworst 2 
 
 
-
+</details>
 
 
 
