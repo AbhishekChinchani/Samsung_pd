@@ -3105,8 +3105,6 @@ when we do compile_ultra
 
 Consider another example of 128 bit enable
 
-/<code>
-
 after reading this code and compiling this code
 
 *report_timing -from en -inp -nets -caps* we see that there are 128 fanouts
