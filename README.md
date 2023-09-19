@@ -2870,7 +2870,7 @@ In VLSI  design and digital circuit timing analysis, *False paths* refer to path
 # Day 10
 <details>
 
-<summary> Introduction</summary>
+<summary> Report_timing </summary>
 
 Quality checks in Very Large Scale Integration (VLSI) design and manufacturing are crucial to ensure the reliability and functionality of integrated circuits (ICs). VLSI quality checks involve various stages of the design and manufacturing process to identify and rectify potential issues.Quality checks in VLSI are iterative and continuous throughout the design and manufacturing process to guarantee the reliability, performance, and manufacturability of integrated circuits. Advanced simulation and verification tools are often used to automate and streamline these checks.
 
