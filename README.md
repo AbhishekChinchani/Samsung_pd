@@ -3106,7 +3106,7 @@ when we do compile_ultra
 
 *report_constraints*
 
-<img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/bc0dec9e19f2d1c89a080174b3d89a825fc5c5b3/day10/lab2_rep_constraint_after_compile_ultra_128.png">
+<img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/d4d2eb7d21edf0901aa403cc04210dd19e4e1414/day10/new/lab2_report_constraints_violators2.png">
 
 *report_timing*
 
