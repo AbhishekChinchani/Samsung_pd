@@ -3188,7 +3188,7 @@ After compile ultra
 
 <img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/2a158391db95a3ef34432f342717ceb0316172e3/day10/new/lat_one.png">
 
-
+</details>
 
 
 
