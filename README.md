@@ -3145,7 +3145,7 @@ Now set the trans constraints
 
 Before compile ultra *report_constraints*
 
-<img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/bc0dec9e19f2d1c89a080174b3d89a825fc5c5b3/day10/lab2_constraints_bef_transition.png">
+<img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/dac7685ce73d71ccc1fe532bb621308847df1773/day10/new/last1.png">
 
 After compile ultra
 
