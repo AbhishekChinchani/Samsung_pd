@@ -3100,7 +3100,7 @@ We set the max capacitance
 
 *report_constraints -all_violators*
 
-<img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/bc0dec9e19f2d1c89a080174b3d89a825fc5c5b3/day10/lab2_rep_constraint_violators_befor_compile_ultra_128.png">
+<img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/9759b73aad3a2686ebbdfe9235cb423cbf64a618/day10/new/lab2_report_constraints_violators1.png">
 
 when we do compile_ultra 
 
