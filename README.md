@@ -3018,7 +3018,7 @@ Now consider another example
 
  When we give *report_timing -rise_from IN_A -to REGA_reg/D -sig 4 -trans -inp -cap -nets* , we can see that there is mismatch in rise to fall delay and fall to rise delay as compared with second report.
 
- <img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/bc0dec9e19f2d1c89a080174b3d89a825fc5c5b3/day10/lab1_rep4_cmp_with_rep2.png">
+ <img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/a20d12f0ab0b69a0a13770694e728585593c1598/day10/new/lab1_rep4.png">
 
  When we give *report_timing -delay min -from IN_A* we can see that this is for hold check as we can see path type is min , launch edge is 0 ns and capture edge is 0 ns. Also we can see 
  that slack is *arrival time - required time*
