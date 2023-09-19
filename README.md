@@ -3008,7 +3008,7 @@ Now consider another example
 
  <img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/bc0dec9e19f2d1c89a080174b3d89a825fc5c5b3/day10/lab1_rep1.png">
 
- When we give *report_timing -from IN_A -sig 4 -trans -inp -cap -nets* 
+ When we give *report_timing -from IN_A* 
 
  <img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/bc0dec9e19f2d1c89a080174b3d89a825fc5c5b3/day10/lab1_rep2.png">
 
