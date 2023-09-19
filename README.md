@@ -3123,7 +3123,7 @@ after reading this code and compiling this code
 
 *report_timing -from en -inp -nets -caps* we see that there are 128 fanouts
 
-<img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/bc0dec9e19f2d1c89a080174b3d89a825fc5c5b3/day10/lab2_en128_highcap_fanouts.png">
+<img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/0cd3a23a4e9e674da7f07cd236507fec174bbac3/day10/new/lab2_trep2.png">
 
 after setting the max cap as 0.03 
 
