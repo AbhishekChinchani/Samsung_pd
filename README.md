@@ -3047,7 +3047,7 @@ Now consider another example
 
 *report_constraints* ,This gives the default value of the constraints
 
-<img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/bc0dec9e19f2d1c89a080174b3d89a825fc5c5b3/day10/lab2_check_constraints1.png">
+<img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/928192fdc205f372138c4a580e4e65ccd88a174f/day10/new/lab2_rep2.png">
 
 After adding constraints to the design when we give *check_timing*
 
@@ -3059,7 +3059,7 @@ when we give *report_timing*
 
 *report_constraints*
 
-<img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/928192fdc205f372138c4a580e4e65ccd88a174f/day10/new/lab2_rep2.png">
+
 
 Consider a case of 128 : 1 Mux
 
