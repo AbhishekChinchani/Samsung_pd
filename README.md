@@ -3010,7 +3010,7 @@ Now consider another example
 
  When we give *report_timing -from IN_A* 
 
- <img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/bc0dec9e19f2d1c89a080174b3d89a825fc5c5b3/day10/lab1_rep2.png">
+ <img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/2596dd3a7ae79395623be98c0ae52d86985fc806/day10/new/lab1_rep2.png">
 
  When we give *report_timing -rise_from IN_A -sig 4 -trans -inp -cap -nets* 
 
