@@ -2867,7 +2867,8 @@ In VLSI  design and digital circuit timing analysis, *False paths* refer to path
 
 </details>
     
-# Day 10
+# Day-8-QOR
+
 <details>
 
 <summary> Report_timing </summary>
