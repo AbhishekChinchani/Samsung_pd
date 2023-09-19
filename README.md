@@ -3129,7 +3129,7 @@ after setting the max cap as 0.03
 
 *report_constraints*
 
-<img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/bc0dec9e19f2d1c89a080174b3d89a825fc5c5b3/day10/lab2_constraints_viol_cap.png">
+<img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/50a2b2373d921405d8718b39397ece4eaef77d94/day10/new/lab2_cons1.png">
 
 after compile_ultra
 
