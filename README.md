@@ -3043,7 +3043,7 @@ Now consider another example
 
 *check_timing* this showed all the paths were unconstrained
 
-<img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/bc0dec9e19f2d1c89a080174b3d89a825fc5c5b3/day10/lab2_check_timing1.png">
+<img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/f9696cfc0d6a669c679ee1014fcc09ce6d57d908/day10/new/lab2_rep1.png">
 
 *report_constraints* ,This gives the default value of the constraints
 
