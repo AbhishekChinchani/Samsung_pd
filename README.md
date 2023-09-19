@@ -3027,7 +3027,7 @@ Now consider another example
 
  When we give *report_timing -thr U15/Y* 
  
- <img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/bc0dec9e19f2d1c89a080174b3d89a825fc5c5b3/day10/lab1_rep6_thr_setup.png">
+ <img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/97a1d1aaa2baac49e3230dc133eb5de04a4cf163/day10/new/lab1_rep6.png">
 
  When we give *report_timing -thr U15/Y -delay min*
  
