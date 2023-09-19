@@ -3023,7 +3023,7 @@ Now consider another example
  When we give *report_timing -delay min -from IN_A* we can see that this is for hold check as we can see path type is min , launch edge is 0 ns and capture edge is 0 ns. Also we can see 
  that slack is *arrival time - required time*
 
- <img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/bc0dec9e19f2d1c89a080174b3d89a825fc5c5b3/day10/lab1_rep5_hold.png">
+ <img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/22106adcf6e3da3c1c62257582a787a0ceda69dd/day10/new/lab1_rep5.png">
 
  When we give *report_timing -thr U15/Y* 
  
