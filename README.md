@@ -3031,7 +3031,7 @@ Now consider another example
 
  When we give *report_timing -thr U15/Y -delay min*
  
- <img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/bc0dec9e19f2d1c89a080174b3d89a825fc5c5b3/day10/lab1_rep7_thr_hold.png">
+ <img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/d2c2a84b88dbf06c962f8f7abf67241278e9d4d2/day10/new/lab1_rep7.png">
 
  *Checking whether the deign is loaded correctly or is there any Human error*
 
