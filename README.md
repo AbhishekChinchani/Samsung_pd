@@ -3055,7 +3055,7 @@ After adding constraints to the design when we give *check_timing*
 
 when we give *report_timing*
 
-<img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/bc0dec9e19f2d1c89a080174b3d89a825fc5c5b3/day10/lab2_rep1.png">
+<img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/215874b12bc7483b63a10485ec5a97ae40eee355/day10/new/lab2_report1.png">
 
 *report_constraints*
 
