@@ -3000,8 +3000,34 @@ Now consider another example
  <summary>Labs</summary>
 
  The example used in this lab has the following design code
+ ```ruby
+ module lab8_circuit (input rst, input clk , input IN_A , input IN_B , output OUT_Y , output out_clk , output reg out_div_clk);
+reg REGA , REGB , REGC ; 
 
- </code>
+always @ (posedge clk , posedge rst)
+begin
+	if(rst)
+	begin
+		REGA <= 1'b0;
+		REGB <= 1'b0;
+		REGC <= 1'b0;
+		out_div_clk <= 1'b0;
+	end
+	else
+	begin
+		REGA <= IN_A | IN_B;
+		REGB <= IN_A ^ IN_B;
+		REGC <= !(REGA & REGB);
+		out_div_clk <= ~out_div_clk; 
+	end
+end
+
+assign OUT_Y = ~REGC;
+
+assign out_clk = clk;
+
+endmodule
+```
 
  When we report_timing along with capacitance trans nets input, This is for setup check as we can see path type is max , launch edge is 0 ns and capture edge is 10 ns. Also we can see 
  that slack is *required time - arrival time*
@@ -3153,10 +3179,13 @@ After compile ultra
 
 <img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/bc0dec9e19f2d1c89a080174b3d89a825fc5c5b3/day10/lab2_constraints_aft_transition.png">
 
+*check_timing*
+
+<img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/2a158391db95a3ef34432f342717ceb0316172e3/day10/new/last_new.png">
+
 *report_timing -nosplit -sig 4 -inp -trans -cap*
 
-<img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/bc0dec9e19f2d1c89a080174b3d89a825fc5c5b3/day10/lab2_transition_final_met.png">
-
+<img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/2a158391db95a3ef34432f342717ceb0316172e3/day10/new/lat_one.png">
 
 
 
