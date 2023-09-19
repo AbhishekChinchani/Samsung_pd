@@ -3133,7 +3133,7 @@ after setting the max cap as 0.03
 
 after compile_ultra
 
-<img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/bc0dec9e19f2d1c89a080174b3d89a825fc5c5b3/day10/lab2_report_show_cap_split.png">
+<img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/ad625dad523d32ed9e3868cbfe0f2cb830a044e3/day10/new/lab2_trep3.png">
 
 Now viewing this in Design_vison by writing out ddc
 
