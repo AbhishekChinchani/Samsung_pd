@@ -3257,6 +3257,38 @@ After compile ultra
 
  <summary> Video_summary </summary>
 
+- Chips are made using extremely pure mono crystalline Silicon ingot called *bull* with only one impurity for every 10 million silicon atoms.
+- These silicon bulls are fabricated in different diameters, common ones are 100mm,150mm,200mm,300mm
+- Transitors are built on p and n conductive layers that exist in a doped wafer. These are smallest control units in microchips.
+- Semiconductor Manufacturing Process Summary:
+
+	*Design and Layout*: The process begins with the design of the integrated circuit (IC) or microchip. Engineers use specialized software to create a detailed layout of the chips 		specifying the location and arrangement of transistors, interconnects, and other components.
+
+	*Mask Creation*: The chip's design is used to create a series of photomasks, which are high-precision templates that define the patterns to be etched onto the silicon wafer 			during 	fabrication.
+
+	*Wafer Preparation*: Silicon wafers, typically made from highly purified single-crystal silicon, are cleaned and polished to create a flat, defect-free surface. The wafers are 		also coated with a thin layer of material, such as silicon dioxide (oxide), to act as an insulator.
+
+	*Photolithography*: Photomasks are used in a photolithography process to project the chip's design onto the silicon wafer. Ultraviolet (UV) light or deep ultraviolet (DUV) light 		is passed through the masks to define the circuit patterns on the wafer's surface. 
+
+	*Etching*: After photolithography, a chemical or plasma etching process is used to remove excess material from the wafer's surface, leaving behind the desired patterns. This 			step defines the locations of transistors, interconnects, and other features. There can be etched using wet or plasma etching.
+
+	*Ion Implantation*: Dopant ions (such as boron or phosphorus) are implanted into the silicon wafer to modify its electrical properties, creating N-type and P-type regions 			necessary for transistor operation.
+
+	*Deposition*: Thin layers of materials (such as metal or dielectrics) are deposited onto the wafer's surface using techniques like chemical vapor deposition (CVD) or physical 			vapor deposition (PVD). These layers form the conductive pathways and insulating barriers on the chip.
+
+	*Chemical Mechanical Polishing (CMP)* : CMP is used to planarize the wafer's surface, ensuring a uniform thickness of deposited material across the chip.
+
+	*Lithography and Etching (Repeated)*: Multiple iterations of lithography and etching are performed to create the various layers of the chip, including the metal interconnect 			layers 	that link transistors and components.
+
+	*Annealing*: Heat treatments, called annealing, are applied to activate dopants, relieve stress, and improve the performance and reliability of the semiconductor materials.
+
+	*Testing and Inspection* : At various stages of manufacturing, the wafers undergo extensive testing and inspection to identify defects, verify functionality, and ensure quality.
+
+	*Dicing*: The processed wafer contains multiple chips separated a tiny space between them called as *scribe line* . This processed wafer is cut into individual chips using a 			process called dicing. Each chip will become a separate microchip.
+
+	*Packaging* : The individual microchips are placed into packages that protect them from environmental factors and facilitate connection to external circuits. Packaging also 			includes adding pins or balls for electrical connections.
+
+- These microchips should be made in clean room . A clean room is a controlled environment designed to minimize contamination and maintain specific environmental conditions critical to the fabrication of integrated circuits and other microelectronics devices. Clean rooms are essential for ensuring the reliability and performance of semiconductor components. 
  
 </details>
 
