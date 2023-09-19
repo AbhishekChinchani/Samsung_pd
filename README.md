@@ -3059,14 +3059,23 @@ when we give *report_timing*
 
 *report_constraints*
 
-
+<img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/4051dddb605ded6ee2dc66ed138ba245528eb097/day10/new/lab2_report2.png">
 
 Consider a case of 128 : 1 Mux
 
 Design Code 
-
-</code>
-
+```ruby
+module mux_generate ( input [127:0] in, input [6:0] sel, output reg y);
+integer k;
+always @ (*)
+begin
+for(k = 0; k < 128; k=k+1) begin
+	if(k == sel)
+		y = in[k];
+end
+end
+endmodule
+```
 when we read this file , it infers it as latch because we have used always block
 
 <img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/bc0dec9e19f2d1c89a080174b3d89a825fc5c5b3/day10/mux128_infers_as_latch.png">
