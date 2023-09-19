@@ -3113,6 +3113,11 @@ when we do compile_ultra
 <img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/67510e94b9f5c8b998463f038eaeb9614a03fc10/day10/new/lab2_trep1.png">
 
 Consider another example of 128 bit enable
+```ruby
+module en_128 (input [127:0] x , output [127:0] y , input en);
+	assign y[127:0] = en ?x[127:0]:128'b0;
+endmodule
+```
 
 after reading this code and compiling this code
 
