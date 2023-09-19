@@ -3096,7 +3096,7 @@ We set the max capacitance
 
 *report_timing* we see its violated
 
-<img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/bc0dec9e19f2d1c89a080174b3d89a825fc5c5b3/day10/lab2_rep_violated_after_delaymux128.png">
+<img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/cdc3707cc36ae11d822ce0bef1331068dc110880/day10/new/lab2_treport.png">
 
 *report_constraints -all_violators*
 
