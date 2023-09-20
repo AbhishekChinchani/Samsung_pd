@@ -3296,7 +3296,15 @@ After compile ultra
 
 <details>
 
- 
+ <summary>Lab</summary>
+
+ GTKWave for DAC
+ ![image](https://github.com/AbhishekChinchani/Samsung_pd/assets/142480501/04df7701-2026-46bf-8cc8-16907908468d)
+
+ GTKWave for PLL
+ ![image](https://github.com/AbhishekChinchani/Samsung_pd/assets/142480501/371508bb-3b24-405d-b751-9d854febb928)
+
+
 </details>
 
 
