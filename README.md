@@ -3292,6 +3292,13 @@ After compile ultra
  
 </details>
 
+# Day-12-BabySOC Modelling
+
+<details>
+
+ 
+</details>
+
 
 
 
