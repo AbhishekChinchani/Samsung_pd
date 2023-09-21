@@ -3296,6 +3296,84 @@ After compile ultra
 
 <details>
 
+ <summary> Introduction</summary>
+
+ **Modelling** 
+
+ Modeling in the context of VLSI (Very-Large-Scale Integration) refers to the process of creating abstract representations of electronic circuits and systems that are implemented on integrated circuits (ICs) or chips. VLSI modeling plays a crucial role in the design, simulation, and verification of complex semiconductor devices and electronic systems. 
+
+In VLSI design, modeling is an iterative process where designers move from high-level abstractions to lower-level details while ensuring that the design meets its specifications, performance targets, and power requirements. Proper modeling and simulation are essential for reducing design errors, optimizing performance, and bringing reliable semiconductor devices to market.
+
+**Intellectual Property**
+
+Intellectual property (IP) in the context of VLSI (Very-Large-Scale Integration) refers to the legal protections and rights associated with the designs, innovations, and creations developed in the field of semiconductor and integrated circuit (IC) design. IP in VLSI is essential to protect the investments and innovations made by designers, semiconductor companies, and organizations. 
+
+The three main intellectual property which we are going to model are
+
+   - RVMYTH Modelling
+   - PLL Modelling
+   - DAC Modelling
+
+
+**RVMYTH**
+
+The RVMYTH is based on RISC V architecture. RISC-V stands for "Reduced Instruction Set Computing - Version 5." It is gaining significant attention in the world of computer architecture due to its open-source nature and flexibility. RISC-V provides a foundation for building custom processors tailored to specific applications, from embedded systems to high-performance computing. This open ISA allows developers and organizations to design their own processors or adopt existing implementations, promoting innovation, cost-efficiency, and compatibility across a wide range of hardware platforms.There are two primary integer variants in RISC V, known as RV32I and RV64I.
+
+RV32I
+
+- RV32I is one of the standard base instruction set extensions in the RISC-V (pronounced "risk-five") architecture. In RISC-V, the letter "RV" stands for "RISC-V" itself, followed by the number "32," which indicates a 32-bit architecture, and "I," which denotes the base integer instruction set.
+- RV32I is the base integer instruction set in RISC-V, providing the fundamental operations for processing integer data. It includes instructions for tasks like arithmetic, logical operations, data movement, branching, and control flow.
+- RV32I signifies that this variant of RISC-V uses 32-bit data and address widths. This makes it suitable for embedded systems, microcontrollers, and other applications where a smaller memory footprint and lower power consumption are desired.
+-  RV32I is designed with simplicity and orthogonality in mind, following the principles of Reduced Instruction Set Computing (RISC). Instructions are typically uniform in size and are easy to decode, which simplifies the processor's control logic.
+-   RV32I defines a set of 32 general-purpose registers (integer registers), labeled x0 through x31. Some of these registers have special purposes, like x0, which is hardwired to zero, and x1, which is typically used as the link register for function calls.
+
+RV64I
+
+- RV64I is a standard base instruction set extension in the RISC-V architecture. In RISC-V, the letter "RV" stands for "RISC-V" itself, followed by the number "64," which indicates a 64-bit architecture, and "I," which denotes the base integer instruction set.
+- RV64I is the base integer instruction set in RISC-V, providing fundamental operations for processing 64-bit integer data. It includes instructions for tasks like arithmetic, logical operations, data movement, branching, and control flow.
+- RISC-V uses 64-bit data and address widths. This makes it suitable for a wide range of computing applications, including general-purpose computing, servers, workstations, and high-performance computing.
+- RV64I defines a set of 32 general-purpose registers (integer registers), labeled x0 through x31. However, in a 64-bit architecture, these registers are extended to 64 bits in width, allowing for the manipulation of 64-bit integer data.
+
+**PLL**
+
+A Phase-Locked Loop (PLL) is a fundamental building block in VLSI (Very-Large-Scale Integration) design, particularly in the field of analog and mixed-signal integrated circuits. PLLs are versatile and widely used in various applications, providing essential functionality for clock generation, frequency synthesis, clock recovery, and many other tasks in semiconductor devices.
+
+A Phase-Locked Loop (PLL) is an electronic feedback system that can generate an output signal with a controlled phase and frequency in relation to an input reference signal.PLLs are extensively used in VLSI design due to their ability to synchronize and stabilize clock signals, recover data from communication signals, and create high-quality clock sources for digital circuits.PLLs are composed of several key components, including a phase detector, a voltage-controlled oscillator (VCO), and a loop filter.
+
+The main function and application of PLL
+
+*Clock Generation and Distribution* :
+
+PLLs are frequently used to generate high-frequency, stable clock signals for digital systems, such as microprocessors and memory devices.
+They allow for precise control of clock frequency, phase, and duty cycle, which is critical for synchronous digital circuits.
+
+*Frequency Synthesis*:
+
+PLLs can be used to generate output frequencies that are integer multiples (or fractions) of an input reference frequency.
+This capability is vital in various communication systems, such as wireless devices and digital television, where different frequencies must be synthesized.
+
+*Clock Recovery*:
+
+In communication systems, PLLs are employed to extract and synchronize clock information from incoming data signals.
+They are essential for demodulating and processing digital data streams accurately.
+
+*Phase Synchronization* :
+
+PLLs are used in phase-locked systems to ensure that the phase of the output signal is locked to the phase of the reference input signal.
+This is critical in applications like radar systems, where phase coherence is necessary.
+
+**DAC**
+
+Digital-to-Analog Converter, is an essential component that converts digital signals into analog signals. DACs play a crucial role in various applications, including telecommunications, audio systems, signal processing, and more.
+
+*Function of DAC*
+
+- A DAC is used to convert discrete digital values (usually binary) into continuous analog signals.
+- It takes a binary input code and generates a corresponding voltage or current output, where each digital value maps to a specific analog voltage or current level.
+</details>
+
+<details>
+
  <summary>Lab</summary>
 
  **Task1** 
