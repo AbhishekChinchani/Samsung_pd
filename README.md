@@ -3300,6 +3300,8 @@ After compile ultra
 
  **Task1** 
 
+ *4:1 MUX*
+
  Design Code:
 
  ```ruby
@@ -3347,7 +3349,10 @@ end
 endmodule
 ```
 
- GTKWave for DAC
+GTKWave of 4:1 MUX
+
+
+GTKWave for DAC
  ![image](https://github.com/AbhishekChinchani/Samsung_pd/assets/142480501/04df7701-2026-46bf-8cc8-16907908468d)
 
  GTKWave for PLL
