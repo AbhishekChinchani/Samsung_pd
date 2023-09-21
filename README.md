@@ -3350,14 +3350,84 @@ endmodule
 ```
 
 GTKWave of 4:1 MUX
+<img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/569efc3b26928d79a63420fb445c33ddc0e9332b/day12/mux_gtk_without_x.png">
 
+**Task2**
 
+<u>Baby SOC modelling</u>
+
+1. Modelling rvmyth
+   
+*Commands* 
+```ruby
+iverilog mythcore_test.v tb_mythcore_test.v 
+./a.out
+gtkwave tb_mythcore_test.vcd
+```
+
+GTKWave for rvmyth
+<img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/569efc3b26928d79a63420fb445c33ddc0e9332b/day12/risc5_rvmyth.png">
+
+10-bit digital output namely D is observed in rvmyth. It works as RISC V processor with 5 cycles fetch , decode , read , execute and write.It is basically a logic which adds the natural numbers till the sum is less than 1000 and when it exceeds 999, it starts subtracting the natural number in the reverse order.
+
+2. Modelling DAC
+
+*Commands*
+ ```ruby
+iverilog avsddac.v avsddac_tb_test.v
+./a.out
+gtkwave avsddac_tb_test.vcd
+```  
 GTKWave for DAC
+
  ![image](https://github.com/AbhishekChinchani/Samsung_pd/assets/142480501/04df7701-2026-46bf-8cc8-16907908468d)
 
+ This is a 10 bit digital to Analog converter, which has Vhigh 3.3v and Vlow as 0v .It coverts the equivalent 10 bit sign to its respective output. EX: D[9:0] = 111111011 = equivalent to 1019 Out = Vref * (1019/1024) =3.2878986 Which is matched with gtkwave.
+
+3. Modelling PLL
+   
+*Commands*
+```ruby
+iverilog avsd_pll_1v8.v pll_tb.v
+./a.out
+gtkwave test.vcd
+```
  GTKWave for PLL
  ![image](https://github.com/AbhishekChinchani/Samsung_pd/assets/142480501/371508bb-3b24-405d-b751-9d854febb928)
 
+4. Modelling rvmyth and adc interface
+
+*Commands*
+```ruby
+verilog rvmyth_avsddac.v rvmyth_avsddac_TB.v
+./a.out
+gtkwave rvmyth_avsddac.vcd
+```
+gtkwave
+<img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/569efc3b26928d79a63420fb445c33ddc0e9332b/day12/rvmyth_dac_integrated.png">\
+
+5. Modelling rvmyth and pll interface
+
+*Commands*
+```ruby
+iverilog rvmyth_pll.v rvmyth_pll_tb.v
+./a.out
+gtkwave test1.vcd
+```
+
+gtkwave 
+<img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/569efc3b26928d79a63420fb445c33ddc0e9332b/day12/rvmyth_pll_integrated.png">
+
+6. Interfacing all_modules
+
+*Commands*
+```ruby
+iverilog vsdbabysoc.v testbench.v avsdpll.v avsddac.v mythcore_test.v
+./a.out
+gtkwave dump.vcd
+```
+gtkwave
+<img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/569efc3b26928d79a63420fb445c33ddc0e9332b/day12/top_module_crct_one.png">
 
 </details>
 
