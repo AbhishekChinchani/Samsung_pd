@@ -3298,6 +3298,55 @@ After compile ultra
 
  <summary>Lab</summary>
 
+ **Task1** 
+
+ Design Code:
+
+ ```ruby
+ module mux_generate ( input [3:0] in, input [1:0] sel, output y);
+	assign y = in[sel];
+endmodule
+```
+
+Testbench:
+```ruby
+`timescale 1ns/1ps
+module tb_mux;
+
+	reg [3:0] in;
+
+	reg [1:0] sel;
+
+	wire y;
+
+	mux_generate uut (.in(in),.sel(sel),.y(y));
+
+initial 
+
+begin
+
+	
+in=4'b1010;
+sel = 2'b00;
+#2 sel=2'b00;
+#2 sel=2'b01;
+#2 sel=2'b10;
+#2 sel=2'b11;
+#2 sel=2'b00;
+#100 $stop;
+end
+
+initial 
+begin
+	$dumpfile("tb_mux.vcd");
+	$dumpvars(0,tb_mux);
+
+
+end
+
+endmodule
+```
+
  GTKWave for DAC
  ![image](https://github.com/AbhishekChinchani/Samsung_pd/assets/142480501/04df7701-2026-46bf-8cc8-16907908468d)
 
