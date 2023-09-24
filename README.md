@@ -3567,14 +3567,89 @@ link
 compile_ultra
 ```
 
+
 Then we view the schematic in design Vision
+<img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/4dcfb8e21be314b5bac810d882ce9e101b71e66a/day13/mux_sch_dv.png">
 
+**Gate level Simulation**
 
+Commands
+```ruby
+iverilog <netlist_file_name> <testbench>
+./a.out
+gtkwave <vcd_file_name>
+```
 
+<img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/4dcfb8e21be314b5bac810d882ce9e101b71e66a/day13/mux_actual.png">
 
+Here we can see that both the pre synthesis and post synthesis have same wave form 
 
+We can see that, (input is 1010)
+
+when select line is 00 output is 0
+
+when select line is 01 output is 1
+
+when select line is 10 output is 0
+
+when select line is 11 output is 1
 
 </details>
+
+<details>
+<summary>BabySOC Post Simulation</summary>
+
+We know that BabySOC consists of 3 IP's namely
+
+- RVMYTH
+- DAC
+- PLL
+
+Out of these 3 only RVMYTH is synthesizable 
+
+Commands for synthesizing
+```ruby
+set target_library <path_of_target_library>
+set link library { * <path_of_target_library> }
+read_verilog mythcore_test.v
+link
+compile_ultra
+write -f verilog -output rvmyth_core_test.v
+```
+
+The simulation after synthesis
+
+<img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/4dcfb8e21be314b5bac810d882ce9e101b71e66a/day13/gls_rvmyth.png">
+
+<img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/4dcfb8e21be314b5bac810d882ce9e101b71e66a/day13/rvmyth_gls.png">
+
+We can see that the functionality is same as the one compared with pre synthesis. i.e sum of first n natural numbers upto 1000 and then it again decrements in the same way.
+
+
+**BabySOC post synthesis**
+
+As we know that only rvmyth is synthesizable we synthesize rvmyth and then check the functionality with the DAC and PLL.
+
+Commands
+```ruby
+set target_library <path_of_target_library>
+set link library { * <path_of_target_library> }
+read_verilog mythcore_test.v
+link
+compile_ultra
+```
+
+**Gate level Simulations**
+
+<img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/4dcfb8e21be314b5bac810d882ce9e101b71e66a/day13/gls_command_final.png">
+
+<img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/4dcfb8e21be314b5bac810d882ce9e101b71e66a/day13/gls_final_one.png">
+
+
+
+
+
+
 
 
 
