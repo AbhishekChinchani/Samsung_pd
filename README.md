@@ -3628,13 +3628,19 @@ We can see that the functionality is same as the one compared with pre synthesis
 
 **BabySOC post synthesis**
 
-As we know that only rvmyth is synthesizable we synthesize rvmyth and then check the functionality with the DAC and PLL.
+As we know that only rvmyth is synthesizable we synthesize rvmyth and then check the functionality with the .lib of DAC and PLL.
 
-Commands
+Command for converting .lib to db
+```ruby
+read_lib <file_name>
+write_lib lib_name -f db -o <new_db_file_name>
+```
+
+Commands for synthesizing rvmyth_core
 ```ruby
 set target_library <path_of_target_library>
 set link library { * <path_of_target_library> }
-read_verilog mythcore_test.v
+read_verilog vsdbabysoc.v
 link
 compile_ultra
 ```
