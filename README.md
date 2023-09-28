@@ -3845,6 +3845,14 @@ Steps
 
    ![image](https://github.com/AbhishekChinchani/Samsung_pd/assets/142480501/8634f4e9-c58a-4ac7-ac74-231f928a25ed)
 
+
+- **Observation**
+
+   Hold violations are more prone in faster cells and setup is more prone in slower cells.
+
+   The worst corner for setup is ss_n40C_1v28 , if this corner is satisfied then all the others will be satisfied automatically.
+
+   The best PVT corner is **ff_n40C_1v76** as it has no setup violation and very minimal hold violation.
   
   
  
