@@ -3774,17 +3774,81 @@ Steps
   report_qor
   ```
 - **Outputs**
-  	- 
+
+	- For sky130_fd_sc_hd__ff_100C_1v65
+	   <img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/27d1798c5fac68f0b8c1c8db089c19b2affc1099/day14/ff_100C_1v65_1.png">
+	   <img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/27d1798c5fac68f0b8c1c8db089c19b2affc1099/day14/ff_100C_1v65_2.png">
+	
+	- For sky130_fd_sc_hd__ff_100C_1v95
+	  <img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/27d1798c5fac68f0b8c1c8db089c19b2affc1099/day14/ff_100C_1v95_1.png">
+	  <img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/27d1798c5fac68f0b8c1c8db089c19b2affc1099/day14/ff_100C_1v95_2.png">
+	
+	- For sky130_fd_sc_hd__ff_n40C_1v56
+	  <img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/27d1798c5fac68f0b8c1c8db089c19b2affc1099/day14/ff_n40C_1v56_1.png">
+	  <img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/27d1798c5fac68f0b8c1c8db089c19b2affc1099/day14/ff_n40C_1v56_2.png">
+	
+	- For sky130_fd_sc_hd__ff_n40C_1v65
+	  <img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/27d1798c5fac68f0b8c1c8db089c19b2affc1099/day14/ff_n40C_1v65_1.png">
+	  <img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/27d1798c5fac68f0b8c1c8db089c19b2affc1099/day14/ff_n40C_1v65_2.png">
+	
+	- For sky130_fd_sc_hd__ff_n40C_1v76
+	  <img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/27d1798c5fac68f0b8c1c8db089c19b2affc1099/day14/ff_n40C_1v76_1.png">
+	  <img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/27d1798c5fac68f0b8c1c8db089c19b2affc1099/day14/ff_n40C_1v76_2.png">
+	
+	- For sky130_fd_sc_hd__ss_100C_1v40
+	  <img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/27d1798c5fac68f0b8c1c8db089c19b2affc1099/day14/ss_100C_1v40_2.png">
+	  <img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/27d1798c5fac68f0b8c1c8db089c19b2affc1099/day14/ss_100C_1v40_1.png">
+	
+	- For sky130_fd_sc_hd__ss_100C_1v60
+	  <img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/27d1798c5fac68f0b8c1c8db089c19b2affc1099/day14/ss_100C_1v60.png">
+	  <img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/27d1798c5fac68f0b8c1c8db089c19b2affc1099/day14/ss_100C_1v60_2.png">
+
+	- For sky130_fd_sc_hd__ss_n40C_1v28
+	  <img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/27d1798c5fac68f0b8c1c8db089c19b2affc1099/day14/ss_n40C_1v28_1.png">
+	  <img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/27d1798c5fac68f0b8c1c8db089c19b2affc1099/day14/ss_n40C_1v28_2.png">
+	
+	- For sky130_fd_sc_hd__ss_n40C_1v35
+	  <img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/27d1798c5fac68f0b8c1c8db089c19b2affc1099/day14/ss_n40C_1v35_1.png">
+	  <img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/27d1798c5fac68f0b8c1c8db089c19b2affc1099/day14/ss_n40C_1v35_2.png">
+	
+	- For sky130_fd_sc_hd__ss_n40C_1v40
+	  <img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/27d1798c5fac68f0b8c1c8db089c19b2affc1099/day14/ss_n40C_1v40_1.png">
+	  <img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/27d1798c5fac68f0b8c1c8db089c19b2affc1099/day14/ss_n40C_1v40_2.png">
+
+	- For sky130_fd_sc_hd__ss_n40C_1v44
+	  <img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/27d1798c5fac68f0b8c1c8db089c19b2affc1099/day14/ss_n40C_1v44_1.png">
+	  <img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/27d1798c5fac68f0b8c1c8db089c19b2affc1099/day14/ss_n40C_1v44_2.png">
+	
+	- For sky130_fd_sc_hd__ss_n40C_1v76
+	  <img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/27d1798c5fac68f0b8c1c8db089c19b2affc1099/day14/ss_n40C_1v76_1.png">
+	  <img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/27d1798c5fac68f0b8c1c8db089c19b2affc1099/day14/ss_n40C_1v76_2.png">
+	
+	- For sky130_fd_sc_hd__tt_025C_1v80
+	  <img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/27d1798c5fac68f0b8c1c8db089c19b2affc1099/day14/tt_025C_1v80_1.png">
+	  <img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/27d1798c5fac68f0b8c1c8db089c19b2affc1099/day14/tt_025C_1v80_2.png">
   
+  
+  
+ - Table and Graph for setup
+
+    ![image](https://github.com/AbhishekChinchani/Samsung_pd/assets/142480501/8c3076d7-7141-47b4-8ac7-eba6bafd29f5)
+
+
+    ![image](https://github.com/AbhishekChinchani/Samsung_pd/assets/142480501/e22a229d-4f45-4073-8ca9-be8cdc622fcf)
+
+
+
+ - Table and Graph for hold
+
+   ![image](https://github.com/AbhishekChinchani/Samsung_pd/assets/142480501/053b4eae-12e4-455e-909f-c2a716b2d3e1)
+
+
+   ![image](https://github.com/AbhishekChinchani/Samsung_pd/assets/142480501/8634f4e9-c58a-4ac7-ac74-231f928a25ed)
+
   
   
  
 
-read_verilog vsdbabysoc.v (current_design is clk_gate)
-read_file {vsdbabysoc.v avsd_pll_1v8.v avsddac.v mythcore_test.v} -autoread -format verilog -top vsdbabysoc
-link
-report_global_timing
-</details>
 
 
 
