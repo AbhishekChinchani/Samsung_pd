@@ -3673,7 +3673,118 @@ compile_ultra
 </details>
 
 
+# Day-14 Synopsys DC and Timing Analysis
 
+<details>
+
+<Summary> PVT Corners </Summary>
+
+PVT corners, refer to the different combinations of Process, Voltage, and Temperature conditions that integrated circuits may encounter during their operation. Understanding and accounting for PVT corners is crucial in VLSI design because they significantly impact the performance, power consumption, and reliability of electronic devices.
+
+1. **Process Corner**
+   
+	- *Process Variations* : Semiconductor manufacturing processes are subject to inherent variations. These variations can lead to differences in transistor characteristics, such 	  as threshold voltage, mobility, and oxide thickness. As a result, integrated circuits produced on the same manufacturing line may have slightly different electrical properties.
+
+	- Process Corners: To model these variations, designers define process corners. There are typically three main process corners:
+
+		- Nominal (N): Represents the ideal or typical process conditions.
+
+		- Fast (F): Represents the corner where transistors are faster and typically have lower threshold voltages.
+
+		- Slow (S): Represents the corner where transistors are slower and generally have higher threshold voltages.
+
+
+ 2. **Voltage Corner** 
+
+ 	- *Voltage Variations* : Integrated circuits can operate at different supply voltages. Higher supply voltages typically result in faster operation, while lower supply voltages 	  reduce power consumption but may slow down the circuit's performance.
+
+ 	- Voltage Corners: Designers consider different voltage corners to account for supply voltage variations. These corners include:
+
+		- Low Voltage (LV): Represents the scenario where the supply voltage is at its lowest allowable level.
+
+		- Nominal Voltage (NV): Represents the standard or nominal supply voltage.
+
+		- High Voltage (HV): Represents the scenario where the supply voltage is at its highest allowable level.
+
+
+3. **Temperature Corner**
+
+ 	- *Temperature Variations* : Integrated circuits can experience variations in temperature during operation. Temperature affects the mobility of electrons and holes in 			  transistors, which in turn affects their performance.
+
+	- *Temperature Corner* : Designers consider different temperature corners to accommodate temperature variations. These corners may include:
+
+		- Low Temperature (LT): Represents the scenario where the temperature is at its lowest expected level.
+
+		- Nominal Temperature (NT): Represents the standard or nominal operating temperature.
+
+		- High Temperature (HT): Represents the scenario where the temperature is at its highest expected level.
+
+
+4. **Importance of PVT Corner in VLSI**
+
+   	- PVT corner analysis is crucial for ensuring that a VLSI chip operates reliably under different conditions.
+   	- It helps identify worst-case scenarios where the chip may fail to meet performance, power, or reliability requirements.
+   	- Designers can use PVT corners to optimize their circuits for a balance of performance, power consumption, and reliability.
+   	- PVT corner-aware designs are essential for robust and resilient integrated circuits, especially in critical applications like automotive, aerospace, and medical devices.  
+</details>
+
+<details>
+
+<Summary>LABS</Summary>
+
+Steps
+- Get all the .lib files by cloning https://github.com/Geetima2021/vsdpcvrd.git
+- Delete the lines from the .lib with the error stated. (REPEAT THIS FOR ALL THE .LIB)
+- After deleting the lines , load LC shell and convert it into .db using the following commands
+  ```ruby
+  read_lib <library_name>
+  write_lib <library_name> -f db -o <name_of_the_db_file>
+  ```
+- Now generate a constaraint file
+  ```ruby
+   set_units -time ns
+  create_clock -name MYCLK -per 2 [get_pins {pll/CLK}];
+
+  set_clock_latency -source 1 [get_clocks MYCLK]
+  set_clock_uncertainty -setup 0.5 [get_clocks MYCLK]; 
+  set_clock_uncertainty -hold 0.4 [get_clocks MYCLK]; 
+
+  set_input_delay -max 1 -clock \[get_clocks MYCLK] [all_inputs];
+  set_input_delay -min 0.5 -clock \[get_clocks MYCLK] [all_inputs];
+  set_output_delay -max 1 -clock \[get_clocks MYCLK] [all_outputs];
+  set_output_delay -min 0.5 -clock \[get_clocks MYCLK] [all_outputs];
+
+  set_input_transition -max 0.2 \[all_inputs];
+  set_input_transition -min 0.1 \[all_inputs];
+
+  set_max_area  800;
+
+  set_load -max 0.2 \[all_outputs];
+  set_load -min 0.1 \[all_outputs];
+  ```
+- Now set the required db files (sky130.db,avsddac.db,avsdpll.db), read the design , link the library and do compile_ultra
+- Commands for implementing this are as follows
+  ```ruby
+  set target_library { <sky130_PVT_corner> , avsddac.db , avsdpll.db}
+  set link_library {* sky130_PVT_corner> , avsddac.db , avsdpll.db}
+  read_verilog vsdbabysoc.v
+  link
+  source <constraints_file_name>
+  compile_ultra
+  report_qor
+  ```
+- **Outputs**
+  	- 
+  
+  
+  
+ 
+
+read_verilog vsdbabysoc.v (current_design is clk_gate)
+read_file {vsdbabysoc.v avsd_pll_1v8.v avsddac.v mythcore_test.v} -autoread -format verilog -top vsdbabysoc
+link
+report_global_timing
+</details>
 
 
 
