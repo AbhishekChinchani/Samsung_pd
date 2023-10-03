@@ -3853,6 +3853,177 @@ Steps
    The worst corner for setup is ss_n40C_1v28 , if this corner is satisfied then all the others will be satisfied automatically.
 
    The best PVT corner is **ff_n40C_1v76** as it has no setup violation and very minimal hold violation.
+
+  </details>
+
+  # Day 16 - Inception of EDA and PDK
+
+  <details>
+
+  <Summary>Introduction</Summary>
+  An integrated circuit (also known as an IC) is a set of electronic circuits on one small flat piece (or "chip") of semiconductor material, usually silicon. An integrated circuit is typically mounted on a printed circuit board 
+  (PCB) to create a functional electronic system.
+
+  ![image](https://github.com/AbhishekChinchani/Samsung_pd/assets/142480501/7664cd73-461f-44b0-a543-4eb01ea06c16)
+
+  The main components of a chip are as shown below
+
+  ![image](https://github.com/AbhishekChinchani/Samsung_pd/assets/142480501/54951b17-adaf-422f-ac1e-0fe19d2a3cc6)
+
+  **DIE**  refers to a specific part of a silicon wafer that contains an individual integrated circuit (IC) or chip.Each silicon wafer is divided into multiple smaller sections, each of which contains a copy of the same integrated 
+  circuit design. These smaller sections are called "dies." Each die is essentially an individual chip that can function on its own once it's separated from the wafer.
+
+  **Pads** refer to the external connections or pins on an integrated circuit (IC) that allow it to interface with the outside world. Pads serve as the physical connection points through which electrical signals are input to or output 
+   from the IC.Pads play a crucial role in the functionality of an IC. They are the points at which signals, such as data, power, clock, and control signals, are brought into or sent out of the chip.
+
+   Types of pads
+
+   - Input Pads: These are used to receive external signals into the IC. For example, input pads might be used for data inputs from sensors or user interfaces.
+   - Output Pads: These are used to send signals generated within the IC to external devices or other parts of a circuit. For instance, output pads might be used to send data to a display or to transmit data to another IC.
+   - Power Pads: These pads are used to provide power to the IC. They are typically connected to the power supply voltage (VDD) and ground (GND).
+   - Ground Pads: Ground pads are connected to the ground reference voltage (GND) and are essential for proper functioning and noise reduction in the circuit.
+   - No-Connect Pads: Some pads may not be connected to anything and are labeled as "no-connect" to avoid unintended connections.
+
+  **Core** refers to a fundamental functional block or module within an integrated circuit (IC) design. Cores are designed to perform specific tasks or functions, and they can be combined with other cores and components to create 
+   complex ICs that serve various purposes.
+
+  ![image](https://github.com/AbhishekChinchani/Samsung_pd/assets/142480501/84cef53e-da5d-4f9b-bdc3-2b3f2d449226)
+
+
+  This particular component is housed in a QFN-48 package, which stands for Quad Flat No Leads and has 48 pins. Each of these pins serves as a connection point that interfaces with other components or packages on the design board. The 
+  package itself measures 7mm by 7mm in size. At the heart of this package, there is typically a microchip positioned in the center. The pins on the periphery of the package, often referred to as "outbounds," play a crucial role in 
+  facilitating the exchange of data between the external world and the chip contained within the package.
+
+  </details>
+
+  <details>
+
+  <Summary>RTL to GDSII </Summary>
+
+   ![image](https://github.com/AbhishekChinchani/Samsung_pd/assets/142480501/c6741cb2-33f7-4732-8a8c-04ea932d2db9)
+
+  - **Synthesis**  refers to the process of transforming a high-level hardware description of a digital circuit, often written in a hardware description language (HDL) like VHDL or Verilog, into a netlist representing the logical and 
+   physical components that will make up the actual integrated circuit. Synthesis is a crucial step in the VLSI design flow. Standard cells are fundamental building blocks used in this process. They have a regular layout, and each 
+   cell is represented in various views or models, including electrical, HDL, and SPICE. Additionally, there are abstract and detailed layout views available for standard cells. These standard cells play a pivotal role in constructing 
+   the final layout of the integrated circuit.
+
+   - **Floor Planning** is a crucial early-stage process that involves defining the physical layout and placement of various functional blocks, modules, and components within an integrated circuit (IC). Floor planning is essential for 
+    optimizing factors such as chip area, signal routing, power distribution, and thermal management.
+
+		- *Chip Floorplan* : It refers to the specific floorplan designed for an integrated circuit (IC) or semiconductor chip. It is a layout or diagram that details the physical arrangement and placement of various 			   components,functional blocks, and critical elements within the chip's silicon area.
+
+   		- *Macro Floorplan* : A "macro floorplan" is a specific type of floorplan used in semiconductor and integrated circuit (IC) design. In IC design, a macro typically refers to a predefined and pre-characterized 
+                   functional block or module that performs a specific function. A macro can be anything from a processor core to a memory block or any other complex building block within an IC.
+  
+		- *Power Planning* : Power planning in VLSI (Very Large Scale Integration) design is a critical aspect of semiconductor chip design that involves managing and distributing electrical power within an integrated circuit 		   (IC). Effective power planning is essential for achieving reliable and efficient operation while minimizing power consumption.
+
+
+  - **Placement**  is a crucial step in the physical design process of creating integrated circuits (ICs). It involves determining the optimal location for each logical cell, or standard cell, within the chip's silicon area. Effective 
+    placement has a significant impact on factors like performance, power consumption, and chip area utilization. The primary objective of placement is to arrange standard cells in a way that minimizes the total wirelength (the total 
+    length of wires connecting the cells), optimizes chip area utilization, and meets various design constraints such as timing, power, and manufacturability.
+
+  - **CTS** stands for "Clock Tree Synthesis." CTS is a crucial step in the physical design process of creating integrated circuits (ICs), and it specifically deals with the generation and optimization of the clock distribution 
+    network within the chip. The primary goal of CTS is to ensure that clock signals are distributed efficiently and reliably to all flip-flops and sequential elements, minimizing clock skew and meeting the required timing 
+    constraints.Clock Tree Synthesis is a critical step in VLSI design, as clock distribution plays a significant role in the overall performance, power consumption, and reliability of integrated circuits. Advanced algorithms and 
+    tools are used to automate and optimize the CTS process for complex and high-performance ICs.
+
+  - **Routing** in VLSI (Very Large Scale Integration) design is a fundamental step in the physical design process of creating integrated circuits (ICs). It involves the generation of physical connections (metal traces or wires) 
+    between the various components and logic elements on the chip, ensuring that data signals, control signals, and power are routed efficiently and meet design constraints. Routing plays a critical role in determining the 
+    performance, power consumption, and overall functionality of the IC.
+
+  - **Sign Off** refers to the final stage of the design process before the design is sent for fabrication (manufacturing). Sign-off involves a comprehensive set of checks, analyses, and validations to ensure that the integrated 
+    circuit (IC) design meets all of the necessary criteria, constraints, and specifications before it is sent to the foundry for manufacturing. This stage is critical because any design errors or issues not caught at this point can       in costly and time-consuming problems later in the manufacturing process or after the ICs are in operation.
+
+  - **Physical Verification** It involves a series of checks and analyses to verify that the physical layout of the integrated circuit (IC) adheres to various design rules, constraints, and manufacturing requirements. The goal of 
+     physical verification is to ensure the manufacturability, functionality, and reliability of the IC design before it is sent for fabrication. It involves
+          -
+      1. *Design Rule Checking (DRC)*:
+
+	  - Geometry Checks: DRC verifies that the layout adheres to the design rules specified by the foundry. These rules include minimum feature sizes, spacing requirements, width and spacing of metal layers, and other 			    geometric constraints.
+        
+	  - Layer-Specific Rules: Different layers in the IC have specific design rules. DRC checks for compliance on all metal, polysilicon, diffusion, and other layers.
+  
+      2. *Electrical Rule Checking (ERC)*:
+
+
+	   - Electrical Connectivity: ERC ensures that there are no electrical shorts or opens in the layout. It verifies that the actual connections in the layout match the intended connectivity in the schematic.
+
+	   - Antenna Checking: ERC also checks for charge buildup issues, known as antenna effects, that can result from the deposition and etching processes during manufacturing.		
+
+       3. *Layout Versus Schematic (LVS) Verification*:
+
+	   - Netlist Consistency: LVS compares the layout netlist with the schematic netlist to ensure that they are equivalent. Any mismatches or discrepancies are flagged for resolution.
+
+	   - Parasitic Extraction: Parasitic elements, such as capacitance and resistance, are extracted from the layout and compared with the schematic to verify electrical equivalence.
+
+
+
+  </details>
+
+  <details>
+
+  <summary>OpenLane Flow</summary>
+
+  OpenLane is an open-source digital ASIC (Application-Specific Integrated Circuit) design flow and toolchain developed by Google and the Skywater Technology Foundry. It provides a complete, automated environment for designing and 
+  manufacturing digital chips, from RTL (Register-Transfer Level) design to GDSII (Graphic Data System II) tape-out. OpenLane is built upon various open-source tools and methodologies and is intended to simplify and democratize the 
+  ASIC design process.
+
+ 1. Synthesis Exploration:
+
+	- Synthesis exploration is a utility used to generate reports that display the design's delay and area characteristics.
+ 
+ 	- It helps identify the most suitable design strategy to proceed with by analyzing these reports.
+		
+		
+ 2. Design for Testability (DFT):
+
+	- After synthesis, DFT steps prepare the design for testing before fabrication (optional).These steps include:
+
+		- Scan Insertion
+
+   		- Automatic Test Pattern Generation (ATPG)
+
+		- Test Patterns Compaction
+  
+  		- Fault Coverage Analysis
+
+3. Physical Implementation (Automated PnR):
+
+	- Physical implementation, often referred to as Automated Place and Route (PnR), is conducted using open-source tools like OpenRoad.It encompasses various steps:
+
+		- Floor and Power Planning
+
+		- End Decoupling Capacitors and Tap Cells Insertion
+
+		- Placement (Global and Detailed)
+
+		- Post Placement Optimization
+
+		- Clock Tree Synthesis (CTS)
+
+		- Routing (Global and Detailed)
+
+		- Logic Equivalent Check (LEC) to ensure functionality consistency after netlist modifications.
+
+
+
+
+
+
+4. Dealing with Antenna Rules Violations: A specific phase during physical implementation addresses Antenna Rules Violations.
+It involves inserting Antenna Diodes to mitigate issues caused by long metal wire segments acting as antennas, which can accumulate charge and potentially damage transistor gates during fabrication.
+Solutions include bridging and adding antenna diode cells.
+
+	- Static Timing Analysis (STA):STA involves several steps, including RC extraction (from .def to .spef format) and the use of tools like OpenSTA (within OpenROAD).
+	  It generates timing reports to check for violations in timing paths and ensure that the design meets its timing constraints.
+          Physical Verification (DRC & LVS):
+
+	- Magic is utilized for Design Rule Checking (DRC) and SPICE Extraction from Layout.Netgen, along with Magic, is employed for Layout vs. Schematic (LVS) checks, comparing the extracted SPICE data from Magic with the Verilog 	  netlist.
+  
+  </details>
+
+
+
   
   
  
