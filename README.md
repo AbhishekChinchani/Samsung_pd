@@ -3964,18 +3964,18 @@ Steps
 
   <summary>OpenLane Flow</summary>
 
-  OpenLane is an open-source digital ASIC (Application-Specific Integrated Circuit) design flow and toolchain developed by Google and the Skywater Technology Foundry. It provides a complete, automated environment for designing and 
-  manufacturing digital chips, from RTL (Register-Transfer Level) design to GDSII (Graphic Data System II) tape-out. OpenLane is built upon various open-source tools and methodologies and is intended to simplify and democratize the 
-  ASIC design process.
+  OpenLane is an open-source digital ASIC (Application-Specific Integrated Circuit) design flow and toolchain developed by Google and the Skywater Technology Foundry. It provides a 
+  complete, automated environment for designing and manufacturing digital chips, from RTL (Register-Transfer Level) design to GDSII (Graphic Data System II) tape-out. OpenLane is built 
+  upon various open-source tools and methodologies and is intended to simplify and democratize the ASIC design process.
 
- 1. Synthesis Exploration:
+  1. Synthesis Exploration:
 
 	- Synthesis exploration is a utility used to generate reports that display the design's delay and area characteristics.
  
  	- It helps identify the most suitable design strategy to proceed with by analyzing these reports.
 		
 		
- 2. Design for Testability (DFT):
+  2. Design for Testability (DFT):
 
 	- After synthesis, DFT steps prepare the design for testing before fabrication (optional).These steps include:
 
@@ -3987,7 +3987,7 @@ Steps
   
   		- Fault Coverage Analysis
 
-3. Physical Implementation (Automated PnR):
+  3. Physical Implementation (Automated PnR):
 
 	- Physical implementation, often referred to as Automated Place and Route (PnR), is conducted using open-source tools like OpenRoad.It encompasses various steps:
 
@@ -4010,16 +4010,76 @@ Steps
 
 
 
-4. Dealing with Antenna Rules Violations: A specific phase during physical implementation addresses Antenna Rules Violations.
-It involves inserting Antenna Diodes to mitigate issues caused by long metal wire segments acting as antennas, which can accumulate charge and potentially damage transistor gates during fabrication.
-Solutions include bridging and adding antenna diode cells.
+  4. Dealing with Antenna Rules Violations: A specific phase during physical implementation addresses Antenna Rules Violations.
+     It involves inserting Antenna Diodes to mitigate issues caused by long metal wire segments acting as antennas, which can accumulate charge and potentially damage transistor gates 
+     during fabrication.
+     Solutions include bridging and adding antenna diode cells.
 
 	- Static Timing Analysis (STA):STA involves several steps, including RC extraction (from .def to .spef format) and the use of tools like OpenSTA (within OpenROAD).
 	  It generates timing reports to check for violations in timing paths and ensure that the design meets its timing constraints.
           Physical Verification (DRC & LVS):
 
-	- Magic is utilized for Design Rule Checking (DRC) and SPICE Extraction from Layout.Netgen, along with Magic, is employed for Layout vs. Schematic (LVS) checks, comparing the extracted SPICE data from Magic with the Verilog 	  netlist.
+	- Magic is utilized for Design Rule Checking (DRC) and SPICE Extraction from Layout.Netgen, along with Magic, is employed for Layout vs. Schematic (LVS) checks, comparing the 
+          extracted SPICE data from Magic with the Verilog netlist.
   
+  </details>
+
+  <details>
+
+  <summary>Labs</summary>
+
+  **Skywater130 PDK Files**
+
+  The skywater130 PDK contains 3 directories:
+
+  ![image](https://github.com/AbhishekChinchani/Samsung_pd/assets/142480501/66593625-d29c-4047-afcc-f26bba6557f0)
+
+  1. skywater-pdk : It contains all pdk related files (.lib,.lef)
+  2. open-pdks : It contains scripts that bridge the compatibility gap between closed-source and open-source PDKs for Electronic Design Automation (EDA) tools.
+  3. sky130A : It contains open source compatible EDA files.
+ 
+  The commands for invoking Openlane
+  ```ruby
+  docker
+  flow.tcl -interactive
+  ```
+
+  ![image](https://github.com/AbhishekChinchani/Samsung_pd/assets/142480501/fa0d814b-c91f-496d-b655-991aa2716c34)
+
+  Importing the package
+
+  ![image](https://github.com/AbhishekChinchani/Samsung_pd/assets/142480501/e17158f9-5fc4-4818-811d-6cfee9ad4687)
+
+  Preparing Design:
+
+  The "prep" phase sets up the file structure for your design within OpenLane.
+
+
+  ![image](https://github.com/AbhishekChinchani/Samsung_pd/assets/142480501/e8be61d9-2fe8-4fe7-8d77-f9a6475abe38)
+
+
+  ![image](https://github.com/AbhishekChinchani/Samsung_pd/assets/142480501/1e22d5c2-0f2c-4170-ba0c-32ad42957568)
+
+  Inside a runs folder a folder is created with date is created
+
+  ![image](https://github.com/AbhishekChinchani/Samsung_pd/assets/142480501/26dffd53-c19e-4146-a161-0109412d9152)
+
+  *Config file in the new directory shows the default parameters taken by the run*.
+
+  After running the command *run_synthesis*
+
+  ![image](https://github.com/AbhishekChinchani/Samsung_pd/assets/142480501/5fad7610-5f25-4793-91d3-6a7ac09ed0da)
+
+  ![image](https://github.com/AbhishekChinchani/Samsung_pd/assets/142480501/9529e973-a787-4bf3-a14e-7646612d6380)
+
+  The number of d flip flops = 1613
+
+  Total Number of cells = 14876
+
+  D flip flop ratio = 1613/14876 = 0.108429
+
+  In percentage => 10.8429%
+
   </details>
 
 
