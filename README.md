@@ -4084,6 +4084,148 @@ Steps
 
 
 
+# Day 17 Good Floorplan and Bad Floorplan
+
+<details>
+
+ <summary>Utillization Factor and aspect ratio</summary>
+
+ Consider the below circuit 
+
+ ![image](https://github.com/AbhishekChinchani/Samsung_pd/assets/142480501/777642d2-cc5f-46b6-b60b-0c07dce082fd)
+
+ This circuit consits of 2 Flipflops , 1 And gate and 1 OR gate
+
+ Now convert this design into physical implementation 
+
+ ![image](https://github.com/AbhishekChinchani/Samsung_pd/assets/142480501/b80a6896-c8a4-4179-8d1c-af53d414d323)
+
+
+ To define the height and width of the core and die we need to know the dimensions of standard cells
+
+ Lets consider the area of standard cell as 1 sq unit and area of the flip flop cell also as 1 sq unit.
+
+ Now we remove the wires and do a rough calculation of min area occupied by netlist.
+
+ ![image](https://github.com/AbhishekChinchani/Samsung_pd/assets/142480501/fbdfe6e6-3486-4edc-918f-9a420b0cf5ba)
+
+ The area is **4 sq unit**
+
+ **Utilization Factor** : It is defined as the ratio of area occupied by netlist to the total area of core 
+
+ Utilization Factor = area occupied by netlist / total area of core
+
+ Consider the below circuit
+
+ ![image](https://github.com/AbhishekChinchani/Samsung_pd/assets/142480501/e2e24a6e-7329-4717-be04-e895bb7162d4)
+
+ In this the utilization factor is 1 (4/4)
+
+ **Aspect Ratio** : It is defined by the ratio of height and width of the core.
+
+ Aspect Ratio = Height/Width
+
+ In this the aspect ratio is 1 (2/2)
+
+</details>
+
+<details>
+
+<summary>Concept of preplaced cells</summary>
+
+Consider the below circuit 
+
+![image](https://github.com/AbhishekChinchani/Samsung_pd/assets/142480501/64c7a60d-8a79-4a35-a1dc-ead7b2e7c7c2)
+
+These circuits can be split into blocks as shown in the figure
+
+![image](https://github.com/AbhishekChinchani/Samsung_pd/assets/142480501/ff41ea26-6a12-4559-90c5-5637867d0590)
+
+These blocks can be considered as blackboxes with extended pins , They are known as Ip's and they can be used multiple times in the design
+
+![image](https://github.com/AbhishekChinchani/Samsung_pd/assets/142480501/fd21405e-61d6-4fae-9609-506862a705bb)
+
+
+These are example of IP's 
+
+![image](https://github.com/AbhishekChinchani/Samsung_pd/assets/142480501/db44fc1d-a376-4fb3-b1e4-391138b1cd2f)
+
+</details>
+
+<details>
+
+ <summary> Decoupling Capacitors</summary>
+
+ Consider a complex circuit as shown in the figure
+
+ ![image](https://github.com/AbhishekChinchani/Samsung_pd/assets/142480501/84f3cbdf-2190-43f0-813a-a7e7b39404e2)
+
+ - During the switching case the circuit requires high peak current.
+ - But there will be some voltage drop beacuse of R and L , as a reult the voltage at node A will be Vdd'.
+ - Now if this drop is higher then the noise margin then the Voltage goes to undefined state i.e it can act as 1 or 0.
+ - Referring to the noise margin graph, there are three regions: logic 0, undefined, and logic 1. If Vdd falls between Vil and Vih, it is considered undefined, posing a risk.
+ - So to overcome this problem we use decoupling capacitor
+
+![image](https://github.com/AbhishekChinchani/Samsung_pd/assets/142480501/1d07b57f-5471-4ebf-a2a1-a9acdfcb8198)
+
+- Decoupling Capacitor provide the require amount of the current to the nodes so that they dont do into undefined state
+- They are placed parallel to circuit
+- These capacitors are strategically placed between blocks to ensure that all blocks receive the necessary power supply when switching occurs.
+
+After placing the decoupling capacitances
+
+![image](https://github.com/AbhishekChinchani/Samsung_pd/assets/142480501/c8787058-1b73-4d9a-b580-30621415ef79)
+
+
+
+</details>
+
+<details>
+
+ <summary> Power planning </summary>
+
+ Consider the below case
+
+ ![image](https://github.com/AbhishekChinchani/Samsung_pd/assets/142480501/9888ed9e-3779-466c-89a7-3c3bfa8cf08d)
+
+ - Now the output at the driver is high , this signal should be sent to another driver.
+ - This is a 16 bit bus which is again connected to an inverter
+ - So all the logic 1 bits should eventually discharge and all logic 0 should charge .
+ - During Discharging all the logic 1 discharge at the same time reulting in bounce , if this bounce exceeds the noise margin then that bit enters the undefined state
+ - During charging phase all the logic 0 should be charged at same causing Voltage Droop
+ - So to overcome this we use multiple power supplies
+ - These multiple power supplies will be directed to the nearest blocks, ensuring that each block receives a reliable power supply without any possibility of missing out.
+
+ ![image](https://github.com/AbhishekChinchani/Samsung_pd/assets/142480501/8fb9c928-cf8a-4d0b-9207-46659fbedb86)
+
+ ![image](https://github.com/AbhishekChinchani/Samsung_pd/assets/142480501/791cbdbe-2cb0-421f-b750-146741e4f115)
+
+
+</details>
+
+<details>
+
+ <summary>Pin placement and logical cell placement blockage </summary>
+
+ ![image](https://github.com/AbhishekChinchani/Samsung_pd/assets/142480501/0a471798-c601-4274-997a-9f5c4fa0f16b)
+
+ This has 4 input and 4 output pins, 2 input clock pins and 1 output clock pins
+
+ pin placement 
+
+ ![image](https://github.com/AbhishekChinchani/Samsung_pd/assets/142480501/f1c234dc-6f48-43f5-8924-4a81bf4213cd)
+
+ - These pins are placed in random order
+ - Clock pins are larger because they need to send the signals to all flip flops
+
+
+
+ 
+
+
+
+</details>
+
   
   
  
