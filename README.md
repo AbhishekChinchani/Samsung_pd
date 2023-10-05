@@ -4231,8 +4231,69 @@ After placing the decoupling capacitances
  <summary> Floorplan using Openlane</summary>
 
  Running the floorplan using the command *run_floorplan*
+ 
+ <img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/6ec05f96bc0b992cb54ddf15ac3cb199f2b60901/Day17/run_floorplan_2.png">
 
- <img  width="1085" alt="hand_writ_exam" src="
+ The values chosen are chosen based on set of prioprities, the least pripriority is for floorplan.tcl then config.tcl in designs and the highest is for sky130A_sky130_fd_sc_hd.tcl 
+
+ 1. floorplan.tcl
+  
+ <img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/6ec05f96bc0b992cb54ddf15ac3cb199f2b60901/Day17/floorplan_tcl_1.png">
+
+ 2. config.tcl in design picorv32a folder
+
+ <img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/6ec05f96bc0b992cb54ddf15ac3cb199f2b60901/Day17/design_tcl_3.png">
+
+ 3. sky130A_sky130_fd_sc_hd.tcl in picorv32a directory
+
+ <img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/6ec05f96bc0b992cb54ddf15ac3cb199f2b60901/Day17/sky-130_tcl_4.png">
+
+ The values chosen in our case are *utilization ratio 35* , *vertical metal layer as 2* , *horizonatal metal layer as 3*
+
+ The reult is stored as .def file
+
+ <img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/6ec05f96bc0b992cb54ddf15ac3cb199f2b60901/Day17/def_result_6.png">
+
+ command to invoke magic is
+ ```ruby
+ magic -T <path_of_tech_file> lef read <path_of_lef_file> def read <path_of_def_file>
+ ```
+
+ The floorplan in magic is as follows
+
+ <img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/6ec05f96bc0b992cb54ddf15ac3cb199f2b60901/Day17/After_running_magic_7.png">
+
+ As the mode is set to 1 all the pins are equidistant
+
+ <img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/6ec05f96bc0b992cb54ddf15ac3cb199f2b60901/Day17/equidistant_8.png">
+
+ We can select and check its metal layer by just selecting it in magic and giving what command in tkkon2.3
+
+ 1. Horizontal pin
+    
+ <img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/6ec05f96bc0b992cb54ddf15ac3cb199f2b60901/Day17/metal3_layer_what_9.png">
+
+ 2. Vertical pin
+
+ <img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/6ec05f96bc0b992cb54ddf15ac3cb199f2b60901/Day17/metal2_layer_what_10.png">
+
+ At the bottom left we can see that all the standard cells are present
+
+ <img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/6ec05f96bc0b992cb54ddf15ac3cb199f2b60901/Day17/standard_cells_11.png">
+
+ 
+ 
+
+
+ 
+
+ 
+
+ 
+ 
+
+ 
+ 
  
 </details>
 
