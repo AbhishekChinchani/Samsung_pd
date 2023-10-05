@@ -4226,6 +4226,16 @@ After placing the decoupling capacitances
 
 </details>
 
+<details>
+
+ <summary> Floorplan using Openlane</summary>
+
+ Running the floorplan using the command *run_floorplan*
+
+ <img  width="1085" alt="hand_writ_exam" src="
+ 
+</details>
+
   
   
  
