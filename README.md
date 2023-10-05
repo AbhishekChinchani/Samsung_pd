@@ -4281,19 +4281,77 @@ After placing the decoupling capacitances
 
  <img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/6ec05f96bc0b992cb54ddf15ac3cb199f2b60901/Day17/standard_cells_11.png">
 
- 
- 
+</details>
+
+<details>
+
+ <summary>Netlist Binding and intial place design</summary>
+
+ - First the circuit is converted into the netlist as shown in the figure
+
+   ![image](https://github.com/AbhishekChinchani/Samsung_pd/assets/142480501/07e376ac-7c61-44d5-a0c3-0e821ed4e47e)
+
+   ![image](https://github.com/AbhishekChinchani/Samsung_pd/assets/142480501/68406be7-c046-4458-b8cc-b39f8b594840)
+
+   ![image](https://github.com/AbhishekChinchani/Samsung_pd/assets/142480501/9428d74c-01a6-4bec-9683-5adbd14ec30d)
+
+- A Library consist of different flavours of the gates as shown in the figure
+
+  ![image](https://github.com/AbhishekChinchani/Samsung_pd/assets/142480501/02ff2978-901a-4aa9-a0bc-cf5c82808b45)
+
+- For placement we need floorplan , netlist , physical view of lgic gates
+
+  ![image](https://github.com/AbhishekChinchani/Samsung_pd/assets/142480501/5468da51-5ee4-4ce9-a972-8de75963a659)
+
+
+
+
+</details>
+
+<details>
+
+ <summary>Final placement optimization </summary>
+
+ Consider the initial placement as shown in the figure
+
+ ![image](https://github.com/AbhishekChinchani/Samsung_pd/assets/142480501/ad7b63d5-cc94-4d30-87ee-9475b43cb31d)
+
+ - At this stage we estimate wire length and capacitance and based on that we insert repetators
+ - Repeater insertion involves placing buffers along the signal path to reinforce the signal and duplicate it. It's worth noting that adding more repeaters consumes additional chip area.
+ - Consider the above circuit , Lets estimate the wire length between Din1 and Dout1, we see that there are not that far enough so they can be directly connected without any repeater 
+   buffers
+ - Consider the case between Din2 and Dout2 , Din2 is placed far enought from FF1 so we nees to insert a repeater buffer.
+ - While the connection between FF1 (yellow) and Din 1 is acceptable, there's a challenge when crossing other flip-flops due to excessive distance. To address this, buffers are 
+   introduced, and to avoid congestion, they are placed on a separate layer.
+
+  The optimized placement after placing required buffers or repeaters is as shown in the figure
+
+  ![image](https://github.com/AbhishekChinchani/Samsung_pd/assets/142480501/878441b5-f8ea-4913-ad37-f77bff181e3e)
 
 
  
 
- 
 
- 
- 
+</details>
 
- 
- 
+<details>
+
+<summary>Placement Labs</summary>
+
+To run tbe placement we use the command *run_placement*
+
+<img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/6ec05f96bc0b992cb54ddf15ac3cb199f2b60901/Day17/placement_12.png">
+
+The placement in the magic is as follows
+
+<img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/6ec05f96bc0b992cb54ddf15ac3cb199f2b60901/Day17/placement_sch_13.png">
+
+The placement of different images can be seen in the below image 
+
+<image>
+
+
+
  
 </details>
 
