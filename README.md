@@ -4346,9 +4346,10 @@ The placement in the magic is as follows
 
 <img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/6ec05f96bc0b992cb54ddf15ac3cb199f2b60901/Day17/placement_sch_13.png">
 
-The placement of different images can be seen in the below image 
+The placement of different cells can be seen in the below image 
 
-<image>
+![image](https://github.com/AbhishekChinchani/Samsung_pd/assets/142480501/20577a88-cf3f-44f4-a500-7670bbb238dd)
+
 
 
 
