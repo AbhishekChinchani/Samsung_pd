@@ -3856,7 +3856,7 @@ Steps
 
   </details>
 
-  # Day 16 - Inception of EDA and PDK
+  # Day 15 - Inception of EDA and PDK
 
   <details>
 
@@ -4084,7 +4084,7 @@ Steps
 
 
 
-# Day 17 Good Floorplan and Bad Floorplan
+# Day 16 Good Floorplan and Bad Floorplan
 
 <details>
 
