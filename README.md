@@ -4409,7 +4409,144 @@ The placement of different cells can be seen in the below image
  - *Provide Necessary Simulation Commands*: Simulation commands are used to run simulations on the standard cell to gather data on its performance.
 </details>
 
-  
+
+
+
+
+# Day-17 Standard Cell Characterizations
+
+<details>
+
+ <summary>IO placer revised</summary>
+
+ We can change the allignment of the Input/output pins by the changing the FP_IO_MODE. By Default it is set to 1. This can be changed by using the below command
+ ```ruby
+set ::env(FP_IO_MODE) 2
+```
+
+Before changing the mode the layout in magic
+
+![image](https://github.com/AbhishekChinchani/Samsung_pd/assets/142480501/b3ac947e-d901-45d4-b4c2-ec1c63b18510)
+
+After changing the mode 2
+
+![mode_3](https://github.com/AbhishekChinchani/Samsung_pd/assets/142480501/ae1ce9c5-b361-4eab-8467-0dca8d6feb86)
+
+
+
+
+
+</details>
+
+<details>
+
+ <summary>Spice Simulation for CMOS Inverter</summary>
+
+ - The First task is to create a SPICE Deck file which contains the connectivity information of netlist ,inputs provided, tap points to view outputs.The SPICE is created by defining component connectivity, component values, identifying the nodes and naming them.
+ - A substrate is a component or pin that requires connectivity information and can be used to adjust the threshold voltages of NMOS and PMOS transistors. The orientation of the substrate pin differs between NMOS and PMOS symbols. Determining the value of output load capacitance involves extensive computational analysis.
+ - To define the component values for PMOS and NMOS, specifically the W/L ratios (e.g., 0.375μ/0.25μ), it is often assumed that they share the same values, even though PMOS should ideally be twice the size of NMOS. The specified output capacitance is typically 10fF, and the applied gate voltage is commonly a multiple of the channel length, such as 2.5V. A node is identified when a component is positioned between two nodes.
+
+The defination of components f an CMOS Inverter is as below
+```ruby
+M1 out in vdd vdd pmos W=0.375u L=0.25u
+M2 out in 0 0 nmos W=0.375u W=0.25u
+cload out 0 10f
+Vdd vdd 0 2.5
+Vin in 0 2.5
+```
+-  M1 component is the PMOS whose drain is connected to OUT , Gate is connected to IN , Substrate and Source are connected to vdd.It also contains the W/L ratio.
+-  M2 component is the NMOS whose drain is connected to OUT , Gate is connected to IN , Substrate and Source are connected to 0.It also contains the W/L ratio.
+- The load capacitance is connected between out port and ground and the value is 10fF. Similarly, the supply voltages are connected between groud and respective nodes and the voltage is 2.5V.
+
+The Simulation commands are as follows
+```ruby
+.op
+.dc Vin 0 2.5 0.05
+.LIB "tsmc_025um_model.mod" CMOS_MODELS
+.end
+```
+This command implies that gate voltage is varied from 0 to 2.5V in steps of 0.05V. This is done to note the output characteristics with respect to input voltage. The model file must be described as follows that contains the complete model description of NMOS and PMOS of the length.
+
+The layout of the CMOS inverter is as follows
+
+![layout_3](https://github.com/AbhishekChinchani/Samsung_pd/assets/142480501/7f2d84c4-636a-4732-aa1d-4fd8e3c206b1)
+
+ 
+</details>
+
+<details>
+
+ <summary>16 Mask CMOS Fabricaion</summary>
+
+ Complementary Metal-Oxide-Semiconductor (CMOS) technology is a widely used fabrication process in the semiconductor industry for building integrated circuits (ICs) and microchips. CMOS technology offers advantages such as low power consumption, high noise immunity, and compatibility with digital logic circuits. The term "16-mask CMOS fabrication" likely refers to a specific CMOS process node with 16 masking layers involved in the manufacturing process.
+
+ The 16 mask CMOS fabrication steps are as follows
+
+ - *Substrate Preparation*: Begin with a silicon wafer as the starting material. The wafer is cleaned and prepared for further processing.
+
+ - *Gate Oxide Formation (Mask 1)*: A thin layer of silicon dioxide (SiO2) is grown or deposited on the silicon wafer to serve as the gate dielectric.
+
+ - *Polysilicon Gate Formation (Mask 2)*: Polysilicon is deposited and patterned to create the gate electrodes for both NMOS and PMOS transistors.
+
+- *N-Well and P-Well Formation (Mask 3)*: To create regions for NMOS and PMOS transistors, n-type and p-type ion implantation processes are used.
+
+- *Source and Drain Formation (Masks 4 and 5)*: Ion implantation and subsequent annealing processes are used to define the source and drain regions of transistors.
+
+- *Gate Spacer and Silicidation (Masks 6 and 7)*: Insulating spacers are added to the gate structures, and a metal silicide is formed on the source and drain regions to lower contact resistance.
+
+- *Interlayer Dielectric (ILD) Deposition (Mask 8)*: A layer of insulating material, often silicon dioxide, is deposited and planarized to create a flat surface for metal interconnects.
+
+- *Contact and Via Formation (Masks 9 and 10)*: Contact holes are etched through the ILD to connect the metal interconnects to the underlying transistor nodes.
+
+- *Metal Layer 1 (Mask 11)*: Metal lines and interconnects are formed to connect various parts of the circuit.
+
+- *Intermetal Dielectric (IMD) Deposition (Mask 12)*: Another insulating layer is deposited to separate metal layers and provide isolation.
+
+- *Metal Layer 2 (Mask 13)*: Additional metal interconnect layers may be added if necessary.
+
+- *Passivation Layer (Mask 14)*: A protective layer is deposited to safeguard the underlying layers and provide electrical insulation.
+
+- *Pad Opening (Mask 15)*: Openings are created in the passivation layer for wire bonding or solder bump connections.
+
+- *Testing and Packaging (Mask 16)*: The chips are tested for functionality and performance, and then packaged for final use.
+
+Each of these steps involves a specific mask that defines the pattern and location of features on the silicon wafer. The number of masks used can vary depending on the complexity of the integrated circuit design and the specific technology node being employed. As technology nodes advance, more masks may be required to achieve smaller feature sizes and higher levels of integration.
+
+**CMOS Inverter layout in Magic**
+
+When a poly crosses n-diffusion it is NMOS
+
+In Magic if we select that and give *what* in tkcon window we get
+
+![NMOS_$](https://github.com/AbhishekChinchani/Samsung_pd/assets/142480501/9f750e25-60d8-4890-a2f4-748591d5b694)
+
+When a poly crosses n-diffusion it is PMOS
+
+In Magic if we select that and give *what* in tkcon window we get
+
+![PMOS_5](https://github.com/AbhishekChinchani/Samsung_pd/assets/142480501/683772b7-59de-46a0-9cd4-bf23a3c6b224)
+
+The connection of Y with the drain of PMOS and NMOS is as shown in the figure
+
+![OUTPUT_Drain_6](https://github.com/AbhishekChinchani/Samsung_pd/assets/142480501/2c668534-7550-44b3-b7c5-02bff0972583)
+
+The other connection of Source of PMOS and Source of NMOS are as follows
+
+![PMOS_SOURCE_GND_7](https://github.com/AbhishekChinchani/Samsung_pd/assets/142480501/5c9220ca-170d-4199-b837-116deba902bc)
+
+![NMOS_VDD_8](https://github.com/AbhishekChinchani/Samsung_pd/assets/142480501/b910a20e-c4d8-42e6-a368-09f59b284bf5)
+
+
+
+
+
+
+
+
+
+</details>
+
+
   
  
 
