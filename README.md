@@ -4545,6 +4545,13 @@ The other connection of Source of PMOS and Source of NMOS are as follows
 
 
 </details>
+<details>
+
+ <summary>Labs on DRC</summary>
+
+ <img  width="1085" alt="hand_writ_exam" src="
+ 
+</details>
 
 
   
