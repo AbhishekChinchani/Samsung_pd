@@ -4471,6 +4471,25 @@ The layout of the CMOS inverter is as follows
 
 ![layout_3](https://github.com/AbhishekChinchani/Samsung_pd/assets/142480501/7f2d84c4-636a-4732-aa1d-4fd8e3c206b1)
 
+Now to create .spice we use the commands as shown in the figure
+
+<img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/master/Day17_layout/extract_all_tkcon_7.png">
+
+After executing the above command .ext is created as shown in the below figure
+
+<img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/master/Day17_layout/extract_all_tkcon_list_8.png">
+
+Now type *ext2spice cthresh 0 nthresh 0* in tkcon
+
+Then give *ext2spice*
+
+<img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/master/Day17_layout/ext2spice_command.png">
+
+This creates a .spice file
+
+<img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/master/Day17_layout/ext2spice_spice_create_10.png">
+
+
  
 </details>
 
@@ -4536,20 +4555,113 @@ The other connection of Source of PMOS and Source of NMOS are as follows
 
 ![NMOS_VDD_8](https://github.com/AbhishekChinchani/Samsung_pd/assets/142480501/b910a20e-c4d8-42e6-a368-09f59b284bf5)
 
+When we delete some layers we get drc errors
+
+<img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/master/Day17_layout/after_deleting_inv.png">
+
+The errors in INV are as follows
+
+<img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/master/Day17_layout/The_errors_in_inv.png">
 
 
+These can be rectified by adding the suitable metal layers
 
-
-
-
+![layout_3](https://github.com/AbhishekChinchani/Samsung_pd/assets/142480501/7f2d84c4-636a-4732-aa1d-4fd8e3c206b1)
 
 
 </details>
 <details>
 
- <summary>Labs on DRC</summary>
+<summary>Labs on DRC</summary>
+First we need to clone the open_pdks.git from RTimothyEdwards
 
- <img  width="1085" alt="hand_writ_exam" src="
+These are list of various *.mags* in the directory
+
+<img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/master/Day17_layout/mag_files_list_12.png">
+
+The met3.mag is as shown below
+
+<img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/master/Day17_layout/met_3_13.png">
+
+Now we see that rule 3.4 is not the visible one but we can visualize it as follows
+
+<img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/master/Day17_layout/box_info_met3_2.png">
+
+<img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/master/Day17_layout/box_info_met3_1.png">
+
+
+
+![image](https://github.com/AbhishekChinchani/Samsung_pd/assets/142480501/26e31234-281a-4168-a4fb-60042f8219f0)
+
+Now we *load poly*
+
+![image](https://github.com/AbhishekChinchani/Samsung_pd/assets/142480501/6b469407-3dab-4f81-92d6-c87c4cd248cf)
+
+<img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/master/Day17_layout/poly_viol_1.png">
+
+These violations can be rectified by editing the .tech files drc rules
+
+![image](https://github.com/AbhishekChinchani/Samsung_pd/assets/142480501/10320969-c27d-401f-b587-049e78c25b02)
+
+
+![image](https://github.com/AbhishekChinchani/Samsung_pd/assets/142480501/134110dc-98a0-448e-9695-9e252bb5d815)
+
+
+<img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/master/Day17_layout/poly_viol_crct_1.png">
+
+The other violations and their corrections are as follows
+
+- First we need to copy the 3 poly metal and paste it into 2 different places and add pmos and nmos substrate and contact. This is to fix the issue with poly resistor spacing to diff and tap.Then we edit the .tech files to rectify this.
+
+![image](https://github.com/AbhishekChinchani/Samsung_pd/assets/142480501/4d6f8c42-1c4d-44f6-8492-b70f6aa17f50)
+
+![image](https://github.com/AbhishekChinchani/Samsung_pd/assets/142480501/74d195c3-8837-4c79-99be-2f40f9454a92)
+
+![image](https://github.com/AbhishekChinchani/Samsung_pd/assets/142480501/190b4a34-ebec-48af-b66c-03fe4b4bac75)
+
+![image](https://github.com/AbhishekChinchani/Samsung_pd/assets/142480501/6017cc26-1b06-4e5f-8769-28c973efec5e)
+
+- Second one is describing DRC errors as geometrical construct
+  
+![image](https://github.com/AbhishekChinchani/Samsung_pd/assets/142480501/ffb0eeba-8bcc-4e55-8473-0738462b0c35)
+
+![image](https://github.com/AbhishekChinchani/Samsung_pd/assets/142480501/2d163133-cb6b-4971-be5c-a47a009f61db)
+
+![image](https://github.com/AbhishekChinchani/Samsung_pd/assets/142480501/5b0c18f6-5a47-413e-a580-9233f5413e2f)
+
+![image](https://github.com/AbhishekChinchani/Samsung_pd/assets/142480501/ca2cefa6-5ee0-4d6d-9190-41c3a67505aa)
+
+- Shrinking the Nwell to fix the NMOS 6 drc violation
+
+![image](https://github.com/AbhishekChinchani/Samsung_pd/assets/142480501/dbd6355e-2313-498b-b3f3-5c19ecedc5a2)
+
+![image](https://github.com/AbhishekChinchani/Samsung_pd/assets/142480501/dbe090a2-69ad-44f0-964a-41b67ccd5114)
+
+![image](https://github.com/AbhishekChinchani/Samsung_pd/assets/142480501/eab2dbad-3ef3-4c9e-b3f8-2af0ddf57931)
+
+![image](https://github.com/AbhishekChinchani/Samsung_pd/assets/142480501/b9d72959-d4bf-453e-8d0e-ef7ce5c1cb3e)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
  
 </details>
 
