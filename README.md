@@ -4667,6 +4667,31 @@ The other violations and their corrections are as follows
  
 </details>
 
+# Day-18 Pre timing Analysis and Importance of good clock tree
+
+<details>
+
+ <summary>Steps to convert Grid into track info</summary>
+
+ **LIBRARY EXCHANGE FORMAT**
+
+ - A "library exchange format" typically refers to a standardized format for sharing or exchanging information about libraries.
+ - LEF is a standard file format used for exchanging library information between various Electronic Design Automation (EDA) tools and semiconductor foundries.
+ - These libraries contain essential information about the components that make up integrated circuits, such as logic gates, standard cells, and other design elements.
+ - LEF files describe the characteristics of individual cells or components within a semiconductor library.
+ - LEF files define the pins of each cell. This includes pin names, directions (input, output, or bidirectional), layers they connect to, and other relevant information.
+ - Here we are converting .mag files of inverter to .lef .
+
+   The track info detail is as follows
+   
+   <img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/b380cee4bd1280d5fd58e7f58727ff5d19326b96/Day18/track_info_4.png">
+
+   We set the grid by using keyword G
+
+   <img  width="1085" alt="hand_writ_exam" src="
+   
+   
+</details>
 
   
  
