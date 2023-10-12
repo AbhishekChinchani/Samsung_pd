@@ -4688,11 +4688,388 @@ The other violations and their corrections are as follows
 
    We set the grid by using keyword G
 
-   <img  width="1085" alt="hand_writ_exam" src="
+   <img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/761107244e787fc993096256e7e37e52c5167a56/Day18/command_G_1.png">
+
+   Now we set the Grid using the command
+   ```ruby
+   grid 0.46um 0.34um 0.23um 0.17um
+   ```
+
+   <img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/761107244e787fc993096256e7e37e52c5167a56/Day18/grid_command_2.png">
+
+   - Rule 1 : Input and output port should lie on the intersection of horizontal and vertical track
+  
+   - Rule 2 : The width of a standard cell should be odd multiple of the horizontal track pitch
+
+   <img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/761107244e787fc993096256e7e37e52c5167a56/Day18/grid_command_rule1_3.png">
+
+   Here we can see that the width is 3 times the horizontal track pitch.
+
+   
+   
    
    
 </details>
 
+<details>
+
+ <summary>Steps to convert magic layout to lef</summary>
+
+ First save the layout with our name *sky130_inv_abhishek*
+
+ Then use *lef_write* command This creates a .lef file
+
+ <img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/761107244e787fc993096256e7e37e52c5167a56/Day18/List_of_vsdstdcell_put_before_6.png">
+
+ The lef file is as follows
+
+ <img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/761107244e787fc993096256e7e37e52c5167a56/Day18/lef_file_with_name_6.png.png">
+
+</details>
+
+<details>
+
+ <summary>Introduction to timing libs and steps to include lef cell</summary>
+
+ ```ruby
+cd ~/Desktop/work/tools/openlane_working_dir/openlane/vsdstdcelldesign
+cp sky130A_vsdinv.lef /home/nur.nazahah.mohd.amri/Desktop/work/tools/openlane_working_dir/openlane/designs/picorv32a/src
+cd ~/Desktop/work/tools/openlane_working_dir/openlane/vsdstdcelldesign/libs
+cp sky130_fd_sc_hd__* ~/Desktop/work/tools/openlane_working_dir/openlane/designs/picorv32a/src
+cd ~/Desktop/work/tools/openlane_working_dir/openlane/designs/picorv32a/
+vim config.tcl
+```
+
+<img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/761107244e787fc993096256e7e37e52c5167a56/Day18/Modification_config_7.png">
+
+run_synthesis
+
+<img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/761107244e787fc993096256e7e37e52c5167a56/Day18/image_our_inverter_8.png">
+
+We can see that the cell of our name is getting used
+
+</details>
+
+<details>
+
+ <summary>Introduction to Delay Table</summary>
+
+ - Clock gating is a power-saving technique used in digital integrated circuits, particularly in modern VLSI (Very Large Scale Integration) designs. It involves controlling when and how the clock signal is supplied to specific sections or components of a digital circuit. The primary goal of clock gating is to reduce dynamic power consumption by enabling or disabling the clock signal to certain parts of the circuit when they are not actively in use.The example of clock gating can be seen in the below image
+
+ ![image](https://github.com/AbhishekChinchani/Samsung_pd/assets/142480501/325c8ee6-a985-45e7-a6e9-0e88b60d7c87)
+
+ - We need to look into the timing characteristics of the buffer, in the case where we want to swap out the buffer for a gate.
+
+ - For each level of buffering, we should have an identical buffer being used, and each node should be driving the same node.
+
+ - Keep in mind that the load at the output will be varying, and since the load of one buffer is varying, the input transition of the following buffer will also vary.
+
+ ![image](https://github.com/AbhishekChinchani/Samsung_pd/assets/142480501/8313bde1-65eb-4c5c-9550-9adf51d5cec7)
+
+ - The example of delay table is as follows
+
+ ![image](https://github.com/AbhishekChinchani/Samsung_pd/assets/142480501/e1c12dbf-9efb-49b0-b90e-78c1d95c2845)
+
+
+
+</details>
+
+<details>
+
+ <summary>Delay Tables</summary>
+
+ - Each type of cell will be having its own individual delay table, as the internal pmos and nmos width/length ratio gets varied, the resistance changes, then RC constant gets varied as 
+  well, meaning the delay of each cell gets varied.
+ - The values of delay which are not available in the table are extrapolated based on the given data.
+ - If the Starting delay is 40 ps with C load as 50 pF the value will be between x9 and x10. As shown in the figure
+
+ ![image](https://github.com/AbhishekChinchani/Samsung_pd/assets/142480501/b4572dcc-37b4-4139-a313-a555ce4c8741)
+
+ - The observations of the delay table are as shown in the figure
+
+ ![image](https://github.com/AbhishekChinchani/Samsung_pd/assets/142480501/798ba80f-e1df-4a64-91ee-987376266c15)
+
+ ![image](https://github.com/AbhishekChinchani/Samsung_pd/assets/142480501/352ddee1-691d-4724-9e7e-f2119fd8e20e)
+
+ 
+</details>
+
+<Details>
+
+ <summary>Steps to configure synthesis settings to fix slack and include vsdinv</summary>
+
+ The various configuration of Synth are as follows
+ 
+ - SYNTH_STRATEGY: control the area and timing
+ - SYNTH_SIZING: control in cell sizing instead of buffering
+ - SYNTH_BUFFERING: control if we want to buffer high fanout net
+ - SYNTH_DRIVING_CELL: ensure more drive strength cell to drive input
+
+In openlane 
+
+```ruby
+echo $::env(SYNTH_STRATEGY)
+set ::env(SYNTH_STRATEGY) "DELAY 0"
+echo $::env(SYNTH_STRATEGY)
+echo $::env(SYNTH_BUFFERING)
+echo $::env(SYNTH_SIZING)
+set ::env(SYNTH_SIZING) 1
+echo $::env(SYNTH_SIZING)
+echo $::env(SYNTH_DRIVING_CELL)
+```
+
+- With SYNTH_STRATEGY of Delay 0, the tool will focus more on optimizing/minimizing the delay, index can be 0 to 3 where 3 is the most optimized for timing (sacrificing more area).
+- SYNTH_SIZING of 1 will enable cell sizing where cell will be upsize or downsized as needed to meet timing.
+
+  
+After modifying the configuration when we give *run_synthesis*
+
+<img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/761107244e787fc993096256e7e37e52c5167a56/Day18/After_setting_env_10.png">
+
+When we give run_floorplan we get a error of macro placement so we need to comment the lines from flooplan.tcl
+
+<img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/761107244e787fc993096256e7e37e52c5167a56/Day18/Changing_floorplan_tcl_9.png">
+
+Then when we run_floorplan it works then we need to give *run_placement*
+
+<img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/761107244e787fc993096256e7e37e52c5167a56/Day18/placement_11.png">
+
+The placement in magic 
+
+<img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/761107244e787fc993096256e7e37e52c5167a56/Day18/placement_image_12.png">
+
+The cell with my name is as shown below
+
+<img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/761107244e787fc993096256e7e37e52c5167a56/Day18/In_placement_cellname_Abhishek_16.png">
+
+</Details>
+
+<details>
+
+ <summary>Setup Time analsysis and flop setup time</summary>
+
+ - Setup time is a critical timing parameter that relates to the proper operation of flip-flops, latches, and other sequential elements within digital circuits.
+ - Setup time is defined as the minimum amount of time that data must be stable at the input of a flip-flop or latch before the clock edge arrives for the data to be reliably captured 
+   and stored.
+
+ - Here we assume that the clock period is T and combinational delay is o , so o < T
+
+   ![image](https://github.com/AbhishekChinchani/Samsung_pd/assets/142480501/ff2d86e0-f202-4ced-a233-2004aa3305d9)
+
+- But actually it should be less than o < (T-S) , where S is the setup time
+
+   ![image](https://github.com/AbhishekChinchani/Samsung_pd/assets/142480501/9dcd506b-70ae-4eb8-a4fd-f9bb030ffaef)
+
+</details>
+
+<details>
+
+ <summary>Clock Jitter and Uncertainity</summary>
+
+ - Clock jitter is a phenomenon in electronics and digital systems that refers to the variation in the timing of a clock signal from its ideal, periodic timing.
+ - Jitter can occur for various reasons, and it is a key concern in applications where precise timing is critical, such as high-speed digital communication, signal processing, and high-performance computing.
+ - Consider the below example
+
+   ![image](https://github.com/AbhishekChinchani/Samsung_pd/assets/142480501/a5b6df4b-b3d5-4d68-8476-97c576c623b5)
+
+- Here the clock is expected to reach the clock pin at exactly 0s or at Ts, but in real scenarios, the clock signal may not be able to reach at the exact moment, as the clock source generation may have its own built-in variation.
+- The combinational delay will become more stringent as a result. Thus we change our combinational delay to factor in the uncertainty factor from the jitter.
+
+   ![image](https://github.com/AbhishekChinchani/Samsung_pd/assets/142480501/2874176a-5241-441c-a267-845fa08e1751)
+
+
+</details>
+
+<details>
+
+ <summary>Steps to configure OpenSTA</summary>
+
+ - First we need to write a pre_sta.conf file
+
+   <img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/761107244e787fc993096256e7e37e52c5167a56/Day18/pre_sta_conf_18.png">
+
+ - Then we need to run *sta pre_sta.conf*
+
+   <img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/761107244e787fc993096256e7e37e52c5167a56/Day18/After_sta_pre_conf18.png">
+   
+</details>
+
+<details>
+
+ <summary>Steps to optimize synthesis </summary>
+
+ In openlane 
+ ```ruby
+ cd ~/Desktop/work/tools/openlane_working_dir/openlane
+ echo $::env(SYNTH_MAX_FANOUT)
+ set ::env(SYNTH_MAX_FANOUT) 4
+```
+
+Then we need to give the below commands
+```ruby
+cd ~/Desktop/work/tools/openlane_working_dir/openlane
+sta pre_sta.conf
+report_net -connections _18242_                           
+replace_cell _41568_ sky130_fd_sc_hd__dfxtp_4             (Pick the highest fanout, cap, slew and replace the worst violations of the cell by increasing drive strength --> upsize cell from 2 to 4)
+report_checks -fields {net cap dlew input pins} -digits 4
+report_tns
+report_wns
+```
+ <img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/761107244e787fc993096256e7e37e52c5167a56/Day18/report_18242_20.png">
+
+ Here we can see the delay for the below cell is very high 
+
+ <img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/761107244e787fc993096256e7e37e52c5167a56/Day18/report_18242_Violated_image_21.png">
+
+ After replacing the cell and reducing the fanout the delay got reduced , slack also got reduced
+
+ <img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/761107244e787fc993096256e7e37e52c5167a56/Day18/report_22.png">
+
+ <img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/761107244e787fc993096256e7e37e52c5167a56/Day18/report_23.png">
+
+</details>
+
+<details>
+
+ <summary>Clock Tree Synthesis TritconCTS and signal integrity</summary>
+
+ **Labs to run CTS using tritcon**
+
+ In STA use the below command 
+ ```ruby
+write_verilog ~/Desktop/work/tools/openlane_working_dir/openlane/designs/picorv32a/runs/crct2/results/synthesis/picorv32a.synthesis.v
+```
+Here we can see that when we see that the picorv32a is modified at the time of execution
+
+<img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/761107244e787fc993096256e7e37e52c5167a56/Day18/report_25_write_verilog.png">
+
+Then we need to use the below commands in openlane 
+
+```ruby
+run_floorplan
+run_placement
+run_cts
+```
+
+Here we can see that cts output files are generated
+
+<img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/761107244e787fc993096256e7e37e52c5167a56/Day18/report_27_run_cts.png">
+
+**Verifying the CTS design**
+
+Use the below commands in openlane 
+
+```ruby
+echo $::env(LIB_TYPICAL)
+echo $::env(CURRENT_DEF)
+echo $::env(CTS_MAX_CAP)
+echo $::env(CTS_CLK_BUFFER_LIST)
+echo $::env(CTS_ROOT_BUFFER)
+```
+<img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/761107244e787fc993096256e7e37e52c5167a56/Day18/report_28_verify_CTS.png">
+
+</details>
+
+<details>
+
+ <summary>Timing Analysis with real clocks</summary>
+
+ **Steps to analyze timing with real clock**
+
+ Running these commands in openlane
+ ```ruby
+openroad                                                                                                       
+read_lef designs/picorv32a/runs/13-01_14-09/tmp/merged.lef
+read_def designs/picorv32a/runs/13-01_14-09/results/cts/picorv32a.cts.def
+write_db pico_cts.db
+read_db pico_cts.db
+read_verilog designs/picorv32a/runs/crct2/results/synthesis/picorv32a.synthesis_cts.v
+read_liberty -max $::env(OPENLANE_ROOT)/designs/picorv32a/src/sky130_fd_sc_hd__slow.lib
+read_liberty -min $::env(OPENLANE_ROOT)/designs/picorv32a/src/sky130_fd_sc_hd__fast.lib
+set_propagated_clock [all_clocks]
+read_sdc designs/picorv32a/src/my_base.sdc
+report_checks -path_delay min_max -format full_clock_expanded -digits 4
+```
+These are the outputs of the above commands
+
+<img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/761107244e787fc993096256e7e37e52c5167a56/Day18/report_29_commands_openlane.png">
+
+We can see that min is met
+
+<img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/761107244e787fc993096256e7e37e52c5167a56/Day18/report_30_min_type_met.png">
+
+Max is violating 
+
+<img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/761107244e787fc993096256e7e37e52c5167a56/Day18/report_31_max_type_viol.png">
+
+**Steps to execute STA with right timing library**
+
+In order to meet the max slack we follow the below commands
+
+```ruby
+exit        (Exit openroad)
+openroad
+read_db pico_cts.db
+read_verilog /openLANE_flow/designs/picorv32a/runs/13-01_14-09/results/synthesis/picorv32a.synthesis_cts.v
+read_liberty $::env(LIB_SYNTH_COMPLETE)
+link_design picorv32a
+read_sdc designs/picorv32a/src/my_base.sdc
+set_propagated_clock [all_clocks]
+report_checks -path_delay min_max -fields {slew trans net cap input pin} -format full_clock_expanded
+echo $::env(CTS_CLK_BUFFER_LIST)
+```
+
+After report checks we can see that both min and max are met
+
+<img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/761107244e787fc993096256e7e37e52c5167a56/Day18/report_33_max_met.png">
+
+<img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/761107244e787fc993096256e7e37e52c5167a56/Day18/report_34_min_met.png">
+
+**Steps to observe impact of bigger CTS buffers on setup and hold timing**
+
+First we nee to run these in openlane, Here we are changing current def to placement def
+
+```ruby
+exit 
+echo $::env(CTS_CLK_BUFFER_LIST)
+set ::env(CTS_CLK_BUFFER_LIST) [lreplace $::env(CTS_CLK_BUFFER_LIST) 0 0]
+echo $::env(CURRENT_DEF)
+set ::env(CURRENT_DEF) /openLANE_flow/designs/picorv32a/runs/13-01_14-09/results/placement/picorv32a.placement.def
+run_cts
+```
+The output of the above command is as follows
+
+<img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/761107244e787fc993096256e7e37e52c5167a56/Day18/report_35_impact_buf1.png">
+
+In openlane we need to give these commands to see the impact of big buffers, Here we are just checking timing by loading def , lef and cts.v
+
+```ruby
+openroad
+read_lef /openLANE_flow/designs/picorv32a/runs/13-01_14-09/tmp/merged.lef
+read_def /openLANE_flow/designs/picorv32a/runs/13-01_14-09/results/cts/picorv32a.cts.def
+write_db pico_cts1.db
+read_db pico_cts1.db
+read_verilog /openLANE_flow/designs/picorv32a/runs/13-01_14-09/results/synthesis/picorv32a.synthesis_cts.v
+read_liberty $::env(LIB_SYNTH_COMPLETE)
+link_design picorv32a
+read_sdc designs/picorv32a/src/my_base.sdc
+set_propagated_clock [all_clocks]
+report_checks -path_delay min_max -fields {slew trans net cap input pin} -format full_clock_expanded 
+```
+
+We can see that max slack got improved from 5.10 to 5.18
+
+<img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/761107244e787fc993096256e7e37e52c5167a56/Day18/report_35_impact_buf_slack_improve.png">
+
+
+
+
+
+
+
+
+
+</details>
   
  
 
