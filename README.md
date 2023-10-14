@@ -5188,6 +5188,14 @@ echo $::env(ROUTING_STRATEGY)
 set ::env(CURRENT_DEF) <path_of_cts.def>
 run_routing
 ```
+when we run the command *run_routing* we get
+
+<img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/master/Day19/run_routing.png">
+
+The results can be seen in the result folder
+
+<img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/master/Day19/image_out_routing.png">
+
 
 
 
