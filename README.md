@@ -5070,6 +5070,94 @@ We can see that max slack got improved from 5.10 to 5.18
 
 
 </details>
+
+# Day-19 Final Step RTL to GDSII
+
+<details>
+
+ <summary>Introduction to maze Routing use Lee's Algorithm</summary>
+
+ **Routing** 
+
+ Routing refers to the process of connecting various components, such as transistors, logic gates, and other electronic elements, on an integrated circuit (IC) using a network of interconnected wires or metal layers. Efficient and 
+ optimized routing is crucial for the performance and functionality of VLSI chips. There are two main types of routing in VLSI: global routing and detailed routing.
+
+ **Maze Routing Lee's Algorithm**
+
+ The Lee algorithm, also known as the Lee-Moore algorithm, is a pathfinding or maze routing algorithm used in computer science, particularly in VLSI design and printed circuit board (PCB) design. Its primary purpose is to find the 
+ shortest path between two points on a grid or maze, considering obstacles or blocked areas. It is a breadth-first search (BFS) algorithm and is often used in detailed routing stages of VLSI design.
+
+ ![image](https://github.com/AbhishekChinchani/Samsung_pd/assets/142480501/779782fc-5a67-490b-9151-37e8c87df9f1)
+
+ The steps in Lee Algorithm
+
+ *Initialization* :
+
+ - Create a grid or maze where each cell can be either empty (open) or blocked.
+ - Mark the starting point as the source cell and the destination point as the target cell.
+ - Initialize a queue data structure to manage the cells to be explored.
+
+ *Breadth-First Search* :
+
+ - Begin with the source cell and enqueue it in the queue.
+ - Set its distance or step count as 0.
+ - Start a loop until the queue is empty.
+ - For each cell in the queue
+ - Explore the neighboring cells (up, down, left, right) that are not blocked and have not been visited. If a neighboring cell is not visited, mark it as visited, enqueue it, and set its distance or step count as the distance of the 
+   current cell plus one. Continue this process until the destination cell is reached or until there are no more cells to explore.
+
+*Backtracking* :
+
+ - Once the destination cell is reached, the algorithm can backtrack from the destination to the source by examining the neighboring cells and choosing the one with a lower distance value at each step. This retraces the shortest path 
+   from the destination to the source.
+
+*Path Construction*:
+
+- After backtracking, the path from the source to the destination is reconstructed, and the shortest route is found.
+- The Lee algorithm is especially useful in detailed routing for VLSI design because it helps find the shortest path while taking into account the grid structure and obstacles. It is an efficient way to navigate around obstacles, 
+  avoid congestion, and connect various components on an integrated circuit
+
+  ![image](https://github.com/AbhishekChinchani/Samsung_pd/assets/142480501/acfa396e-fd15-4474-b2f7-6f25de87874e)
+
+  ![image](https://github.com/AbhishekChinchani/Samsung_pd/assets/142480501/53494707-cbe3-4c51-ba0b-1d4a3b0f3d5c)
+
+One of the key advantages of the Lee algorithm is its ability to guarantee that the shortest path is found. However, it may require a significant amount of memory and can be computationally intensive for large grids or mazes. There are variations and optimizations of the Lee algorithm to address these limitations, such as bidirectional Lee algorithm, A* algorithm, and hierarchical versions for PCB routing.
+
+</details>
+
+<details>
+
+ <summary>Design Rule Checks</summary>
+
+ - Design Rule Checks (DRC) are a crucial part of the integrated circuit (IC) design and manufacturing process, especially in VLSI (Very Large Scale Integration) design.
+ - DRC is a set of guidelines and checks used to ensure that the layout of an IC adheres to manufacturing and design rules. These rules are essential to guarantee that the IC can be manufactured successfully and will function as 
+   intended.
+
+ - Some of the Design Rule checks are as shown in the figure
+
+   ![image](https://github.com/AbhishekChinchani/Samsung_pd/assets/142480501/1f1dae6c-5cee-4291-8f89-c61e6acd962b)
+
+ - One type of DRC violation is a signal short, where two wires that are not intended to be connected becomes in contact on the same layer.
+
+ - This could lead to functional failure, so this needs to be taken care of.
+
+ - To fix this, we need to simply moving one of the wires onto a different metal layer.
+
+ - However, please keep in mind that there are new drc rules that need to be taken into account.
+
+   ![image](https://github.com/AbhishekChinchani/Samsung_pd/assets/142480501/1a3628ae-8b89-44d8-a20c-b8eab78c087d)
+
+ - Performing parasitic extraction, where the resistances and capacitances of the wires are extracted and will be used for further processes.
+
+   ![image](https://github.com/AbhishekChinchani/Samsung_pd/assets/142480501/caa86bae-1ac6-4788-b1f5-28170f960245)
+
+      
+</details>
+
+<details>
+
+ <summary>Labs</summary>
+</details>
   
  
 
