@@ -5157,6 +5157,41 @@ One of the key advantages of the Lee algorithm is its ability to guarantee that 
 <details>
 
  <summary>Labs</summary>
+ If exited from openlane 
+ 
+```ruby
+cd work/tools/openlane_working_dir/openlane
+make mount
+pwd
+ls -ltr
+./flow.tcl -interactive
+package require openlane 0.9
+prep -design picorv32a -tag 13-01_14-09
+```
+
+In openlane 
+```ruby
+echo $::env(CURRENT_DEF)    (Ensure current_def is on the CTS stage)
+gen_pdn                     (To generate power distribution network)
+```
+We get the error
+
+<img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/e76f7c793bc6da02d128f1253e7a0d6a8cd9962b/Day19/gen_pdn_error_1.png">
+
+<img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/e76f7c793bc6da02d128f1253e7a0d6a8cd9962b/Day19/gen_pdn_error_2.png">
+
+**Basics of global and detail routing and configure TritonRoute**
+
+```ruby
+echo $::env(CURRENT_DEF)            (Ensure the def file of pdn has been created)
+echo $::env(ROUTING_STRATEGY)
+set ::env(CURRENT_DEF) <path_of_cts.def>
+run_routing
+```
+
+
+
+
 </details>
   
  
