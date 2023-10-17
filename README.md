@@ -5201,6 +5201,176 @@ The results can be seen in the result folder
 
 
 </details>
+
+# Day-20 Floorplanning and powerplanning labs in ICC2
+<details>
+
+ <summary>Theory</summary>
+ Physical design flow, in the context of integrated circuit (IC) or semiconductor design, refers to the series of steps and processes involved in transforming a logical design (usually described in a hardware description language like 
+ VHDL or Verilog) into a physical layout that can be manufactured as an actual semiconductor device. 
+
+ - Netlist Synthesis: This step begins with a logical design, often expressed as a high-level netlist. During netlist synthesis, the design is converted into a gate-level representation, where logical gates and their interconnections 
+   are defined. This process often involves technology-specific libraries and mapping the logical gates to their physical counterparts.
+ - Floor Planning: Floor planning involves determining the placement of major components of the design, such as functional blocks, memory cells, and I/O pads, within the chip's layout area. The goal is to optimize for area, power, and 
+   performance while adhering to manufacturing constraints.
+ - Placement: Placement involves determining the precise locations of individual gates and cells on the chip. Algorithms are used to optimize for factors such as wirelength, signal delay, and power consumption. This step plays a 
+   critical role in the overall performance of the chip.
+ - Global Routing: In global routing, the paths for interconnections between cells are defined, but not yet detailed. It focuses on creating a feasible routing structure that adheres to design rules while avoiding congestion.
+ - Clock Tree Synthesis: This step focuses on creating a clock distribution network that ensures that clock signals reach all parts of the chip with minimal skew and jitter.
+ - Physical Verification: The layout is subjected to a series of checks, such as Design Rule Checking (DRC) and Layout vs. Schematic (LVS) checks, to ensure it adheres to manufacturing and design rules.
+ - Extraction: Extraction involves deriving accurate electrical models of the interconnections between components from the physical layout. This data is critical for further simulations.
+ - Static Timing Analysis (STA): STA is performed to verify that the design meets its timing requirements under various operating conditions, taking into account process variations and parasitic elements.
+ - Power Analysis: Power analysis involves estimating and optimizing power consumption at various levels, including dynamic and leakage power.
+ - Signoff: Before the design can proceed to manufacturing, it undergoes a final signoff stage where all requirements are met, and all checks pass. This includes not only DRC and LVS but also other criteria like thermal analysis and 
+   electromigration checks.
+ - Tapeout: Once the design passes all the checks and meets the specifications, it is considered ready for fabrication. The final design data is prepared and sent to the semiconductor foundry for manufacturing.
+
+   ![image](https://github.com/AbhishekChinchani/Samsung_pd/assets/142480501/a10c21bb-afe6-42a4-abcc-1e21b1351f09)
+
+ 
+</details>
+<details>
+
+ <summary>Labs</summary>
+
+ - Git clone all the required repositories
+   ```ruby
+   git clone https://github.com/manili/VSDBabySoC.git
+   git clone https://github.com/Devipriya1921/VSDBabySoC_ICC2.git
+   git clone https://github.com/bharath19-gs/synopsys_ICC2flow_130nm.git
+   git clone https://github.com/kunalg123/icc2_workshop_collaterals.git
+   git clone https://github.com/google/skywater-pdk-libs-sky130_fd_sc_hd.git
+   git clone https://github.com/kunalg123/sky130RTLDesignAndSynthesisWorkshop.git
+   ```
+
+- Edit the avsdpll.lib and vsdbabysoc.tcl
+
+  1. vsdbabysoc.tcl
+
+  - Modifying the contents to my path, remove -lib in read_lib commands, and replace MYCLK to clk since the clock used in the design is {clk}
+   
+  - All of the commands have been inserted in gvim and the tool will run it once at a time
+
+
+  <img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/b0434225f5f46b7e97d5e6295e112843dabede98/day20/vsdbabysoctcl_1.png">
+
+
+  2. avsdpll.lib
+ 
+  - Remove all the unwanted pins
+
+  <img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/b0434225f5f46b7e97d5e6295e112843dabede98/day20/modifying_avsdpll_2.png">
+
+  - Open dc_shell and source the vsdbabysoc.tcl
+
+  Design_vision opens eith the schematic as shown below
+
+  <img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/b0434225f5f46b7e97d5e6295e112843dabede98/day20/vsdbabysoc_sch_3.png">
+
+  Core1
+
+  <img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/b0434225f5f46b7e97d5e6295e112843dabede98/day20/vsdbabysoc_core_sch_4.png">
+
+
+- Reports
+
+  report_area
+
+  <img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/b0434225f5f46b7e97d5e6295e112843dabede98/day20/area_5.png">
+
+  report_power
+
+  <img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/b0434225f5f46b7e97d5e6295e112843dabede98/day20/power_6.png">
+
+  report_timing
+
+  <img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/b0434225f5f46b7e97d5e6295e112843dabede98/day20/timing_7.png">
+
+
+- Editing top.tcl,icc2_common_setup.tcl,icc2_dp_setup.tcl,init_design.read_parasitic_tech_example.tcl,init_design.mcmm_example.auto_expanded.tcl, pns_example.tcl and running ICC2_shell
+
+  ```ruby
+  csh
+  icc2_shell
+  ```
+
+  <img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/b0434225f5f46b7e97d5e6295e112843dabede98/day20/top_tcl_execute_9.png">
+
+  Schematic
+
+  <img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/b0434225f5f46b7e97d5e6295e112843dabede98/day20/top_gui_10_2.png">
+
+  <img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/b0434225f5f46b7e97d5e6295e112843dabede98/day20/top_gui_10_1.png">
+
+- Then we check the violators.rpt
+
+  <img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/b0434225f5f46b7e97d5e6295e112843dabede98/day20/violations_cap_11.png">
+
+  <img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/b0434225f5f46b7e97d5e6295e112843dabede98/day20/violations_tim_12.png">
+
+- Now we change the utilaztion factor to 40%, first we need to modify the vsdbabysoc.sdc and rerun the synthesis
+
+  <img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/b0434225f5f46b7e97d5e6295e112843dabede98/day20/new_sdc_13.png">
+
+- Changing the utiliztion to 40% i.e 0.4
+
+  <img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/b0434225f5f46b7e97d5e6295e112843dabede98/day20/modifying_util_factor_14.png">
+
+- Rerunning the icc2_shell
+
+  <img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/b0434225f5f46b7e97d5e6295e112843dabede98/day20/gui_after_mod_15.png">
+
+- Now if we set the boundary using command
+
+  intialize_floor -boundary {<co-ordinates> from left hand side in anticlockwise direction> -core_utilization <value>}
+
+  The one used in our case was - boundary {{0 0} (1200 0} {1200 650} {0 650}} -core_utilization 0.4
+
+  <img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/b0434225f5f46b7e97d5e6295e112843dabede98/day20/gui_ut_40_bounday_10_3.png">
+
+- Giving commands
+  ```ruby
+  set_propagated_clock [all_clocks]
+  report_timing
+  ```
+
+  <img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/b0434225f5f46b7e97d5e6295e112843dabede98/day20/viol_after_mod_16.png">
+
+- Again checking violators.rpt
+
+  <img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/b0434225f5f46b7e97d5e6295e112843dabede98/day20/viol_after_mod_improve_slack_17.png">
+
+- **Observation** : We can see that slacks have got reduced.
+
+
+  
+
+  
+
+  
+
+  
+
+  
+ 
+ 
+
+
+
+
+
+  
+
+  
+
+   
+    
+       
+  
+  
+     
+   
+</details>
   
  
 
