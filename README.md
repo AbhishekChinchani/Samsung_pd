@@ -5331,7 +5331,9 @@ The results can be seen in the result folder
   report_timing
   estimate_timing
   ```
+  <img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/eed88ec503442f53d12c4021f719565fcd068c7a/day20/rep_new_1.png">
 
+  <img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/eed88ec503442f53d12c4021f719565fcd068c7a/day20/estimate_no_rules.png">
   
 
   Schematic
