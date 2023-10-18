@@ -5405,27 +5405,27 @@ The results can be seen in the result folder
 
  	- check_design.pre_pin_placement
 
-	<img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/23fc7886927369dd77f9cfc47f43c890b1d098ed/Day21/check_design_3.png">
+		<img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/23fc7886927369dd77f9cfc47f43c890b1d098ed/Day21/check_design_3.png">
 
  	- report_port_placement.rpt
 
     	<img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/23fc7886927369dd77f9cfc47f43c890b1d098ed/Day21/report_pin_placement_4.png">
 
-     	- icc2_output.txt
+    - icc2_output.txt
    
         <img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/23fc7886927369dd77f9cfc47f43c890b1d098ed/Day21/report_placement_5.png">
 
   	- vsdbabysoc.post_estimated_timing.rpt
 
-  	<img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/23fc7886927369dd77f9cfc47f43c890b1d098ed/Day21/vsdbabysoc_timing_6.png">
+  		<img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/23fc7886927369dd77f9cfc47f43c890b1d098ed/Day21/vsdbabysoc_timing_6.png">
 
    	- vsdbabysoc.post_estimated_timing.qor
 
-  	<img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/23fc7886927369dd77f9cfc47f43c890b1d098ed/Day21/vsdbabysoc_qor_7.png">
+  		<img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/23fc7886927369dd77f9cfc47f43c890b1d098ed/Day21/vsdbabysoc_qor_7.png">
 
    	<img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/23fc7886927369dd77f9cfc47f43c890b1d098ed/Day21/vsdbabysoc_qor_8.png">
 
-    	- vsdbabysoc.post_estimated_timing.qor.sum
+   	- vsdbabysoc.post_estimated_timing.qor.sum
 
 	<img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/23fc7886927369dd77f9cfc47f43c890b1d098ed/Day21/vsdbabysoc_qor_summary_9.png">
 
