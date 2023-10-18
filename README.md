@@ -5289,6 +5289,36 @@ The results can be seen in the result folder
 
 - Editing top.tcl,icc2_common_setup.tcl,icc2_dp_setup.tcl,init_design.read_parasitic_tech_example.tcl,init_design.mcmm_example.auto_expanded.tcl, pns_example.tcl and running ICC2_shell
 
+  top.tcl
+
+  <img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/345210fba1467736b5f818beea3156cffe3bf8b8/day20/top_edit_1_8.png">
+
+  <img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/345210fba1467736b5f818beea3156cffe3bf8b8/day20/top_edit_2_8.png">
+
+  <img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/345210fba1467736b5f818beea3156cffe3bf8b8/day20/top_edit_3_8.png">
+
+  <img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/345210fba1467736b5f818beea3156cffe3bf8b8/day20/top_edit_4_8.png">
+
+  icc2_common_setup.tcl
+
+  <img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/345210fba1467736b5f818beea3156cffe3bf8b8/day20/common_setup_edit.png">
+
+  icc2_dp_setup.tcl
+
+  <img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/345210fba1467736b5f818beea3156cffe3bf8b8/day20/dp_setup_1.png">
+
+  init_design.read_parasitic_tech_example.tcl
+
+  <img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/345210fba1467736b5f818beea3156cffe3bf8b8/day20/parasitic.tech_edit_1.png">
+
+  init_design.mcmm_example.auto_expanded.tcl
+
+  <img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/345210fba1467736b5f818beea3156cffe3bf8b8/day20/mcmmexpanded_1.png">
+
+  pns_example.tcl
+
+  <img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/345210fba1467736b5f818beea3156cffe3bf8b8/day20/pns_1.png">
+  
   ```ruby
   csh
   icc2_shell
