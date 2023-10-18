@@ -5433,7 +5433,7 @@ The results can be seen in the result folder
 
   	- Here when gui opens we need to go to window sections and in that we need to select clock tree synthesis analyser
  
-        - PLL schematic
+ 	- PLL schematic
 
 	<img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/23fc7886927369dd77f9cfc47f43c890b1d098ed/Day21/cts_window.png">
 
@@ -5442,23 +5442,6 @@ The results can be seen in the result folder
  	<img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/23fc7886927369dd77f9cfc47f43c890b1d098ed/Day21/cts_window_2.png">
 
   	
-    	
-  
-	
-   	
-        
-     	
-    	
-
-        
-
-
-   
-
-        
-  
-       
-
 </Details>
   
  
