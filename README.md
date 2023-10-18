@@ -5394,8 +5394,68 @@ The results can be seen in the result folder
  - In top.tcl we can see that
    
  	- create_placement is used to create placement for the design. floorplan option is selected to make the design planning styled as placement.
-    
-    	- Pin Placement is done by sourcing pns.tcl to sync with the current technology file regarding power grid creation.
+  
+ 	- Pin Placement is done by sourcing pns.tcl to sync with the current technology file regarding power grid creation.
+
+    	<img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/23fc7886927369dd77f9cfc47f43c890b1d098ed/Day21/create_placement_1.png">
+
+        <img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/23fc7886927369dd77f9cfc47f43c890b1d098ed/Day21/create_placement_2.png">
+
+ - **Reports that were generated from the run**
+
+ 	- check_design.pre_pin_placement
+
+	<img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/23fc7886927369dd77f9cfc47f43c890b1d098ed/Day21/check_design_3.png">
+
+ 	- report_port_placement.rpt
+
+    	<img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/23fc7886927369dd77f9cfc47f43c890b1d098ed/Day21/report_pin_placement_4.png">
+
+     	- icc2_output.txt
+   
+        <img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/23fc7886927369dd77f9cfc47f43c890b1d098ed/Day21/report_placement_5.png">
+
+  	- vsdbabysoc.post_estimated_timing.rpt
+
+  	<img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/23fc7886927369dd77f9cfc47f43c890b1d098ed/Day21/vsdbabysoc_timing_6.png">
+
+   	- vsdbabysoc.post_estimated_timing.qor
+
+  	<img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/23fc7886927369dd77f9cfc47f43c890b1d098ed/Day21/vsdbabysoc_qor_7.png">
+
+   	<img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/23fc7886927369dd77f9cfc47f43c890b1d098ed/Day21/vsdbabysoc_qor_8.png">
+
+    	- vsdbabysoc.post_estimated_timing.qor.sum
+
+	<img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/23fc7886927369dd77f9cfc47f43c890b1d098ed/Day21/vsdbabysoc_qor_summary_9.png">
+
+- Clock Tree Analysis
+
+  	- Here when gui opens we need to go to window sections and in that we need to select clock tree synthesis analyser
+ 
+        - PLL schematic
+
+	<img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/23fc7886927369dd77f9cfc47f43c890b1d098ed/Day21/cts_window.png">
+
+ 	- Fanout
+
+ 	<img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/23fc7886927369dd77f9cfc47f43c890b1d098ed/Day21/cts_window_2.png">
+
+  	
+    	
+  
+	
+   	
+        
+     	
+    	
+
+        
+
+
+   
+
+        
   
        
 
