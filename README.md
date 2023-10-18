@@ -5326,6 +5326,14 @@ The results can be seen in the result folder
 
   <img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/b0434225f5f46b7e97d5e6295e112843dabede98/day20/top_tcl_execute_9.png">
 
+  ```ruby
+  set_propagated_clock [all_clocks]
+  report_timing
+  estimate_timing
+  ```
+
+  
+
   Schematic
 
   <img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/b0434225f5f46b7e97d5e6295e112843dabede98/day20/top_gui_10_2.png">
