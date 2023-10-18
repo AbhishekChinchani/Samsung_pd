@@ -5385,6 +5385,15 @@ The results can be seen in the result folder
 </details>
 
 # Day-21 Placement CTS Routing
+<details>
+
+ <summary>Theory</summary>
+
+ - **Placement** : It refers to the process of determining the physical locations of various electronic components on an integrated circuit (IC) design. This step is crucial in the overall IC design process, as it affects the final performance, power consumption, and manufacturability of the chip.The primary objective of placement is to assign a physical position to each logic gate, flip-flop, or other components on the chip. The goal is to minimize wirelength, reduce congestion, and optimize for factors like signal delay and power consumption.
+ - **Routing** : Routing in VLSI (Very Large Scale Integration) design is the process of connecting the various components (logic gates, flip-flops, etc.) placed on an integrated circuit (IC) with wires, also known as interconnects.The primary objective of routing is to create an efficient and reliable network of interconnections between the components placed on the chip. This network must meet timing constraints, minimize wirelength, and avoid congestion.
+ - **Clock Tree Synthesis** : Clock Tree Synthesis (CTS) is a crucial step in the design of digital integrated circuits, especially those with synchronous logic, such as microprocessors and application-specific integrated circuits (ASICs). The primary purpose of CTS is to create a well-organized and optimized distribution network for clock signals, ensuring that all sequential elements (like flip-flops) receive clock signals with minimum skew, low latency, and low power consumption.
+   
+</details>
 <Details>
 
  <summary>Labs</summary>
