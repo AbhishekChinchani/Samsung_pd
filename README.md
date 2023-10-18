@@ -5382,35 +5382,24 @@ The results can be seen in the result folder
 
 - **Observation** : We can see that slacks have got reduced.
 
-
-  
-
-  
-
-  
-
-  
-
-  
- 
- 
-
-
-
-
-
-  
-
-  
-
-   
-    
-       
-  
-  
-     
-   
 </details>
+
+# Day-21 Placement CTS Routing
+<Details>
+
+ <summary>Labs</summary>
+
+ - Analysing the ICC2_run at core utilization of 40%
+
+ - In top.tcl we can see that
+   
+ 	- create_placement is used to create placement for the design. floorplan option is selected to make the design planning styled as placement.
+    
+    	- Pin Placement is done by sourcing pns.tcl to sync with the current technology file regarding power grid creation.
+  
+       
+
+</Details>
   
  
 
