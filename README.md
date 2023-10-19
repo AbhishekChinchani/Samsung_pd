@@ -5457,6 +5457,87 @@ The results can be seen in the result folder
 
 <details>
 
+ <summary>Clock tree synthesis</summary>
+
+ - Clock Tree Synthesis involves the generation of a clock distribution network that ensures a stable and synchronized clock signal throughout the entire chip or circuit.
+ - CTS is performed for several importnant reasons :
+   
+   1.Synchronization: In digital circuits, synchronous operations are critical. A clock signal is used to coordinate the activities of various elements within the circuit, ensuring they work together harmoniously. CTS is done to 	 
+     distribute this clock signal uniformly to all parts of the chip so that all operations occur in sync.
+
+   2.Minimizing Clock Skew: Clock skew refers to the variation in arrival times of the clock signal at different parts of the chip. Excessive clock skew can lead to timing violations and impact the overall performance and reliability 
+     of the circuit. CTS is employed to minimize clock skew, ensuring that the clock signal arrives at all elements at nearly the same time.
+
+   3.Timing Closure: Achieving timing closure is a crucial objective in chip design. CTS helps in meeting timing constraints by distributing the clock signal efficiently. When the clock signal reaches all elements simultaneously, it 
+     becomes easier to manage and control the timing of the circuit.
+
+   4.Power Efficiency: CTS can be used to design a power-efficient clock distribution network. By strategically placing buffers and repeaters and optimizing clock tree topology, designers can minimize power consumption in the clock 
+    distribution network, which is especially important in portable and battery-powered devices.
+
+- Various Algorithms used for CTS
+
+   1. H-Tree
+
+   ![image](https://github.com/AbhishekChinchani/Samsung_pd/assets/142480501/aeaeffdc-8156-47e5-a3a2-5836ae5ee712)
+
+  Steps:
+
+  - Find out all the flops present
+  - Find out the center of all the flops
+  - Trace clock port ot the center point
+  - Divide the core into two parts, trace both the parts and reach to each center
+  - From the center, again, divide the area into two and again trace till center at both the end
+  - Repeat this algo till the time we reach the flop clock pin
+ 
+2. **Clockwise multi-source clock tree synthesis (CTS) algorithm** : It is a specific approach to designing and optimizing the clock distribution network in digital integrated circuits. In this algorithm, multiple clock sources are considered, and the clock tree is designed to distribute clock signals from these sources in a clockwise direction.
+ 
+   ![image](https://github.com/AbhishekChinchani/Samsung_pd/assets/142480501/1ad68f9f-0d5e-47f4-851c-e5cae80dfc7a)
+
+  Steps:
+
+  - Identify and specify the multiple clock sources in the design. These sources may be associated with different clock domains or regions of the chip.
+  - Create a clock tree topology that outlines the placement of buffers and repeaters, the routing of clock lines, and the interconnection of clock network elements. In a multi-source CTS, the tree should be designed to distribute 	 
+    clock signals from all selected sources.
+  - Determine the type and sizes of buffers to be used in the clock tree. Sizing is crucial for optimizing power consumption, signal integrity, and clock skew. Consider the characteristics of each clock source when sizing buffers.
+  - Physically lay out the clock distribution network, including the placement of buffers and the routing of clock lines. Ensure that the routing accommodates the distribution of clock signals from multiple sources in a clockwise 
+    manner
+  - Implement clock gating cells as needed to selectively enable or disable clock signals to specific circuit portions when they are not in use. Ensure that clock signals are synchronized as they traverse the clock tree.
+  - Ensure that the clock tree meets timing constraints, such as setup and hold times, for all flip-flops and other clocked elements in the design. Adjust buffer sizes and placement as necessary to achieve timing closure.
+  - After synthesizing the clock tree, perform thorough verification, including simulations and static timing analysis, to ensure that the design requirements are met and that clock signals are properly distributed from all sources.
+  - t's common to go through several iterations of clock tree synthesis to achieve the desired performance, power efficiency, and timing closure. Fine-tune the clock tree as necessary based on the results of analysis and simulation.
+
+
+**Various CTS checks**
+
+- Skew check
+- Latency check
+- Pulse width check
+- Duty cycle check
+- Power check
+- Crosstalk Quality check
+- Delta Delay Quality check
+- Glitch Quality check
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+      
+
+
+</details>
+
+<details>
+
  <summary>Labs</summary>
 
  - In ICC2 Compiler we give the command *check_clock_tree* , This command checks the clock trees of current design for posiible problems with netlist, timing constraints, or other tool configurations that can adversely impact clock tree synthesis.This is used to check for common problems that might impact CTS
