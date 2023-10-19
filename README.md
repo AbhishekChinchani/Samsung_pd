@@ -5452,8 +5452,73 @@ The results can be seen in the result folder
 
   	
 </Details>
-  
+
+# Day 22 CTS Analysis
+
+<details>
+
+ <summary>Labs</summary>
+
+ - In ICC2 Compiler we give the command *check_clock_tree* , This command checks the clock trees of current design for posiible problems with netlist, timing constraints, or other tool configurations that can adversely impact clock tree synthesis.This is used to check for common problems that might impact CTS
+
+ <img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/37d2085ca9d207a3e1c606f0a942a786ffca396a/Day22/check_clock_tree.png">
  
+ <img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/37d2085ca9d207a3e1c606f0a942a786ffca396a/Day22/check_clock_tree2.png">
+
+ In this we can see that there is 1 warning which states that there are some clock cells that does not have LEQ cells for resizing.
+
+ When we man CTS-904
+
+<img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/37d2085ca9d207a3e1c606f0a942a786ffca396a/Day22/man_CTS-904_10.png">
+
+- The next command is *check_legality* , This command checks the legality of the curreent_placement and output a report of violation statistics.
+
+<img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/37d2085ca9d207a3e1c606f0a942a786ffca396a/Day22/Checklocality_3.png">
+
+<img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/37d2085ca9d207a3e1c606f0a942a786ffca396a/Day22/Checklocality_4.png">
+
+- Next In top.tcl we can see that there is a command called *clock_opt* , this is used to to perform clock tree synthesis and it optimizes the clock trees.
+
+<img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/3e1455da6f8b58502410662dbb7e9d2fb5242aa4/Day22/add_now.png">
+
+ **Reports**
+
+- report_clock_timing -type summary
+  	  
+<img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/3e1455da6f8b58502410662dbb7e9d2fb5242aa4/Day22/timing_summary_1.png">
+     
+- report_clock_timing -type skew
+
+<img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/3e1455da6f8b58502410662dbb7e9d2fb5242aa4/Day22/skew_5.png">
+		
+- report_clock_timing -type latency
+
+<img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/3e1455da6f8b58502410662dbb7e9d2fb5242aa4/Day22/latency_6.png">
+  	
+- report_clock_timing -type transition
+
+<img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/3e1455da6f8b58502410662dbb7e9d2fb5242aa4/Day22/transition_7.png">
+
+When we give *report_clock_settings* it gves all the clock settings , configurtaions , spacing rules, route rules , max load cap on buffers and inverters.
+
+<img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/3e1455da6f8b58502410662dbb7e9d2fb5242aa4/Day22/report_clock_settings_11.png">
+
+<img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/3e1455da6f8b58502410662dbb7e9d2fb5242aa4/Day22/report_clock_settings_12.png">
+
+<img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/3e1455da6f8b58502410662dbb7e9d2fb5242aa4/Day22/report_clock_settings_13.png">
+
+<img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/3e1455da6f8b58502410662dbb7e9d2fb5242aa4/Day22/report_clock_settings_14.png">
+
+
+
+ 
+  
+
+ 
+ 
+
+   
+</details>
 
 
 
