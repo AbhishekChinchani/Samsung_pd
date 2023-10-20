@@ -5649,13 +5649,13 @@ When we give *report_clock_settings* it gves all the clock settings , configurta
 
  	<img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/31b137e4bee427cca24cd607ca9e45ceae265ec5/day23/top.tcl_1.png">
 
-- Clock Routing and signal routing:
+**Clock Routing and signal routing**:
 
-    - place_opt: Place and optimize the current design
-    - clock_opt: Synthesize and route the clocks in the current design and then further optimize the design based on the propagated clock latencies
-    - route_auto: runs global routing, track assignment and detail routing in one step
+- place_opt: Place and optimize the current design
+- clock_opt: Synthesize and route the clocks in the current design and then further optimize the design based on the propagated clock latencies
+- route_auto: runs global routing, track assignment and detail routing in one step
 
-        <img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/31b137e4bee427cca24cd607ca9e45ceae265ec5/day23/pns_2.png">
+   <img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/31b137e4bee427cca24cd607ca9e45ceae265ec5/day23/pns_2.png">
     
     
 
