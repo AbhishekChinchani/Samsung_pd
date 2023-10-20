@@ -5601,6 +5601,67 @@ When we give *report_clock_settings* it gves all the clock settings , configurta
    
 </details>
 
+# Day-23 Clock Gating techniques
+
+<details>
+
+ <summary>Theory</summary>
+
+ **Clock Tree Synthesis (Advanced H-Tree)**
+
+ - A digital circuit having lot of clocks, so if designing a clock tree will be huge with many buffers etc
+ - So the whole chip will section into smaller versions and then each section will have its own clock tree, and then finally a complete routed tree.
+
+**Clock Gating**
+
+ - Beside area and timing, there is another important factor which is power -> Need power “aware” CTS
+ - Clock gating is one of the techniques used to save the dynamic power of clock elements in the design
+ - The principle behind clock gating is to stop the clock of those sequential elements whose data is not toggling
+ - Clock gating technique using AND, OR Universal NAND gate
+ - It has been found that 50% of the dynamic power originates from clock-related circuits
+   <image>
+ - Clock gating is inserted during synthesis stage and optimized in the implementation stage (Physical Design stage)
+ - Example scenario why required clock gating: If there is a block only need clock signal for 10 mins but the clock signal is running 1hr, so a lot of power is dissipating (due to switching activity), so we need clock gating which act as switch.
+
+**Routing**
+
+- The last step of physical design flow
+- Making physical connections between signal pins using metal layers
+- There is mainly 3 types of routing:
+
+  	- P/G routing
+  	- Clock routing
+  	- Signal routing
+  	  	- Global routing
+  	  	- Detailed routing
+
+
+- The command which performs the above routing is *route_opt*
+</details>
+
+<details>
+
+ <summary>Labs</summary>
+
+ - Three types of routing: P/G routing, Clock routing and Signal routing
+
+	P/G routing:
+
+ 	<img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/31b137e4bee427cca24cd607ca9e45ceae265ec5/day23/top.tcl_1.png">
+
+- Clock Routing and signal routing:
+
+    - place_opt: Place and optimize the current design
+    - clock_opt: Synthesize and route the clocks in the current design and then further optimize the design based on the propagated clock latencies
+    - route_auto: runs global routing, track assignment and detail routing in one step
+
+        <img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/31b137e4bee427cca24cd607ca9e45ceae265ec5/day23/pns_2.png">
+    
+    
+
+        
+		
+</details>
 
 
 
