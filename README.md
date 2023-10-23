@@ -5697,7 +5697,7 @@ top.tcl
   Here we can see that the buffers are added in the design
    
 
- - We can see that slack is reduced
+ - We can see that slack is reduced from -1.90 to -0.13
 
     Before
    
