@@ -5642,6 +5642,7 @@ When we give *report_clock_settings* it gves all the clock settings , configurta
 <details>
 
  <summary>Labs</summary>
+ 
  - We need to add 3 lines between place_opt and clock_opt , to insert the clock buffers in the design 
 
  ```ruby
