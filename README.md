@@ -5662,7 +5662,7 @@ When we give *report_clock_settings* it gves all the clock settings , configurta
 
  - We can see that slack is reduced
 
-   Before
+ Before
    
 <img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/8124a19f0bda887ab38c003fa9d3f45d8e50315b/day23/viol_after_mod_16.png">
 
