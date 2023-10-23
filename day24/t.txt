@@ -1,3 +1,22 @@
+size_cell core1/U9 sky130_fd_sc_hd__inv_2
+       report_timing
+      size_cell core1/U9 sky130_fd_sc_hd__inv_3
+      size_cell core1/U9 sky130_fd_sc_hd__inv_4
+      report_timing
+      size_cell core1/U9 sky130_fd_sc_hd__inv_2
+      report_timing
+      size_cell core1/U83 sky130_fd_sc_hd__fa_2
+      report_timing
+      size_cell core1/U347 sky130_fd_sc_hd__fa_2
+    report_timing
+      size_cell core1/U347 sky130_fd_sc_hd__fa_1
+    report_timing
+     size_cell core1/U471 sky130_fd_sc_hd__a22o_2
+     report_timing
+   size_cell core1/U471 sky130_fd_sc_hd__a22o_1
+     size_cell core1/U3 sky130_fd_sc_hd__nand2_2
+
+
 size_cell core1/ZCTSBUF_23155_1984 sky130_fd_sc_hd__bufbuf_14
 size_cell core1/ZCTSBUF_23155_1984 sky130_fd_sc_hd__bufbuf_12
 size_cell core1/ZCTSBUF_23155_1984 sky130_fd_sc_hd__bufbuf_10
