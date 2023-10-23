@@ -5642,6 +5642,34 @@ When we give *report_clock_settings* it gves all the clock settings , configurta
 <details>
 
  <summary>Labs</summary>
+ - We need to add 3 lines between place_opt and clock_opt , to insert the clock buffers in the design 
+
+ ```ruby
+  
+ set_lib_cell_purpose -include cts {sky130_fd_sc_hd__tt_025C_1v80/sky130_fd_sc_hd__buf_*}
+ synthesize_clock_tree
+ set_propagated_clock \[all_clocks]
+ ```
+
+   <img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/8124a19f0bda887ab38c003fa9d3f45d8e50315b/day23/adding_in_top.tcl.png">
+   
+ - Before this we need to change the input voltage to 1.80V
+
+   <img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/8124a19f0bda887ab38c003fa9d3f45d8e50315b/day23/change_voltage_1.8_3.png">
+
+ - Then when we source this file we can see buffers in the design
+
+ - We can see that slack is reduced
+
+   Before
+   
+   <img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/8124a19f0bda887ab38c003fa9d3f45d8e50315b/day23/viol_after_mod_16.png">
+
+   After
+
+   <img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/8124a19f0bda887ab38c003fa9d3f45d8e50315b/day23/slack_is_comparitively_reduced.png">
+   
+ 
 
  - Three types of routing: P/G routing, Clock routing and Signal routing
 
@@ -5655,7 +5683,7 @@ When we give *report_clock_settings* it gves all the clock settings , configurta
 - clock_opt: Synthesize and route the clocks in the current design and then further optimize the design based on the propagated clock latencies
 - route_auto: runs global routing, track assignment and detail routing in one step
 
-   <img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/31b137e4bee427cca24cd607ca9e45ceae265ec5/day23/pns_2.png">
+<img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/31b137e4bee427cca24cd607ca9e45ceae265ec5/day23/pns_2.png">
     
     
 
