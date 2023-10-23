@@ -5676,7 +5676,7 @@ When we give *report_clock_settings* it gves all the clock settings , configurta
 
 	P/G routing:
 
- 	<img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/31b137e4bee427cca24cd607ca9e45ceae265ec5/day23/top.tcl_1.png">
+ <img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/31b137e4bee427cca24cd607ca9e45ceae265ec5/day23/top.tcl_1.png">
 
 **Clock Routing and signal routing**:
 
