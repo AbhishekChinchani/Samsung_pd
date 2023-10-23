@@ -5612,16 +5612,27 @@ When we give *report_clock_settings* it gves all the clock settings , configurta
  - A digital circuit having lot of clocks, so if designing a clock tree will be huge with many buffers etc
  - So the whole chip will section into smaller versions and then each section will have its own clock tree, and then finally a complete routed tree.
 
+ ![image](https://github.com/AbhishekChinchani/Samsung_pd/assets/142480501/55b30390-571b-440c-8641-68055a254f4d)
+
+
 **Clock Gating**
 
+ 
+
+ ![image](https://github.com/AbhishekChinchani/Samsung_pd/assets/142480501/6bdd8cce-dfeb-4b3e-a93a-7d4140572184)
+
+
+   
  - Beside area and timing, there is another important factor which is power -> Need power “aware” CTS
  - Clock gating is one of the techniques used to save the dynamic power of clock elements in the design
  - The principle behind clock gating is to stop the clock of those sequential elements whose data is not toggling
  - Clock gating technique using AND, OR Universal NAND gate
  - It has been found that 50% of the dynamic power originates from clock-related circuits
-   <image>
  - Clock gating is inserted during synthesis stage and optimized in the implementation stage (Physical Design stage)
- - Example scenario why required clock gating: If there is a block only need clock signal for 10 mins but the clock signal is running 1hr, so a lot of power is dissipating (due to switching activity), so we need clock gating which act as switch.
+ - Example scenario why required clock gating: If there is a block only need clock signal for 10 mins but the clock signal is running 1hr, so a lot of power is dissipating (due to switching activity), so we need clock gating which act 
+   as switch.
+ - Clock gating is a common technique used in Very Large Scale Integration (VLSI) design to reduce power consumption in digital circuits, particularly in synchronous systems. It involves selectively enabling or disabling the clock 
+   signal to specific parts of the circuit, depending on the operational requirements, which can help save power when certain components of the circuit are not actively performing any useful work.
 
 **Routing**
 
