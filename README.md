@@ -5660,6 +5660,13 @@ When we give *report_clock_settings* it gves all the clock settings , configurta
 
  - Then when we source this file we can see buffers in the design
 
+ - The schematic is as follows
+
+<img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/4be7c65805345bf2f7d416a88729b23b7e89e99f/day23/schematic.png">
+
+  Here we can see that the buffers are added in the design
+   
+
  - We can see that slack is reduced
 
  Before
