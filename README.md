@@ -5780,7 +5780,78 @@ ICG reference list:
 		
 </details>
 
+# Day 24 ECO
 
+<details>
+
+ <summary>Labs</summary>
+
+ - After performing CTS (with clock buffers) we can see that the slack is improved but it is not met.
+
+  <img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/e0201bd2deefd16dd3d0a05e0c713fdef068dd8b/day24/max_violated_4.png">
+
+  <img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/e0201bd2deefd16dd3d0a05e0c713fdef068dd8b/day24/min_violated_3.png">
+
+  The slacks have significantly improved compared with the case without buffers.
+
+- To meet the slack we upsize/downsize the cell depending on the requirement.
+- Upsizing the cell will increase the drive strength of the cell which helps in reducing the delay.
+- Upsizing the cell using the command *size_cell*
+  ```ruby
+  size_cell core1/U9 sky130_fd_sc_hd__inv_2
+  size_cell core1/U471 sky130_fd_sc_hd__a22o_2
+  size_cell core1/U471 sky130_fd_sc_hd__a22o_1
+  size_cell core1/U3 sky130_fd_sc_hd__nand2_2
+  ```
+
+- Now we can see that the *report_timing -delay max* is met
+
+  <img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/e0201bd2deefd16dd3d0a05e0c713fdef068dd8b/day24/slack_met.png">
+
+- But the hold slack is not met. It is violating by a small margin of 4.9ps
+- To meet the hold slack we need to downsize the cell
+```ruby
+size_cell core1/ZCTSBUF_23155_1984 sky130_fd_sc_hd__bufbuf_12
+size_cell core1/ZCTSBUF_25196_1983 sky130_fd_sc_hd__buf_14
+```
+  <img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/e0201bd2deefd16dd3d0a05e0c713fdef068dd8b/day24/slack_met_min_2.png">
+
+**Comparing results before and after ECO**
+
+*report_qor*
+
+Before 
+
+<img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/e0201bd2deefd16dd3d0a05e0c713fdef068dd8b/day24/bef_qor.png">
+
+After
+
+<img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/e0201bd2deefd16dd3d0a05e0c713fdef068dd8b/day24/qor_5.png">
+
+- We can see that the area is increased due to the upsizing of cell.
+
+*report_power*
+
+Before
+
+<img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/e0201bd2deefd16dd3d0a05e0c713fdef068dd8b/day24/bef_power.png">
+
+After
+
+<img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/e0201bd2deefd16dd3d0a05e0c713fdef068dd8b/day24/power_6.png">
+
+- We can see that the power is increased due to high drive strength.
+
+**Adding Decaps**
+
+- Adding decaps 
+
+
+
+
+  
+    
+</details>
 
 
 
