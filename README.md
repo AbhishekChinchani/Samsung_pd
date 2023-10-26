@@ -5546,11 +5546,20 @@ The results can be seen in the result folder
  
  <img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/37d2085ca9d207a3e1c606f0a942a786ffca396a/Day22/check_clock_tree2.png">
 
- In this we can see that there is 1 warning which states that there are some clock cells that does not have LEQ cells for resizing.
-
- When we man CTS-904
+ When we man *CTS-904*
 
 <img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/37d2085ca9d207a3e1c606f0a942a786ffca396a/Day22/man_CTS-904_10.png">
+
+ In this we can see that there is 1 warning which states that there are some clock cells that does not have LEQ cells for resizing. LEQ cells  are level Equivalence cells which are used to create logic gates or elements that have equivalent feature of different complexity. As a result the sizes of the cells can be easily resized by using a cell of differnt complexity.
+
+ CTS-015 : It is a warning which comes up when we set_max_delay  or  set_min_delay  constraints are defined in the clock network.
+
+ CTS-918 : It is a warning which comes up when Volatage  area  are  blocked for buffering through app option. It can be removed by resetting the  value  of  app  option  "opt.com-
+       mon.blocked_vas" to empty string.
+
+In our case we got only one warning that was of *CTS 904*.
+
+
 
 - The next command is *check_legality* , This command checks the legality of the curreent_placement and output a report of violation statistics.
 
@@ -5567,14 +5576,51 @@ The results can be seen in the result folder
 - report_clock_timing -type summary
   	  
 <img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/3e1455da6f8b58502410662dbb7e9d2fb5242aa4/Day22/timing_summary_1.png">
+
+**Explaination**
+
+1. The above report displays the five worst setup and two worst hold skews in the  clock network of CLK, taking uncertainty into account.
+2. This report  provides only a list of maxima and minima of the skew, latency, and transition time attributes over the  given  networks.
+3. This report specifies a summary report which shows the worst instances of transition time , latency and skew over the clock network. It gives the maximum setup launch latency which is the worst            setup latency of a clock pin in this case it is for the pin *core1/CPU_imm_a2_reg[20]/CLK*. Similarly it gives minimum setup capture latency, minimum hold launch latency, maximum active                    transition , minimum     active transition , maximum and minimum hold skew.
+4. In the report we can see that the design is working on func1 mode
+5. The symbol representation is as follows
+
+           r         Rising transition
+   
+           f         Falling transition
+   
+           p         Propagated clock to this pin
+   
+           i         Clock inversion to this pin
+   
+           -         Launching transition
+   
+           +         Capturing transition
+   
+           e         Exception on this pin
+7. rp-+ -> rising transition of propagated clock in the clock pin from launch to capture.
+ 
+
+
+
+
      
 - report_clock_timing -type skew
 
 <img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/3e1455da6f8b58502410662dbb7e9d2fb5242aa4/Day22/skew_5.png">
+
+**Explaination**
+
+- These repoprts specify a skew report ,For skew reports, each report entry  is a  pair  of  sink  pins and their relative skew.
+
 		
 - report_clock_timing -type latency
 
 <img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/3e1455da6f8b58502410662dbb7e9d2fb5242aa4/Day22/latency_6.png">
+
+**Explaination**
+
+- Specify a latency report of those  clock  paths that reach right trigger edge at endpoint.
   	
 - report_clock_timing -type transition
 
@@ -5693,6 +5739,7 @@ top.tcl
  - The schematic is as follows
 
 <img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/4be7c65805345bf2f7d416a88729b23b7e89e99f/day23/schematic.png">
+<img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/1a095f3223c553e87e06fd6f3f20156afab346b9/day23/The_buffers_in_gui.png">
 
   Here we can see that the buffers are added in the design
    
