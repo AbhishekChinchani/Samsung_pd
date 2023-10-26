@@ -152,3 +152,187 @@ When we give *report_clock_settings* it gves all the clock settings , configurta
 
 <img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/3e1455da6f8b58502410662dbb7e9d2fb5242aa4/Day22/report_clock_settings_14.png">
 
+# Day-23 Clock Gating techniques
+
+<details>
+
+ <summary>Theory</summary>
+
+ **Clock Tree Synthesis (Advanced H-Tree)**
+
+ - A digital circuit having lot of clocks, so if designing a clock tree will be huge with many buffers etc
+ - So the whole chip will section into smaller versions and then each section will have its own clock tree, and then finally a complete routed tree.
+
+ ![image](https://github.com/AbhishekChinchani/Samsung_pd/assets/142480501/55b30390-571b-440c-8641-68055a254f4d)
+
+
+**Clock Gating**
+
+ 
+
+ ![image](https://github.com/AbhishekChinchani/Samsung_pd/assets/142480501/6bdd8cce-dfeb-4b3e-a93a-7d4140572184)
+
+
+   
+ - Beside area and timing, there is another important factor which is power -> Need power “aware” CTS
+ - Clock gating is one of the techniques used to save the dynamic power of clock elements in the design
+ - The principle behind clock gating is to stop the clock of those sequential elements whose data is not toggling
+ - Clock gating technique using AND, OR Universal NAND gate
+ - It has been found that 50% of the dynamic power originates from clock-related circuits
+ - Clock gating is inserted during synthesis stage and optimized in the implementation stage (Physical Design stage)
+ - Example scenario why required clock gating: If there is a block only need clock signal for 10 mins but the clock signal is running 1hr, so a lot of power is dissipating (due to switching activity), so we need clock gating which act 
+   as switch.
+ - Clock gating is a common technique used in Very Large Scale Integration (VLSI) design to reduce power consumption in digital circuits, particularly in synchronous systems. It involves selectively enabling or disabling the clock 
+   signal to specific parts of the circuit, depending on the operational requirements, which can help save power when certain components of the circuit are not actively performing any useful work.
+
+**Routing**
+
+- The last step of physical design flow
+- Making physical connections between signal pins using metal layers
+- There is mainly 3 types of routing:
+
+  	- P/G routing
+  	- Clock routing
+  	- Signal routing
+  	  	- Global routing
+  	  	- Detailed routing
+
+
+- The command which performs the above routing is *route_opt*
+</details>
+
+<details>
+
+ <summary>Labs</summary>
+ 
+ - Three types of routing: P/G routing, Clock routing and Signal routing
+
+	P/G routing:
+
+  	This we can see in pns_example.tcl as shown in the below figure
+
+ <img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/31b137e4bee427cca24cd607ca9e45ceae265ec5/day23/pns_2.png">
+    
+
+**Clock Routing and signal routing**:
+
+- place_opt: Place and optimize the current design
+- clock_opt: Synthesize and route the clocks in the current design and then further optimize the design based on the propagated clock latencies
+- route_auto: runs global routing, track assignment and detail routing in one step
+
+top.tcl
+
+<img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/31b137e4bee427cca24cd607ca9e45ceae265ec5/day23/top.tcl_1.png">
+
+ - We need to add 3 lines between place_opt and clock_opt , to insert the clock buffers in the design.
+
+ ```ruby
+  
+ set_lib_cell_purpose -include cts {sky130_fd_sc_hd__tt_025C_1v80/sky130_fd_sc_hd__buf_*}
+ synthesize_clock_tree
+ set_propagated_clock \[all_clocks]
+ ```
+
+   <img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/8124a19f0bda887ab38c003fa9d3f45d8e50315b/day23/adding_in_top.tcl.png">
+
+  -  *set_lib_cell_purpose -include cts {sky130_fd_sc_hd__tt_025C_1v80/sky130_fd_sc_hd__buf_*}* command specifies that the library cells in the  tech_lib library(sky130_fd_sc_hd__tt_025C_1v80)  whose names start with "buf" should be used for clock tree synthesis.
+  -  *synthesize_clock_tree*  command synthesizes clock trees and updates  the  design  database with  the  compiled  clock  trees. The compilation of the clock tree is skew driven.  Optionally, this command can optimize compiled clock tree for slack metric.
+  -  *set_propagated_clock \[all_clocks]* command Specifies that delays be propagated through the clock network to determine latency at register clock pins.Propagated  clock latency is used for post-layout, after final clock tree generation. If  the  set_propagated_clock  command  is applied to pins or ports, it affects all register clock pins in the transitive fanout of the pins or ports. *The above command specifies to use propagated clock latency for all clocks only in the current mode in the design* .
+   
+ - Before this we need to change the input voltage to 1.80V as we know that our tech file supports 1.8V , but the default used in this case was 1.1V.
+
+<img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/8124a19f0bda887ab38c003fa9d3f45d8e50315b/day23/change_voltage_1.8_3.png">
+
+ - Then when we source this file we can see buffers in the design
+
+ - The schematic is as follows
+
+<img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/4be7c65805345bf2f7d416a88729b23b7e89e99f/day23/schematic.png">
+<img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/1a095f3223c553e87e06fd6f3f20156afab346b9/day23/The_buffers_in_gui.png">
+
+  Here we can see that the buffers are added in the design
+   
+
+ - We can see that slack is reduced from -1.90 to -0.13
+
+    Before
+   
+<img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/8124a19f0bda887ab38c003fa9d3f45d8e50315b/day23/viol_after_mod_16.png">
+
+   After
+
+<img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/8124a19f0bda887ab38c003fa9d3f45d8e50315b/day23/slack_is_comparitively_reduced.png">
+
+The clock buffers and ICG inserted in the circuit are as follows
+
+```ruby
+
+Buffer/Inverter reference list for clock tree synthesis:
+   sky130_fd_sc_hd__tt_025C_1v80/sky130_fd_sc_hd__buf_1
+   sky130_fd_sc_hd__tt_025C_1v80/sky130_fd_sc_hd__buf_12
+   sky130_fd_sc_hd__tt_025C_1v80/sky130_fd_sc_hd__buf_16
+   sky130_fd_sc_hd__tt_025C_1v80/sky130_fd_sc_hd__buf_2
+   sky130_fd_sc_hd__tt_025C_1v80/sky130_fd_sc_hd__buf_4
+   sky130_fd_sc_hd__tt_025C_1v80/sky130_fd_sc_hd__buf_6
+   sky130_fd_sc_hd__tt_025C_1v80/sky130_fd_sc_hd__buf_8
+   sky130_fd_sc_hd__tt_025C_1v80/sky130_fd_sc_hd__bufbuf_16
+   sky130_fd_sc_hd__tt_025C_1v80/sky130_fd_sc_hd__bufbuf_8
+   sky130_fd_sc_hd__tt_025C_1v80/sky130_fd_sc_hd__clkbuf_1
+   sky130_fd_sc_hd__tt_025C_1v80/sky130_fd_sc_hd__clkbuf_16
+   sky130_fd_sc_hd__tt_025C_1v80/sky130_fd_sc_hd__clkbuf_2
+   sky130_fd_sc_hd__tt_025C_1v80/sky130_fd_sc_hd__clkbuf_4
+   sky130_fd_sc_hd__tt_025C_1v80/sky130_fd_sc_hd__clkbuf_8
+   sky130_fd_sc_hd__tt_025C_1v80/sky130_fd_sc_hd__clkdlybuf4s15_1
+   sky130_fd_sc_hd__tt_025C_1v80/sky130_fd_sc_hd__clkdlybuf4s15_2
+   sky130_fd_sc_hd__tt_025C_1v80/sky130_fd_sc_hd__clkdlybuf4s18_1
+   sky130_fd_sc_hd__tt_025C_1v80/sky130_fd_sc_hd__clkdlybuf4s18_2
+   sky130_fd_sc_hd__tt_025C_1v80/sky130_fd_sc_hd__clkdlybuf4s25_1
+   sky130_fd_sc_hd__tt_025C_1v80/sky130_fd_sc_hd__clkdlybuf4s25_2
+   sky130_fd_sc_hd__tt_025C_1v80/sky130_fd_sc_hd__clkdlybuf4s50_1
+   sky130_fd_sc_hd__tt_025C_1v80/sky130_fd_sc_hd__clkdlybuf4s50_2
+   sky130_fd_sc_hd__tt_025C_1v80/sky130_fd_sc_hd__dlygate4sd1_1
+   sky130_fd_sc_hd__tt_025C_1v80/sky130_fd_sc_hd__dlygate4sd2_1
+   sky130_fd_sc_hd__tt_025C_1v80/sky130_fd_sc_hd__dlygate4sd3_1
+   sky130_fd_sc_hd__tt_025C_1v80/sky130_fd_sc_hd__dlymetal6s2s_1
+   sky130_fd_sc_hd__tt_025C_1v80/sky130_fd_sc_hd__dlymetal6s4s_1
+   sky130_fd_sc_hd__tt_025C_1v80/sky130_fd_sc_hd__dlymetal6s6s_1
+   sky130_fd_sc_hd__tt_025C_1v80/sky130_fd_sc_hd__probe_p_8
+   sky130_fd_sc_hd__tt_025C_1v80/sky130_fd_sc_hd__probec_p_8
+   sky130_fd_sc_hd__tt_025C_1v80/sky130_fd_sc_hd__lpflow_clkbufkapwr_1
+   sky130_fd_sc_hd__tt_025C_1v80/sky130_fd_sc_hd__lpflow_clkbufkapwr_16
+   sky130_fd_sc_hd__tt_025C_1v80/sky130_fd_sc_hd__lpflow_clkbufkapwr_2
+   sky130_fd_sc_hd__tt_025C_1v80/sky130_fd_sc_hd__lpflow_clkbufkapwr_4
+   sky130_fd_sc_hd__tt_025C_1v80/sky130_fd_sc_hd__lpflow_clkbufkapwr_8
+   sky130_fd_sc_hd__tt_025C_1v80/sky130_fd_sc_hd__bufinv_16
+   sky130_fd_sc_hd__tt_025C_1v80/sky130_fd_sc_hd__bufinv_8
+   sky130_fd_sc_hd__tt_025C_1v80/sky130_fd_sc_hd__clkinv_1
+   sky130_fd_sc_hd__tt_025C_1v80/sky130_fd_sc_hd__clkinv_16
+   sky130_fd_sc_hd__tt_025C_1v80/sky130_fd_sc_hd__clkinv_2
+   sky130_fd_sc_hd__tt_025C_1v80/sky130_fd_sc_hd__clkinv_4
+   sky130_fd_sc_hd__tt_025C_1v80/sky130_fd_sc_hd__clkinv_8
+   sky130_fd_sc_hd__tt_025C_1v80/sky130_fd_sc_hd__clkinvlp_2
+   sky130_fd_sc_hd__tt_025C_1v80/sky130_fd_sc_hd__clkinvlp_4
+   sky130_fd_sc_hd__tt_025C_1v80/sky130_fd_sc_hd__inv_1
+   sky130_fd_sc_hd__tt_025C_1v80/sky130_fd_sc_hd__inv_12
+   sky130_fd_sc_hd__tt_025C_1v80/sky130_fd_sc_hd__inv_16
+   sky130_fd_sc_hd__tt_025C_1v80/sky130_fd_sc_hd__inv_2
+   sky130_fd_sc_hd__tt_025C_1v80/sky130_fd_sc_hd__inv_4
+   sky130_fd_sc_hd__tt_025C_1v80/sky130_fd_sc_hd__inv_6
+   sky130_fd_sc_hd__tt_025C_1v80/sky130_fd_sc_hd__inv_8
+   sky130_fd_sc_hd__tt_025C_1v80/sky130_fd_sc_hd__lpflow_clkinvkapwr_1
+   sky130_fd_sc_hd__tt_025C_1v80/sky130_fd_sc_hd__lpflow_clkinvkapwr_16
+   sky130_fd_sc_hd__tt_025C_1v80/sky130_fd_sc_hd__lpflow_clkinvkapwr_2
+   sky130_fd_sc_hd__tt_025C_1v80/sky130_fd_sc_hd__lpflow_clkinvkapwr_4
+   sky130_fd_sc_hd__tt_025C_1v80/sky130_fd_sc_hd__lpflow_clkinvkapwr_8
+
+ICG reference list:
+   sky130_fd_sc_hd__tt_025C_1v80/sky130_fd_sc_hd__dlclkp_1
+   sky130_fd_sc_hd__tt_025C_1v80/sky130_fd_sc_hd__dlclkp_2
+   sky130_fd_sc_hd__tt_025C_1v80/sky130_fd_sc_hd__dlclkp_4
+   sky130_fd_sc_hd__tt_025C_1v80/sky130_fd_sc_hd__sdlclkp_1
+   sky130_fd_sc_hd__tt_025C_1v80/sky130_fd_sc_hd__sdlclkp_2
+   sky130_fd_sc_hd__tt_025C_1v80/sky130_fd_sc_hd__sdlclkp_4
+```
+		
+</details>
+
