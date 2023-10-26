@@ -5598,6 +5598,7 @@ In our case we got only one warning that was of *CTS 904*.
            +         Capturing transition
    
            e         Exception on this pin
+
 7. rp-+ -> rising transition of propagated clock in the clock pin from launch to capture.
  
 
@@ -5612,6 +5613,7 @@ In our case we got only one warning that was of *CTS 904*.
 **Explaination**
 
 - These repoprts specify a skew report ,For skew reports, each report entry  is a  pair  of  sink  pins and their relative skew.
+- Skews reported by report_clock_timing are local skews only.  Local skew exists from one sink pin to another only if their associated sequential devices are connected via a data path in the appropriate     from-to sense.
 
 		
 - report_clock_timing -type latency
@@ -5729,8 +5731,12 @@ top.tcl
  ```
 
    <img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/8124a19f0bda887ab38c003fa9d3f45d8e50315b/day23/adding_in_top.tcl.png">
+
+  -  *set_lib_cell_purpose -include cts {sky130_fd_sc_hd__tt_025C_1v80/sky130_fd_sc_hd__buf_*}* command specifies that the library cells in the  tech_lib library(sky130_fd_sc_hd__tt_025C_1v80)  whose names start with "buf" should be used for clock tree synthesis.
+  -  *synthesize_clock_tree*  command synthesizes clock trees and updates  the  design  database with  the  compiled  clock  trees. The compilation of the clock tree is skew driven.  Optionally, this command can optimize compiled clock tree for slack metric.
+  -  *set_propagated_clock \[all_clocks]* command Specifies that delays be propagated through the clock network to determine latency at register clock pins.Propagated  clock latency is used for post-layout, after final clock tree generation. If  the  set_propagated_clock  command  is applied to pins or ports, it affects all register clock pins in the transitive fanout of the pins or ports. *The above command specifies to use propagated clock latency for all clocks only in the current mode in the design* .
    
- - Before this we need to change the input voltage to 1.80V
+ - Before this we need to change the input voltage to 1.80V as we know that our tech file supports 1.8V , but the default used in this case was 1.1V.
 
 <img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/8124a19f0bda887ab38c003fa9d3f45d8e50315b/day23/change_voltage_1.8_3.png">
 
