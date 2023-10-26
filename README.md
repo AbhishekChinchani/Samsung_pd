@@ -5841,13 +5841,25 @@ ICG reference list:
 
  - After performing CTS (with clock buffers) we can see that the slack is improved but it is not met.
 
+  Setup
   <img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/e0201bd2deefd16dd3d0a05e0c713fdef068dd8b/day24/max_violated_4.png">
-
+  
+  Hold
   <img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/e0201bd2deefd16dd3d0a05e0c713fdef068dd8b/day24/min_violated_3.png">
 
   The slacks have significantly improved compared with the case without buffers.
 
 - To meet the slack we upsize/downsize the cell depending on the requirement.
+- To anlayze the path in GUI
+
+  <img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/49eae99114bba33d7402e739cb87bb99241db9d9/day24/day24a/eco/before_worst_slack.png">
+
+  The schematic of clock path  is as follows
+
+  <img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/49eae99114bba33d7402e739cb87bb99241db9d9/day24/day24a/eco/clock_path_viol.png">
+
+   
+   
 - Upsizing the cell will increase the drive strength of the cell which helps in reducing the delay.
 - Upsizing the cell using the command *size_cell*
   ```ruby
@@ -5856,10 +5868,13 @@ ICG reference list:
   size_cell core1/U471 sky130_fd_sc_hd__a22o_1
   size_cell core1/U3 sky130_fd_sc_hd__nand2_2
   ```
-
 - Now we can see that the *report_timing -delay max* is met
 
   <img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/e0201bd2deefd16dd3d0a05e0c713fdef068dd8b/day24/slack_met.png">
+
+- The worst met slack path in GUI is as follows
+
+  <img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/49eae99114bba33d7402e739cb87bb99241db9d9/day24/day24a/eco/after_meeting.png">
 
 - But the hold slack is not met. It is violating by a small margin of 4.9ps
 - To meet the hold slack we need to downsize the cell
@@ -5868,6 +5883,12 @@ size_cell core1/ZCTSBUF_23155_1984 sky130_fd_sc_hd__bufbuf_12
 size_cell core1/ZCTSBUF_25196_1983 sky130_fd_sc_hd__buf_14
 ```
   <img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/e0201bd2deefd16dd3d0a05e0c713fdef068dd8b/day24/slack_met_min_2.png">
+
+- Giving *report_global_timing*
+
+  <img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/49eae99114bba33d7402e739cb87bb99241db9d9/day24/day24a/eco/report_global_after.png">
+
+  We see that there are no setup or hold violations.
 
 **Comparing results before and after ECO**
 
@@ -5879,9 +5900,35 @@ Before
 
 After
 
-<img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/e0201bd2deefd16dd3d0a05e0c713fdef068dd8b/day24/qor_5.png">
+<img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/49eae99114bba33d7402e739cb87bb99241db9d9/day24/day24a/qor_5.png">
 
-- We can see that the area is increased due to the upsizing of cell.
+- We can see that the area is increased due to the upsizing of cell for meeting the slack.
+- We can see that still its not clean it still has 4 trans and 6 cap violations.
+- Fixing the trans violations
+
+  When we give *report_constraints -max_transition -all_violators*
+
+<img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/49eae99114bba33d7402e739cb87bb99241db9d9/day24/day24a/eco/trans_viol.png">
+
+We see that there are 4 trans violation. The steps to meet these violation is first *report_timing -through <violating_net>* Then increasing the drive strength of that cell using *size_cell*.
+
+<img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/49eae99114bba33d7402e739cb87bb99241db9d9/day24/day24a/eco/trans_proc_1.png">
+
+Repeating this for different nets we can see that the trans violation is getting fixed
+
+<img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/49eae99114bba33d7402e739cb87bb99241db9d9/day24/day24a/eco/qor_after_trans.png">
+
+- Now we can see that trans is fixed and there are two cap violations, These can be fixed by *report_timing -through <violating_net>* . Then increasing the drive strength of the cell using *size_cell*
+
+<img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/49eae99114bba33d7402e739cb87bb99241db9d9/day24/day24a/eco/cap_net_proc_1.png">
+
+<img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/49eae99114bba33d7402e739cb87bb99241db9d9/day24/day24a/eco/cap_net_proc_2.png">
+
+Now we can see that all the violations are fixed
+
+<img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/49eae99114bba33d7402e739cb87bb99241db9d9/day24/day24a/eco/final_qor_after_removing_all_1.png">
+
+<img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/49eae99114bba33d7402e739cb87bb99241db9d9/day24/day24a/eco/final_qor_after_removing_all_2.png">
 
 *report_power*
 
