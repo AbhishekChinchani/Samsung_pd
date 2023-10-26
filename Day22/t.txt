@@ -119,3 +119,36 @@ In our case we got only one warning that was of *CTS 904*.
 - report_clock_timing -type summary
   	  
 <img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/3e1455da6f8b58502410662dbb7e9d2fb5242aa4/Day22/timing_summary_1.png">
+
+- report_clock_timing -type skew
+
+<img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/3e1455da6f8b58502410662dbb7e9d2fb5242aa4/Day22/skew_5.png">
+
+**Explaination**
+
+- These repoprts specify a skew report ,For skew reports, each report entry  is a  pair  of  sink  pins and their relative skew.
+- Skews reported by report_clock_timing are local skews only.  Local skew exists from one sink pin to another only if their associated sequential devices are connected via a data path in the appropriate     from-to sense.
+
+		
+- report_clock_timing -type latency
+
+<img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/3e1455da6f8b58502410662dbb7e9d2fb5242aa4/Day22/latency_6.png">
+
+**Explaination**
+
+- Specify a latency report of those  clock  paths that reach right trigger edge at endpoint.
+  	
+- report_clock_timing -type transition
+
+<img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/3e1455da6f8b58502410662dbb7e9d2fb5242aa4/Day22/transition_7.png">
+
+When we give *report_clock_settings* it gves all the clock settings , configurtaions , spacing rules, route rules , max load cap on buffers and inverters.
+
+<img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/3e1455da6f8b58502410662dbb7e9d2fb5242aa4/Day22/report_clock_settings_11.png">
+
+<img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/3e1455da6f8b58502410662dbb7e9d2fb5242aa4/Day22/report_clock_settings_12.png">
+
+<img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/3e1455da6f8b58502410662dbb7e9d2fb5242aa4/Day22/report_clock_settings_13.png">
+
+<img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/3e1455da6f8b58502410662dbb7e9d2fb5242aa4/Day22/report_clock_settings_14.png">
+
