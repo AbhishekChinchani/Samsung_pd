@@ -5911,7 +5911,7 @@ After
 - We can see that still its not clean it still has 4 trans and 6 cap violations.
 - Fixing the trans violations by either upsizing the cell or adding a buffer
 
-  When we give *report_constraints -max_transition -all_violators*
+When we give *report_constraints -max_transition -all_violators*
 
 <img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/49eae99114bba33d7402e739cb87bb99241db9d9/day24/day24a/eco/trans_viol.png">
 
