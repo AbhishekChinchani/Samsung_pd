@@ -5973,6 +5973,12 @@ The decaps in GUI
 
 When we do *report_power* 
 
+Before
+
+<img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/e0201bd2deefd16dd3d0a05e0c713fdef068dd8b/day24/power_6.png">
+
+After
+
 <img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/939837aab24d7e13721b0a454af8cd8555267c93/day24/day24a/After_adding_decaps.png">
 
 We can see that power is optimized from 4.46e+06 nW to 4.44e+06 nW.
