@@ -5878,6 +5878,7 @@ ICG reference list:
 
 - But the hold slack is not met. It is violating by a small margin of 4.9ps
 - To meet the hold slack we need to downsize the cell
+- We can insert buffer to meet the hold if the same path have larger setup margin
 ```ruby
 size_cell core1/ZCTSBUF_23155_1984 sky130_fd_sc_hd__bufbuf_12
 size_cell core1/ZCTSBUF_25196_1983 sky130_fd_sc_hd__buf_14
@@ -5893,7 +5894,10 @@ size_cell core1/ZCTSBUF_25196_1983 sky130_fd_sc_hd__buf_14
 **Comparing results before and after ECO**
 
 *report_qor*
-
+- This command reports Quality of Results information about  the  design.This  includes  timing  information, cell count details, and statistics such as combinational, noncombinational, and total area.
+- Under  the  Cell Count section, the Leaf Cell Count report includes all leaf cells that are not constant cells. Constant cells are  omitted  in this count. The Combinational Cell Count and Sequential      Cell Count only include leaf cells.
+- Under Area section, Cell Area (netlist) ignores physical-only cells but Cell  Area  (netlist and physical only) includes them for area calculation.
+- Comparing the qor before upsizing the cell and after upsizing the cell. 
 Before 
 
 <img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/e0201bd2deefd16dd3d0a05e0c713fdef068dd8b/day24/bef_qor.png">
@@ -5902,9 +5906,9 @@ After
 
 <img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/49eae99114bba33d7402e739cb87bb99241db9d9/day24/day24a/qor_5.png">
 
-- We can see that the area is increased due to the upsizing of cell for meeting the slack.
+- We can see that the cell area is increased from 700299 to 700466 due to the upsizing of cell for meeting the slack.
 - We can see that still its not clean it still has 4 trans and 6 cap violations.
-- Fixing the trans violations
+- Fixing the trans violations by either upsizing the cell or adding a buffer
 
   When we give *report_constraints -max_transition -all_violators*
 
@@ -5932,6 +5936,11 @@ Now we can see that all the violations are fixed
 
 *report_power*
 
+- This report gives us internal , switching and leakage power for of the power groups
+- Internal power: It refers to the power consumption within the Ic due to switching activites of transistors , gates and interconnects.
+- Switching power : It refers to the power consumed or dissipated when digital components such as transistors , gates or flip-flops changes states from one logic level to another.
+- Leakage power : It refers to the power consumption in a circuit that occurs when the transistors are not actively switching states.
+
 Before
 
 <img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/e0201bd2deefd16dd3d0a05e0c713fdef068dd8b/day24/bef_power.png">
@@ -5940,11 +5949,37 @@ After
 
 <img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/e0201bd2deefd16dd3d0a05e0c713fdef068dd8b/day24/power_6.png">
 
-- We can see that the power is increased due to high drive strength.
+- We can see that the power is increased from 4.30e+06 nW to 4.46e+06 nW due to high drive strength.
 
 **Adding Decaps**
 
-- Adding decaps 
+- The primary function of adding decaps is to filter out noise and stabilize the power supply.
+- Decpas assisit in regulating the voltage supplied to the digital circuit. They help mitigate voltage droops and spikes ensuring that the voltage remains stable and within the required specifications.
+- Properly placed decaps can help reduce Electromagnetic interferance by stabilizing power supply voltages.
+- Decaps are strategically placed throughout digital circuit to address the specific power distribution needs of that circuit.
+
+Adding decaps cells using the command *set FILLER_CELLS [get_object_name [sort_collection -descending [get_lib_cells {sky130_fd_sc_hd__fill* sky130_fd_sc_hd__decap*}] area]]*
+
+<img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/939837aab24d7e13721b0a454af8cd8555267c93/day24/day24a/after_adding_decaps.png">
+
+Now again sourcing the top.tcl we can see that decaps are inserted
+
+<img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/939837aab24d7e13721b0a454af8cd8555267c93/day24/day24a/List_of_decaps.png">
+
+The decaps in GUI
+
+<img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/939837aab24d7e13721b0a454af8cd8555267c93/day24/day24a/eco/gui_decaps.png">
+
+When we do *report_power* 
+
+<img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/939837aab24d7e13721b0a454af8cd8555267c93/day24/day24a/After_adding_decaps.png">
+
+We can see that power is optimized from 4.46e+06 nW to 4.44e+06 nW.
+
+
+
+
+
 
 
 
