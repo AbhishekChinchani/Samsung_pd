@@ -5852,11 +5852,11 @@ ICG reference list:
 - To meet the slack we upsize/downsize the cell depending on the requirement.
 - To anlayze the path in GUI
 
-  <img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/49eae99114bba33d7402e739cb87bb99241db9d9/day24/day24a/eco/before_worst_slack.png">
+<img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/49eae99114bba33d7402e739cb87bb99241db9d9/day24/day24a/eco/before_worst_slack.png">
 
   The schematic of clock path  is as follows
 
-  <img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/49eae99114bba33d7402e739cb87bb99241db9d9/day24/day24a/eco/clock_path_viol.png">
+<img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/49eae99114bba33d7402e739cb87bb99241db9d9/day24/day24a/eco/clock_path_viol.png">
 
    
    
@@ -5870,11 +5870,11 @@ ICG reference list:
   ```
 - Now we can see that the *report_timing -delay max* is met
 
-  <img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/e0201bd2deefd16dd3d0a05e0c713fdef068dd8b/day24/slack_met.png">
+<img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/e0201bd2deefd16dd3d0a05e0c713fdef068dd8b/day24/slack_met.png">
 
 - The worst met slack path in GUI is as follows
 
-  <img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/49eae99114bba33d7402e739cb87bb99241db9d9/day24/day24a/eco/after_meeting.png">
+<img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/49eae99114bba33d7402e739cb87bb99241db9d9/day24/day24a/eco/after_meeting.png">
 
 - But the hold slack is not met. It is violating by a small margin of 4.9ps
 - To meet the hold slack we need to downsize the cell
@@ -5887,7 +5887,7 @@ size_cell core1/ZCTSBUF_25196_1983 sky130_fd_sc_hd__buf_14
 
 - Giving *report_global_timing*
 
-  <img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/49eae99114bba33d7402e739cb87bb99241db9d9/day24/day24a/eco/report_global_after.png">
+<img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/49eae99114bba33d7402e739cb87bb99241db9d9/day24/day24a/eco/report_global_after.png">
 
   We see that there are no setup or hold violations.
 
@@ -5897,7 +5897,8 @@ size_cell core1/ZCTSBUF_25196_1983 sky130_fd_sc_hd__buf_14
 - This command reports Quality of Results information about  the  design.This  includes  timing  information, cell count details, and statistics such as combinational, noncombinational, and total area.
 - Under  the  Cell Count section, the Leaf Cell Count report includes all leaf cells that are not constant cells. Constant cells are  omitted  in this count. The Combinational Cell Count and Sequential      Cell Count only include leaf cells.
 - Under Area section, Cell Area (netlist) ignores physical-only cells but Cell  Area  (netlist and physical only) includes them for area calculation.
-- Comparing the qor before upsizing the cell and after upsizing the cell. 
+- Comparing the qor before upsizing the cell and after upsizing the cell.
+   
 Before 
 
 <img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/e0201bd2deefd16dd3d0a05e0c713fdef068dd8b/day24/bef_qor.png">
@@ -5960,7 +5961,7 @@ After
 
 Adding decaps cells using the command *set FILLER_CELLS [get_object_name [sort_collection -descending [get_lib_cells {sky130_fd_sc_hd__fill* sky130_fd_sc_hd__decap*}] area]]*
 
-<img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/939837aab24d7e13721b0a454af8cd8555267c93/day24/day24a/after_adding_decaps.png">
+<img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/939837aab24d7e13721b0a454af8cd8555267c93/day24/day24a/after_adding_decap.png">
 
 Now again sourcing the top.tcl we can see that decaps are inserted
 
