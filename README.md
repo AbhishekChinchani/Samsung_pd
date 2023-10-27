@@ -5837,6 +5837,7 @@ ICG reference list:
 <details>
 
  <summary>ECO</summary>
+ 
  - ECO, or Engineering Change Order, in the context of VLSI (Very Large Scale Integration), refers to a process of making modifications or corrections to an already designed and taped-out integrated          circuit (IC) before it goes into production. ECOs are a crucial part of the design and manufacturing flow in VLSI, allowing designers to address issues, optimize performance, fix bugs, or incorporate      changes without the need for a complete redesign of the chip.
 
  - ECOs are typically performed to address various issues, including functional errors, timing violations, power consumption concerns, or changes in specifications. They can also be required for yield        enhancement or to accommodate new features.
