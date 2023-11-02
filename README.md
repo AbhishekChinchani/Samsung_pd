@@ -6250,7 +6250,7 @@ current_design
 <img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/7389df029362b2f9e3b4efc2981c8d930b9bd08d/day27/2vsdbabysoc.png">
 
 The generated synthesized netlist is as follows
-<img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/7389df029362b2f9e3b4efc2981c8d930b9bd08d/day27/14.vsdbaby.pt.v.png">
+<img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/234849ead985f073942ec5a302dc800c64d965ab/day27/1.gen_net.png">
 
 - Then we need to provide sdc file and spef file
   ```ruby
@@ -6265,7 +6265,8 @@ The generated synthesized netlist is as follows
 
 - The schematic of the loaded design is as follows
 
-<img  width="1085" alt="hand_writ_exam" src="  
+![image](https://github.com/AbhishekChinchani/Samsung_pd/assets/142480501/0e885b26-c602-49d7-8b63-4796396af6b7)
+  
 
 <img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/7389df029362b2f9e3b4efc2981c8d930b9bd08d/day27/12_sch_rvmyth.png">
 
