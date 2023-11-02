@@ -6217,12 +6217,87 @@ We can see that power is optimized from 4.46e+06 nW to 4.44e+06 nW.
 
  <summary>Labs</summary>
 
- In ICC2_shell
+ - In ICC2_shell when we give the below commands we get
+ 
  ```ruby
 update_timing
 write_parasitics -format spef -output vsdbabysoc_spef
 ```
 <img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/278dc3b5594b5d7a813bd8828b29046f0b19d0b6/day27/1.Update%2Bspef.png">
+
+- The spef generated is as follows
+
+<img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/7389df029362b2f9e3b4efc2981c8d930b9bd08d/day27/2.spef_genpng">
+
+- Then we need to extract the zip file containing the synthesized netlist using *gzip -d* .
+- Then we need to run all the commands in Pt_shell it is invoked using the below commands
+  ```ruby
+  csh
+  pt_shell
+  ```
+
+- In pt_shell
+ ```ruby
+set target_library "<location of avsddac.db> <location of avsdpll.db> <location of sky130_fd_sc_hd__tt_025C_1v80.db>"
+set link_library [list  <location of avsddac.db> <location of avsdpll.db> <location of sky130_fd_sc_hd__tt_025C_1v80.db>]
+read_verilog <location of the synthesized netlist>
+link_design
+current_design
+```
+
+<img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/7389df029362b2f9e3b4efc2981c8d930b9bd08d/day27/2aread_lib.png">
+
+<img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/7389df029362b2f9e3b4efc2981c8d930b9bd08d/day27/2vsdbabysoc.png">
+
+The generated synthesized netlist is as follows
+<img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/7389df029362b2f9e3b4efc2981c8d930b9bd08d/day27/14.vsdbaby.pt.v.png">
+
+- Then we need to provide sdc file and spef file
+  ```ruby
+  read_sdc <location of .sdc>
+  set_app_var si_enable_analysis true
+  read_parasitics -keep_capacitive_coupling <location of spef>
+  ```
+
+![image](https://github.com/AbhishekChinchani/Samsung_pd/assets/142480501/5613ed90-7acb-4cfe-a8fa-89014e26cd91)
+
+![image](https://github.com/AbhishekChinchani/Samsung_pd/assets/142480501/3b39c93b-666e-45c9-8ab3-51873e6913a9)
+
+- The schematic of the loaded design is as follows
+
+<img  width="1085" alt="hand_writ_exam" src="  
+
+<img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/7389df029362b2f9e3b4efc2981c8d930b9bd08d/day27/12_sch_rvmyth.png">
+
+- When we do check_timing we get
+
+<img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/7389df029362b2f9e3b4efc2981c8d930b9bd08d/day27/5.check_timing.png">
+
+- Reports
+  ```ruby
+  report_si_bottleneck              
+  report_bottleneck                 
+  report_si_delay_analysis
+  report_si_aggressor_exclusion
+  report_si_noise_analysis
+  ```
+
+<img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/7389df029362b2f9e3b4efc2981c8d930b9bd08d/day27/6.reort_si_botl.png">
+
+<img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/7389df029362b2f9e3b4efc2981c8d930b9bd08d/day27/7.reort_botl.png">
+
+<img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/7389df029362b2f9e3b4efc2981c8d930b9bd08d/day27/8.reort_si_delay.png">
+
+<img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/7389df029362b2f9e3b4efc2981c8d930b9bd08d/day27/9.reort_si_agress.png">
+
+<img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/7389df029362b2f9e3b4efc2981c8d930b9bd08d/day27/10.reort_si_noise.png">
+
+
+
+
+  
+
+
 
 
 
