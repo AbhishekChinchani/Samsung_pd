@@ -6110,6 +6110,125 @@ We can see that power is optimized from 4.46e+06 nW to 4.44e+06 nW.
    
 </details>
 
+# Day 27 Introduction to crosstalk glitch and delay
+
+<details>
+
+ <summary>Cross talk noise and reasons</summary>
+
+ - Crosstalk refers to the undesirable interference or coupling of signals between adjacent conductive pathways on an integrated circuit (IC) or chip. VLSI design involves packing a large number of components and interconnections into 
+   a small physical space, which can lead to various electrical interference issues, with crosstalk being one of the most significant concerns. Crosstalk can affect the performance, reliability, and functionality of VLSI circuits.
+
+ - For example, the circuit is used for sending and receiving messages. The circuit could have just instantiated in nine times. Some section can be sending and receiving messages, another section can be sending and receiving calls, 
+   some can be processing, some can reading other applications and so on.
+
+ - As we can see, before reducing the MOSFET size, we only have one or two applications running in the same area, but after reducing the size, now we have nine applications running in the same area of the chip.
+
+ - However, there is issue in interference when we reduce the size. Basically, referring to 0.1 um and below process in the figure below, there is some amount of interference in their functioning that is happening between the two 
+   nets/wires that is being placed very close to each other when we reduce the size. This is the major reason in crosstalk.
+
+ - Initially, there are 20 number of standard cells. After reducing the size, the number of standard cell has increased 9 times where the standard cell has to be connected to each other and as a result of that, the number of routes 
+   has increased and the routing has becomes very close to each other.
+
+ - Hence, we will started to see some failures in the design, where there was some functionality failure is happening which we can called it as crosstalk.
+
+   ![image](https://github.com/AbhishekChinchani/Samsung_pd/assets/142480501/e81e5051-eba5-44bc-a999-71de85a93bec)
+
+
+</details>
+
+<details>
+
+ <summary>Dominant Lateral Capacitance</summary>
+
+ - Increase in number of metal layers resulting in increase in lateral capacitance is also one of the reason for increase in cross talk
+ - Why increasing lateral capacitance making metal layer increasing too?
+
+	- Breaking into several metal layers helps in reducing the resistance where the higher the area, resulting in lower resistance. That's why we are having a wider metal layer.
+
+	- The overlap area between metal 1 and metal 2 as shown in the figure below, is pretty huge, that leads into an increase of lower capacitance. That's why 0.25 um and above process, we say that the interlayer capacitance was 
+          dominant.
+
+
+   ![image](https://github.com/AbhishekChinchani/Samsung_pd/assets/142480501/4fc15401-0e02-4e1c-b097-b7be3e67c59e)
+
+- As we reduced the size of the MOSFET, it will increase the number of standard cells, resulting in increasing the number of connections. So, each cell needs to be connected to its edges of the standard cells, making the connection 
+  increased. As a result, the number of routes also got increased.
+
+- Since the routes are very close to each other and it is difficult to accommodate the area of the MOSFET, we reduce the widthe of the metal. However, even when we reduce the width of the metal, the demand of routes of the area is too 
+ huge. Therefore, reducing it only won't help.
+
+- So, we need to do the connections in different way (i.e. referring to the figure below) which is making the signal travelling in a straight line (only travelling across metal 1) without transferring the signal to metal 3 first. This 
+  is happened because of the limited amount of resources/routing resources available in the area. In this case, the amount of area is very compact and we need to accommodate it where we have to connect signals at any cost.
+
+  ![image](https://github.com/AbhishekChinchani/Samsung_pd/assets/142480501/67d50b7c-b775-4cc2-a2e5-fdc724233782)
+  
+
+
+</details>
+
+<details>
+
+ <summary>Noise margin</summary>
+
+ - Noise margin in VLSI (Very Large Scale Integration) refers to the measure of the tolerance of digital circuits to variations and noise in their input signals. It is a critical parameter in VLSI design, as it determines the robustness of a circuit against various sources of noise and variations, such as power supply fluctuations, process variations, temperature changes, and electromagnetic interference.
+ - There are two types of noise margin in VLSI:
+
+	- High Noise Margin (NMH): NMH is the amount by which the voltage of the logical high (1) input level can be reduced while still being correctly recognized as high. In other words, it quantifies the amount of noise or voltage 	  drop that a digital circuit's input can withstand while maintaining a logical high level.
+
+	- Low Noise Margin (NML): NML is the amount by which the voltage of the logical low (0) input level can be increased while still being correctly recognized as low. It measures how much noise or voltage increase a digital 		  circuit's input can tolerate while remaining at a logical low level.
+  
+- Noise margin depends on several factors, including:
+  
+  	1. Power Supply Voltage: Variations in the power supply voltage can directly impact the noise margin. A higher power supply voltage often leads to larger noise margins.
+
+	2. Threshold Voltage Levels: The noise margin is related to the logic threshold levels, which determine the voltage ranges for logical high and low levels.
+
+	3. Process Variations: Process variations in semiconductor manufacturing can affect transistor characteristics, leading to variations in logic thresholds and, consequently, noise margin.
+
+	4. Temperature: Temperature fluctuations can also influence the noise margin by affecting transistor characteristics.
+
+
+![image](https://github.com/AbhishekChinchani/Samsung_pd/assets/142480501/2d45596b-9094-4600-901e-066aee0c8dfc)
+
+
+</details>
+
+<details>
+
+ <summary>Signal Integrity and glitches</summary>
+
+ - Signal Integrity and Crosstalk are the Quality checks of the clock routes.
+
+ - Signal integrity: the ability of an electrical signal to carry information reliably and resist the effects of high-frequency electromagnetic interference from nearby signals.
+
+
+ - Aggressor Net: An aggressor net is a signal line, often carrying a high-speed or high-swing signal, that is the source of noise or crosstalk interference. This means that the aggressor net can induce unwanted voltage or current in 
+   nearby signal lines due to its rapid transitions or high voltage levels. Aggressors can be neighboring signal lines on the same layer of a chip or board, or they can be noise sources like clock lines, power lines, or other external 
+   interference.
+
+ - Victim Net: A victim net is a signal line that is susceptible to noise or crosstalk from the aggressor net. It is the signal line that is being affected by the interference or disturbance caused by the aggressor. The victim net may 
+   experience erroneous signal values or data corruption due to the induced noise from the aggressor.
+
+
+</details>
+
+<details>
+
+ <summary>Labs</summary>
+
+ In ICC2_shell
+ ```ruby
+update_timing
+write_parasitics -format spef -output vsdbabysoc_spef
+```
+<img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/278dc3b5594b5d7a813bd8828b29046f0b19d0b6/day27/1.Update%2Bspef.png">
+
+
+
+
+ 
+</details>
 
 
 
