@@ -6265,8 +6265,7 @@ The generated synthesized netlist is as follows
 
 - The schematic of the loaded design is as follows
 
-![image](https://github.com/AbhishekChinchani/Samsung_pd/assets/142480501/0e885b26-c602-49d7-8b63-4796396af6b7)
-  
+<img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/423a25b29d84b13beaba0a8a32e70a82f816f018/day27/2.sch.png">  
 
 <img  width="1085" alt="hand_writ_exam" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/7389df029362b2f9e3b4efc2981c8d930b9bd08d/day27/12_sch_rvmyth.png">
 
