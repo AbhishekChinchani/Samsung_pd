@@ -6470,6 +6470,217 @@ mkdir xschem
 mkdir mag
 mkdir netgen
 ```
+![image](https://github.com/AbhishekChinchani/Samsung_pd/assets/142480501/0cabe5e5-c8b1-4b42-a262-f2371273a07f)
+
+- Linking all the required files using these commands
+  
+```ruby
+cd xschem
+ln -s /usr/share/pdk/sky130A/libs.tech/xschem/xschemrc
+ln -s ln -s /usr/share/pdk/sky130A/libs.tech/ngspice/spinit .spiceinit
+cd ../mag/
+ln -s /usr/share/pdk/sky130A/libs.tech/magic/sky130A.magicrc .magicrc
+cd ../netgen/
+ln -s /usr/share/pdk/sky130A/libs.tech/netgen/sky130A_setup.tcl setup.tcl
+```
+
+- When we link all the required files and open xschem we see that all the examples
+
+![image](https://github.com/AbhishekChinchani/Samsung_pd/assets/142480501/1f97c2d1-29fa-43ad-97b4-52bdfbfac254)
+
+
+![image](https://github.com/AbhishekChinchani/Samsung_pd/assets/142480501/550116d8-9560-41d2-846f-38610ce30f53)
+
+- When we give *magic -d XR* , This brings up 2 magic windows, with the layout window displaying "Technology: sky130A", along with many colors and icons displaying the available layers in this technology, as shown below.
+
+![image](https://github.com/AbhishekChinchani/Samsung_pd/assets/142480501/8c4d7e6b-815f-443e-b7e8-73a1bd0c91f6)
+
+- Select nmos (MOSFET) under "Devices 1" and set the width to 2 um, length to 0.5 um and fingers to 3.
+
+![image](https://github.com/AbhishekChinchani/Samsung_pd/assets/142480501/b8f5fcb8-95fd-42e9-98b8-bde463dae686)
+
+- Now select a component and then put what in tkcon
+
+![image](https://github.com/AbhishekChinchani/Samsung_pd/assets/142480501/b1843384-1611-4643-9b3e-ab1cee8002e0)
+
+**Creating a layout of Inverter in xschem**
+
+- To bring up the "Choose Symbol" window, press the "Insert" key. From there, navigate to the directory path for the SkyWater library to access its components, and choose the "fd_pr" library. To design an inverter, you'll require a fundamental nfet and pfet. So, pick the nfet and pfet devices from the insertion menu and position them anywhere within the schematic.
+
+![image](https://github.com/AbhishekChinchani/Samsung_pd/assets/142480501/73c0a414-15ab-4972-a64a-8f9f08cf6d0e)
+
+![image](https://github.com/AbhishekChinchani/Samsung_pd/assets/142480501/2184c3e5-c0d6-41d8-9c10-47d4fb77da3f)
+
+- Then selecting nfet_1v80.sym and pfet3_1v80 from the list of symbols and placing them in schematic we get
+
+![image](https://github.com/AbhishekChinchani/Samsung_pd/assets/142480501/e9099b21-b1ee-48d8-9f84-ec49fd170a03)
+
+- To find the pins, which are not specific to the PDK, go to the "xschem" library in the insert window. You'll find them named as "ipin.sym," "opin.sym," and "iopin.sym."
+
+- Place the pins on the schematic and use the "M" key to relocate components as needed. Use the "C" key for duplicating components and the "Del" key for removing them. Employ the "W" key to insert wires between components to establish 
+  connections.
+
+- Give each pin a meaningful name by using the "Q" key to access the parameter window and make the necessary label modifications.
+
+- Select components by clicking on them, and then open the parameter window by pressing the "Q" key. This allows you to configure the properties of the devices.
+
+- For the nfet component, modify the length to 0.18 since the default value of 0.15 is limited to SRAM devices. Set the number of fingers to 3 and specify a width of 1.5 for each finger. Ensure that the total width in the parameter 
+  window is adjusted to three times the finger width, which is 4.5.
+
+- Similarly, for the pfet component, configure it with 3 fingers, a width of 1 per finger, and a length of 0.18. Be sure to specify that the body is connected to the Vdd pin, as it is a 3-pin pfet.
+
+![image](https://github.com/AbhishekChinchani/Samsung_pd/assets/142480501/db03eba9-1d4d-48e4-9379-8cebba6b7d47)
+
+![image](https://github.com/AbhishekChinchani/Samsung_pd/assets/142480501/778936e9-b219-4206-8167-feeca3971c99)
+
+- Final Schematic after modifying
+
+![image](https://github.com/AbhishekChinchani/Samsung_pd/assets/142480501/0e2c7a48-dcbc-4704-985a-b0458df50f8c)
+
+- Save the design by clicking tab File --> save as --> inverter.sch
+
+**Creating Symbol and exporting schematic in xschem**
+
+- To functionally validate the schematic, testbench that is separated from the schematic must be created.
+
+- Firstly, create a symbol for the schematic as the schematic will appear as a symbol in the testbench. To do this, click on the Symbol menu and select "Make symbol from schematic". Then, create a testbench schematic using new schematic option and insert the generated symbol from the local directory using the Insert key.
+
+![image](https://github.com/AbhishekChinchani/Samsung_pd/assets/142480501/123859ec-de47-48b7-8626-98e5c973b596)
+
+- Open a new schematic in the "File" tab and select the "inverter.sch" file located in the home directory. Paste this file onto the schematic window.
+
+- Create a simple testbench for generating a ramp input and observing the output response. To do this:
+
+- Insert two voltage sources from the default "xschem" library: one for the input and one for the power supply.
+
+- Connect these voltage sources and add a ground (GND) node to the supply connections.
+
+	- Create "ipins" and "opins" for the input and output signals that you want to observe in Ngspice.
+
+	- Set the supply voltage to 1.8 V.
+
+- Define the input voltage using a piece-wise linear function (PWL) to create a ramp. The PWL function should have voltage and time values that specify:
+
+- The supply starting at 0 V
+
+- The voltage ramping up from 20 ns to 1.8 V by 900 ns.
+
+- Integrate two additional statements for Ngspice, but since these are not specific to any component, they should be placed in text boxes.To do this:
+
+	- Select the "code_shown.sym" component from the "xschem" library to create text boxes.
+
+  	- In the first text box, specify the location of the device models used in the device schematic. Use a ".lib" statement to select a top-level file that tells Ngspice where to find all the models and specify a simulation corner 
+          for all the models. For example, it might look like: ".lib /usr/share/pdk/sky130A/libs.tech/ngspice/sky130.lib.spice tt" for the typical corner with value "tt."   
+
+- Include a second text box with specific instructions or information as needed.
+ ```ruby
+value = ".control
+tran 1n 1u
+plot V(in) V(out)
+.endc"
+```
+
+![image](https://github.com/AbhishekChinchani/Samsung_pd/assets/142480501/b5a91e0c-e95c-46f6-bf53-93ae5b71f508)
+
+![image](https://github.com/AbhishekChinchani/Samsung_pd/assets/142480501/f4fc611e-3b1f-4668-ac22-274d656698a8)
+
+- The final connection is as follows
+
+![image](https://github.com/AbhishekChinchani/Samsung_pd/assets/142480501/ce15d3f6-a48a-4c6d-a3f8-d748ea910b1d)
+
+- To generate the netlist, click on the Netlist button, then simulate it in Ngspice by clicking the Simulate button.
+
+- The waveform confirms that the schematic behaves as an inverter as shown below.
+
+![image](https://github.com/AbhishekChinchani/Samsung_pd/assets/142480501/872b5c64-b7b8-4e17-8744-f5cce407dc03)
+
+**Importing schematic to layout**
+
+- In mag directory open the magic and  import the schematic to the layout in Magic by running the magic, then click on File -> Import SPICE and then select the inverter.spice file from the xschem directory. If done correctly, the following layout has been opened up in magic.
+
+![image](https://github.com/AbhishekChinchani/Samsung_pd/assets/142480501/a94630de-c784-467b-b354-86db5b02b4c0)
+
+- Referring to the layout generated above, the schematic import does not know how to do analog placing and routing as it is very complicated. Therefore, We must place them in the best positions and wire them up manually.
+
+- Firstly, place the pfet device above the nfet and adjust the placement of the input, output and supply pins. Refer below figure.
+
+![image](https://github.com/AbhishekChinchani/Samsung_pd/assets/142480501/42dbe344-ca1d-48c3-b642-252a734a3db0)
+
+- Next, set some parameters that are only adjustable in the layout which will make it more convenient to wire the whole layout up.
+
+- To pop out the parameter editing section, use S key and press I key to select the object, then use CTRL+P to open up the parameter options for the selected device.
+
+- Set the "Top guard ring via coverage" to 100. This will put a local interconnect to metal1 via ta the top of the guard ring. Next, for "Source via coverage", put +40 and for "Drain via coverage", put -40. This will split the source 
+  drain contacts, making it easy to connect them with a wire.
+
+- For nfet, set the "Bottom guard ring via coverage" to 100, while the source and drain via coverages are set to +40 and -40, respectively, like the pfet.
+
+- Start to paint the wires using metal1 layers by connecting the source of the pfet to Vdd and source of the nfet to Vss. Next, connect the drains of both mosfets to the output. Finally, connect the input to all the poly contacts of 
+  the gate.
+
+- After eliminating all DRC we get
+
+![image](https://github.com/AbhishekChinchani/Samsung_pd/assets/142480501/b8b6cd61-435f-4767-8702-2c22e9c03fd8)
+
+- Next run the commands in tkcon window to extract the .spice for LVS
+```ruby
+extract do local    
+extract all         
+ext2spice lvs       
+ext2spice           
+```
+
+![image](https://github.com/AbhishekChinchani/Samsung_pd/assets/142480501/81691f2c-fd07-4ed2-9386-d8b776927513)
+
+-  We can see the .spice in our folder
+
+![image](https://github.com/AbhishekChinchani/Samsung_pd/assets/142480501/9c088000-6e31-498e-93e8-c0ac88e35893)
+
+- Removing the .ext files using the below commands
+  ```ruby
+  rm *.ext                                          (Clear any unwanted files -> .ext files are just intermediate results from the extraction)
+  /usr/share/pdk/bin/cleanup_unref.py -remove .     (Clean up extra .mag files -> files containing paramaterised cells that were created and saved but not used in the design)
+  ```
+
+![image](https://github.com/AbhishekChinchani/Samsung_pd/assets/142480501/94accb08-5019-4820-815a-eb0ca4f97251)
+
+- Running LVS using the command *netgen -batch lvs "../mag/inverter.spice inverter" "../xschem/inverter.spice inverter"*.
+
+  
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
