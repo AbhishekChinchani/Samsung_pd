@@ -6309,6 +6309,83 @@ The generated synthesized netlist is as follows
 
 <details>
 
+ <summary>Introduction to  Skywater130</summary>
+
+- The Skywater 130nm Process Design Kit (PDK) is a comprehensive open-source resource that provides complete design rules, layer definitions, device specifications, and models. With the availability of open PDKs, individuals can utilize open-source design tools to create their own circuits. The Caravel chip, for instance, incorporates a RISC-V processor and offers user-defined design space. A PDK, short for Process Design Kit, is a collection of essential files and documentation that guides chip designers on how to work with a specific process foundry to create chips.
+
+- The "130" in Sky130 represents the process's feature size, indicating that the smallest transistors that can be produced with this PDK are 130nm in size. The Sky130PDK primarily consists of documentation (provided through the Skywater PDK), library files available on GitHub, and a community on a Slack group.
+
+- It's worth noting that open PDKs are best suited for use with open-source Electronic Design Automation (EDA) tools, as compatibility issues may arise when attempting to use them with commercialized EDA tools due to differences in file formats.
+
+- Open source EDA tools
+
+  The open_pdks files available on opencircuitdesign.com are designed as an installer based on makefiles. This installer takes files from the Skywater PDK and restructures them to make them compatible with a variety of open-source 
+  tools. To install open_pdks, you can follow these steps:
+
+   ```ruby
+    git clone https://github.com/RTimothyEdwards/open_pdks
+    cd open_pdks
+    configure –enable-sky130-pdk
+    make 
+    sudo make install
+    ```
+
+  As the open source pdks support every process, the configured process is defined. The make command grabs the skywater PDKs from google and submerges and keeps them for install. Now, Building the libraries from repository is done 
+  after the installation.
+
+  **magic**
+
+  - Magic is a popular Electronic Design Automation (EDA) tool used in VLSI (Very Large Scale Integration) design. It is primarily used for the layout and physical design of integrated circuits.
+  - Magic is used for creating and editing the layout of integrated circuits. It provides tools for drawing, modifying, and viewing the physical representations of various components on a chip, such as transistors, wires, and other 
+    interconnections.
+
+  **Openlane**
+
+  - OpenLANE is an open-source framework and toolchain for designing digital integrated circuits using a set of open-source EDA (Electronic Design Automation) tools and methodologies.
+  - It is primarily focused on ASIC (Application-Specific Integrated Circuit) design and provides a complete and automated RTL-to-GDSII (Register-Transfer Level to Graphic Design System II) flow for chip design.
+
+  **Xschem**
+
+  - XSCHEM is an open-source Electronic Design Automation (EDA) tool used for schematic capture and simulation in digital and analog circuit design. It is part of the open-source XESS project and is often used in combination with 
+    other EDA tools to facilitate circuit design.
+  - XSCHEM provides a graphical interface for capturing electronic circuit schematics. Designers can draw and connect components, such as transistors, resistors, capacitors, and other electronic elements, to create circuit diagrams.
+
+  **Netgen**
+
+  - Netgen is often used for digital logic synthesis and formal verification of digital circuits.
+  - Netgen EDA can take a high-level hardware description (often written in Hardware Description Language, such as VHDL or Verilog) and generate a gate-level representation of the design.
+  - Netgen is typically used in the context of ASIC (Application-Specific Integrated Circuit) and FPGA (Field-Programmable Gate Array) design.
+
+  **Ngspice**
+
+  - NGSpice is an open-source electronic circuit simulator used in Electronic Design Automation (EDA) for analog and mixed-signal circuit analysis.
+  - It allows you to simulate electronic circuits, making it a valuable tool for electronics engineers and circuit designers.
+  - NGSpice allows you to create and simulate analog, digital, and mixed-signal circuits.
+
+  There are other tools such as qflow, IRSIM(switch level simulator and power analyzer) and xcircuit. Inaddition of opensource EDA tools, open_pdks install the foundry and third-party libraries creating a common directory across the 
+  source. There are different digital libraries based on speed and power of operation.
+
+- The sky130_fd_pr is the standard library for analog components.The most analog components such as transistors are handled by extraction, and do not need libraries. The components such as RF layouts, bipolar devices and parallel plate capacitors have an approved layout that can be used as an IP format in the library. The devices operate from 1.8V to 20V, with common voltages being 1.8V and 3.3V. The sky130_fd_io is the library for IO pads and pad frame cells. It contains power, ground pads, general purpose IO pads. The sky130_ml_xx_hd is the third-party library contains alpha-numeric text layouts, for putting text in the layout.
+
+- The sky130A contains libs.tech and libs.ref directories. The libs.tech contains all opensource EDA tools setup and libs.ref contains reference libraries. The sky130 process is described as a hybrid 130nm-180nm standard CMOS 
+  fabrication process. There are 5 layers of aluminium metal and titanium nitride (used for short routes due to high resisitivity), called local interconnect li. The local interconnect is used for power and ground rails in skywater 
+  standard layouts. The poly contacts require a nitride polycut around the contacts. The metal layers are in progressive thickness. Usually higher order metal is used for routing purposes.
+
+- There are three types of libraries available in skwater pdks.
+
+  	1. Digital standard cells: These come with layout and GDS and formats used in synthesis flow. There are various flavours of cells covering high speed, high density, high voltage and low leakage. All the libraries follow a 
+          naming convention.
+
+  	2. I/O cells The I/O cell libraries contain entire power and ground pads which have entire disconnected blocks with them. The overlay connects the clamps/pads to power rails.
+ 
+  	3. Primitive devices and models The primitive designs include bipolar transistors, varactors, ESD devices
+  
+
+
+</details>
+
+<details>
+
  <summary>Theory</summary>
 
  **DRC**
@@ -6342,6 +6419,65 @@ The generated synthesized netlist is as follows
 
 
  
+</details>
+
+<details>
+
+ <summary>Labs</summary>
+
+ **magic**
+
+ - Command *magic* in the command prompt to invoke magic interface.
+ - Magic opens two windows namely layout window and console window.
+
+ ![image](https://github.com/AbhishekChinchani/Samsung_pd/assets/142480501/e388799c-f1d7-46d8-8a74-b26cafbf307e)
+
+- Magic can also be run without graphics layout window using the option magic -dnull - noconsole, and should be called as such when running from a script.
+
+ ![image](https://github.com/AbhishekChinchani/Samsung_pd/assets/142480501/548ad2e6-3256-49d4-b862-391e2d19b1fa)
+
+ ![image](https://github.com/AbhishekChinchani/Samsung_pd/assets/142480501/542d4b03-8dde-4f49-946f-e22ef3e554d0)
+
+ **Netgen**
+
+- Command *netgen* in the command prompt to invoke netgen.
+- Netgen is a command driven and has no graphics interface.
+
+ ![image](https://github.com/AbhishekChinchani/Samsung_pd/assets/142480501/5ae326ae-8e8f-44c8-81c8-f2887928e49b)
+
+ **Xschem**
+
+ - Command *xschem* in the command prompt to invoke xschem
+ -  Xschem doesn't have a console window, the terminal acts as console. It doesn't have quick command interface.
+
+![image](https://github.com/AbhishekChinchani/Samsung_pd/assets/142480501/6a1f7283-82ab-4720-a0a7-6335f4bb41db)
+
+**ngspice**
+
+- command *ngspice* in the command to prompt ngspice
+- Ngspice doesn't have any additional consoles. It is executed on terminal. Ngspice has its own interpreter, neither tcl nor python.
+
+![image](https://github.com/AbhishekChinchani/Samsung_pd/assets/142480501/3f38e8a8-9e17-4342-b01a-774b5b12819f)
+
+**Creating Sky130 layout of inverter**
+
+- Inside home directory create a folder by name inverter and inside that create 3 sub folders mag , xschem , netgen.
+
+```ruby
+mkdir inverter
+cd inverter
+mkdir xschem
+mkdir mag
+mkdir netgen
+```
+
+
+
+
+
+ 
+  
+
 </details>
 
 
