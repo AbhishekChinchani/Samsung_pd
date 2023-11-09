@@ -6646,6 +6646,27 @@ ext2spice
 
 - Running LVS using the command *netgen -batch lvs "../mag/inverter.spice inverter" "../xschem/inverter.spice inverter"*.
 
+![image](https://github.com/AbhishekChinchani/Samsung_pd/assets/142480501/cb1ea660-5f59-4f67-b66d-b42eb6db3933)
+
+We can see that the netlist match uniquely i.e LVS is correctly done.
+
+- Modifying the inverter_tb.spice file
+
+![image](https://github.com/AbhishekChinchani/Samsung_pd/assets/142480501/7c9efffe-a404-46da-87c1-b41ef3a4cbcc)
+
+- Copying the .spiceinit from xschem and running the ngspice for inverter_tb_new.spice
+
+![image](https://github.com/AbhishekChinchani/Samsung_pd/assets/142480501/827132f5-3808-4808-90f2-6f31da6d3da2)
+
+![image](https://github.com/AbhishekChinchani/Samsung_pd/assets/142480501/154d0f46-e706-4569-b906-bcff39933446)
+
+
+We can see that the wavefrom exactly matches with that of inverter which was generated earlier.
+
+
+
+  
+
   
   
   
