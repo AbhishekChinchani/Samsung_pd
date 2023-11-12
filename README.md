@@ -6712,6 +6712,104 @@ We can see that the wavefrom exactly matches with that of inverter which was gen
 
 </details>
 
+# Day 30 TCL Programming
+
+<details>
+
+ <summary>Introduction to TCL and VSDSYNTH Tool Box</summary>
+
+ The task 1
+
+ ![image](https://github.com/AbhishekChinchani/Samsung_pd/assets/142480501/a4b6a17a-6624-4cdb-9af4-db9ada89d907)
+
+ Review of the openMSP430_design_details.csv
+
+ ![image](https://github.com/AbhishekChinchani/Samsung_pd/assets/142480501/6928fbd4-4702-4cde-a588-c57606f1ff34)
+
+
+ Synth code
+ 
+ ![image](https://github.com/AbhishekChinchani/Samsung_pd/assets/142480501/c0748f0a-135e-4c21-a470-497304ddbe32)
+
+
+ The basic structure of the code is as follows
+ ```ruby
+#Code to handle the scenario where user does not give any file, does not give .csv file, gives more than one file as argument
+
+if [ $# -eq 0 ]
+then
+        echo "Info: Please provide a CSV file"
+        exit 1
+elif [ $# -gt 1 ]
+then
+        echo "Info: Please provide only 1 CSV file"
+        exit 1
+else
+        if [[ $1 != *.csv  &&  $1 != "-help" ]]
+        then
+                echo "Info: Please provide a .csv format file"
+                exit 1
+        fi
+fi
+# Code to check if the .csv file is present in directory or not, and also to display information for -help argument.
+if [ ! -f $1 ] || [ $1 == "-help" ]
+then
+        if [ $1 != "-help" ]
+        then
+                echo "Error: The file $1 is not found in current directory."
+                exit 1
+        else
+                echo "USAGE: ./synth <csv_file>"
+                echo
+                echo " where <csv file> consists of 2 columns, below keyword being in 1st column and is Case Sensitive. Please request Abhishek for sample csv file."
+                echo
+                echo " <Design Name> is the name of top level module."
+                echo
+                echo " <Output Directory> is the name of output directory where you want to dump synthesis script, synthesized netlist and timing reports."
+                echo
+                echo " <Netlist Directory> is the name of directory where all RTL netlist are present."
+                echo
+                echo " <Early Library Path> is the file path of the early cell library to be used for STA."
+                echo
+                echo " <Late Library Path> is file path of the late cell library to be used for STA."
+                echo
+                echo " <Constraints file> is csv file path of constraints to be used for STA."
+                exit 1
+        fi
+else
+        #Code to execute if the proper CSV file exists.
+        echo "Info: CSV file accepted"
+        tclsh synth.tcl $1
+fi
+```
+
+Cases for bash scripts
+
+ 1. No input file provided
+
+ ![image](https://github.com/AbhishekChinchani/Samsung_pd/assets/142480501/20b128da-8500-431f-b449-23acc99eb120)
+ 
+2. File provided is of wrong format (not csv)
+
+ ![image](https://github.com/AbhishekChinchani/Samsung_pd/assets/142480501/231c92f1-e064-45c2-b1c2-92c666503776)
+
+3. Provide a .csv that does not exist
+
+ ![image](https://github.com/AbhishekChinchani/Samsung_pd/assets/142480501/7fd4aa09-1192-43ab-9cc3-329d33390e18)
+
+4. Type -help
+
+ ![image](https://github.com/AbhishekChinchani/Samsung_pd/assets/142480501/293707e9-5c3f-4da4-90af-c4ea506a5dd1)
+
+
+
+</details>
+
+<details>
+
+ <summary>Day 2 Variable creation and Processing constraints </summary>
+</details>
+
 
 
 
