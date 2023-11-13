@@ -7314,6 +7314,49 @@ hier.ys
 
 Hierarchy check run and error handling
 
+I have successfully written the code for hierarchy check error handling in case any error pops up during hierarchy check run in Yosys and exits if hierarchy check fails. The basic code of the same and screenshots of the terminal with several "puts" printing out the variables and user debug information are shown below.
+
+```ruby
+# Hierarchy check error handling
+# Hierarchy check error handling done to see any errors popping up in above script.
+# Running hierarchy check in yosys by dumping log to log file and catching execution message
+set error_flag [catch {exec yosys -s $Output_Directory/$Design_Name.hier.ys >& $Output_Directory/$Design_Name.hierarchy_check.log} msg]
+puts "Errfor flag value for user debug: $error_flag"
+if { $error_flag } {
+	set filename "$Output_Directory/$Design_Name.hierarchy_check.log"
+	# EDA tool specific hierarchy error search pattern
+	set pattern {referenced in module}
+	set count 0
+	set fid [open $filename r]
+	while { [gets $fid line] != -1 } {
+		incr count [regexp -all -- $pattern $line]
+		if { [regexp -all -- $pattern $line] } {
+			puts "\nError: Module [lindex $line 2] is not part of design $Design_Name. Please correct RTL in the path '$Netlist_Directory'"
+			puts "\nInfo: Hierarchy check FAIL"
+		}
+	}
+	close $fid
+	puts "\nInfo: Please find hierarchy check details in '[file normalize $Output_Directory/$Design_Name.hierarchy_check.log]' for more info. Exiting..."
+	
+} else {
+	puts "\nInfo: Hierarchy check PASS"
+	puts "\nInfo: Please find hierarchy check details in '[file normalize $Output_Directory/$Design_Name.hierarchy_check.log]' for more info"
+}
+```
+Snips
+
+![image](https://github.com/AbhishekChinchani/Samsung_pd/assets/142480501/36fe963d-740c-4a41-9c95-23cc39c1acdc)
+
+checkimg the hier.log
+
+![image](https://github.com/AbhishekChinchani/Samsung_pd/assets/142480501/8d876156-15d3-4a9b-85a7-e75a07977941)
+
+**Day 5 Advanced Scripting Techniques and QOR**
+
+
+
+
+
 
 
 
