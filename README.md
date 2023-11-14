@@ -7353,6 +7353,114 @@ checkimg the hier.log
 
 **Day 5 Advanced Scripting Techniques and QOR**
 
+The activities for day five include running Yosys' main synthesis, learning about and using procedures at the application level, creating commands, and writing the files needed for the OpenTimer tool, like .conf,.spef, and timing Create an OpenTimer script, launch an OpenTimer STA, and gather the information needed to create a QoR.final step is to print the gathered data in a tool-standard QoR output format using the results file that was created during the OpenTimer STA run.
+
+Main yosys synthesis script:
+
+Code 
+
+```ruby
+##################################################################################################################################################
+######################################################## Day 5 ###################################################################################
+####################################################### Sub task 1 ###############################################################################
+##################################################################################################################################################
+# Main Synthesis Script for yosys
+# ---------------------
+puts "\nInfo: Creating main synthesis script to be used by Yosys"
+set data "read_liberty -lib -ignore_miss_dir -setattr blackbox ${Late_Library_Path}"
+set filename "$Design_Name.ys"
+set fileId [open $Output_Directory/$filename "w"]
+puts -nonewline $fileId $data
+set netlist [glob -dir $Netlist_Directory *.v]
+foreach f $netlist {
+	puts -nonewline $fileId "\nread_verilog $f"
+}
+puts -nonewline $fileId "\nhierarchy -top $Design_Name"
+puts -nonewline $fileId "\nsynth -top $Design_Name"
+puts -nonewline $fileId "\nsplitnets -ports -format ___\ndfflibmap -liberty ${Late_Library_Path} \nopt"
+puts -nonewline $fileId "\nabc -liberty ${Late_Library_Path}"
+puts -nonewline $fileId "\nflatten"
+puts -nonewline $fileId "\nclean -purge\niopadmap -outpad BUFX2 A:Y -bits\nopt\nclean"
+puts -nonewline $fileId "\nwrite_verilog $Output_Directory/$Design_Name.synth.v"
+close $fileId
+puts "\nInfo: Synthesis script created and can be accessed from path $Output_Directory/$Design_Name.ys"
+```
+
+![image](https://github.com/AbhishekChinchani/Samsung_pd/assets/142480501/9afcac49-25f4-4487-a497-210b99675c65)
+
+OpenMSP430.ys
+
+![image](https://github.com/AbhishekChinchani/Samsung_pd/assets/142480501/fe95dae8-e9f9-4930-8c7c-b68b78b046d3)
+
+Running main synthesis script and error handling
+
+code 
+
+```ruby
+puts "\nInfo: Running synthesis......."
+# Main synthesis error handling
+# Running main synthesis in yosys by dumping logs to the log directory and catching execution message
+if { [catch {exec yosys -s $Output_Directory/$Design_Name.ys >& $Output_Directory/$Design_Name.synthesis.log} msg] } {
+	puts "\nError: Synthesis failed due to errors. Please refer to log $Output_Directory/$Design_Name.synthesis.log for errors. Exiting...."
+	exit
+} else {
+	puts "\nInfo: Synthesis finished successfully"
+}
+puts "\nInfo: Please refer to log $Output_Directory/$Design_Name.synthesis.log"
+```
+
+![image](https://github.com/AbhishekChinchani/Samsung_pd/assets/142480501/6d662ad8-5833-47dd-a835-7a13ae0f6971)
+
+OpenMSP430.synthesis.log
+
+![image](https://github.com/AbhishekChinchani/Samsung_pd/assets/142480501/5025021e-661a-42bb-a70a-ced4b5c31bb0)
+
+openMSP430.synth.v
+
+![image](https://github.com/AbhishekChinchani/Samsung_pd/assets/142480501/b399f38c-c214-4698-bee2-9eb47fa3bae6)
+
+Editing .synth for being run by opentimer
+
+Code
+
+```ruby
+############################################## Editing .synth.v to be usable by Opentimer #######################################################
+
+puts "\nInfo: Removing '*' and '\\' from netlist"
+set fileId [open /tmp/1 "w"]
+puts -nonewline $fileId [exec grep -v -w "*" $Output_Directory/$Design_Name.synth.v]
+close $fileId
+set output [open $Output_Directory/$Design_Name.final.synth.v "w"]
+set filename "/tmp/1"
+set fid [open $filename r]
+while { [gets $fid line] != -1 } {
+	puts -nonewline $output [string map {"\\" ""} $line]
+	puts -nonewline $output "\n"
+}
+close $fid
+close $output
+puts "\nInfo: Please find the synthesized netlist for $Design_Name at below path. You can use this netlist for STA or PNR"
+puts "\nPath: $Output_Directory/$Design_Name.final.synth.v"
+```
+
+![image](https://github.com/AbhishekChinchani/Samsung_pd/assets/142480501/ef13f945-1f22-4f7c-a636-89ba91b16460)
+
+openMSP430.synth.v
+
+![image](https://github.com/AbhishekChinchani/Samsung_pd/assets/142480501/c6d23bb6-6750-4fb1-8734-695c00c2068d)
+
+openMSP430.final.synth.v
+
+![image](https://github.com/AbhishekChinchani/Samsung_pd/assets/142480501/cba3902a-0a58-4d6b-af59-3dc5b25f8bc4)
+
+
+
+
+
+
+
+
+
 
 
 
